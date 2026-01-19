@@ -1,0 +1,2 @@
+export { TableDocContent } from './TableDocContent';
+

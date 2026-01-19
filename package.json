@@ -1,0 +1,36 @@
+{
+  "name": "forgestack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ForgeStack - Modern Developer Tools for Building Better Applications",
+  "workspaces": [
+    "packages/*",
+    "portal"
+  ],
+  "scripts": {
+    "dev": "cd portal && npm run dev",
+    "build": "npm run build:packages && npm run build:portal",
+    "build:packages": "npm run build --workspaces --if-present",
+    "build:portal": "cd portal && npm run build",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "rm -rf node_modules packages/*/node_modules portal/node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yaghobieh/ForgeStack"
+  },
+  "homepage": "https://github.com/yaghobieh/ForgeStack#readme",
+  "keywords": [
+    "forgestack",
+    "harbor",
+    "nodejs",
+    "react",
+    "router",
+    "state-management",
+    "developer-tools"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+

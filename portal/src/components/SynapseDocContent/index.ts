@@ -1,0 +1,2 @@
+export { SynapseDocContent } from './SynapseDocContent';
+
