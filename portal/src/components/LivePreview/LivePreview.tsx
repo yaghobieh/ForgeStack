@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import type { LivePreviewProps, PreviewViewMode } from './types';
+import type { LivePreviewProps } from './types';
 import {
   COPY_FEEDBACK_DELAY,
   DEFAULT_ACCENT_COLOR,
@@ -30,7 +30,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
   showResponsive = false,
   className = '',
 }) => {
-  const [viewMode, setViewMode] = useState<PreviewViewMode>(defaultView === 'code' ? 'code' : 'preview');
   const [showCode, setShowCode] = useState(defaultView !== 'code');
   const [copied, setCopied] = useState(false);
   const [responsive, setResponsive] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
@@ -46,7 +45,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
 
   const toggleCode = () => {
     setShowCode(!showCode);
-    setViewMode(showCode ? 'code' : 'preview');
   };
 
   const getPreviewWidth = () => {
