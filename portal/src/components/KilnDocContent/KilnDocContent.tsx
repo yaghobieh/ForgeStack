@@ -112,7 +112,6 @@ const SectionRenderer: FC<{ section: KilnDocSection }> = ({ section }) => {
           title={section.title}
           description={section.content}
           accentColor={KILN_COLOR}
-          filename={section.filename}
         >
           <div className="text-white text-center">
             <span className="text-2xl">🔥</span>

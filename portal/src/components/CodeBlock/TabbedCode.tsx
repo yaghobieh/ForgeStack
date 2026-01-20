@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { TabbedCodeProps, Framework } from './types';
 import { CodeBlock } from './CodeBlock';
-import { getFrameworkIcon, FRAMEWORK_COLORS } from './FrameworkIcons';
+import { getFrameworkIcon } from './FrameworkIcons';
 
 /**
  * TabbedCode - Display code examples with framework tabs (React, Vue, Angular, Vanilla, etc.)
