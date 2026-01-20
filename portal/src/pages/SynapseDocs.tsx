@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { SYNAPSE_NAV_ITEMS, SYNAPSE_COLOR } from '../constants/synapse-docs.const';
 import { SynapseIcon } from '../components/Icons';
+import { MobileDocsNav } from '../components/MobileDocsNav';
 
 // Navigation component - exported for reuse
 export const SynapseDocsNav: FC = () => {
@@ -50,8 +51,20 @@ export const SynapseDocsNav: FC = () => {
 // Layout wrapper - exported for use in App.tsx
 export const SynapseDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex gap-8 px-6 py-8 max-w-7xl mx-auto">
+    <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
+      {/* Mobile Navigation */}
+      <MobileDocsNav
+        items={SYNAPSE_NAV_ITEMS}
+        basePath="/synapse"
+        color={SYNAPSE_COLOR}
+        title="Synapse"
+        icon={<SynapseIcon size={20} />}
+      />
+      
+      {/* Desktop Navigation */}
       <SynapseDocsNav />
+      
+      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>

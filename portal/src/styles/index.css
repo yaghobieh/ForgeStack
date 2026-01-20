@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Fira+Code:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,46 +7,54 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: 14px; /* Smaller base for dev feel */
+  }
+
+  body {
+    font-feature-settings: 'ss01', 'ss02', 'cv01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
   }
 
   /* Dark mode (default) - WebStorm inspired */
   html.dark {
-    --bg-primary: #1e1e1e;
-    --bg-secondary: #2b2b2b;
-    --bg-tertiary: #3c3c3c;
-    --text-primary: #a9b7c6;
-    --text-secondary: #808080;
-    --text-muted: #606060;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --code-bg: linear-gradient(180deg, #2b2b2b 0%, #1e1e1e 100%);
+    --bg-primary: #0d0d0d;
+    --bg-secondary: #161616;
+    --bg-tertiary: #1f1f1f;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888888;
+    --text-muted: #555555;
+    --border-color: rgba(255, 255, 255, 0.06);
+    --code-bg: #0a0a0a;
     --accent-blue: #6897bb;
     --accent-cyan: #299999;
     --accent-orange: #cc7832;
     --accent-green: #6a8759;
     --accent-yellow: #bbb529;
-    --scrollbar-track: #2b2b2b;
-    --scrollbar-thumb: #4e4e4e;
-    --scrollbar-thumb-hover: #5a5a5a;
+    --scrollbar-track: #161616;
+    --scrollbar-thumb: #333333;
+    --scrollbar-thumb-hover: #444444;
   }
 
   /* Light mode */
   html.light {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --bg-tertiary: #ebebeb;
-    --text-primary: #262626;
-    --text-secondary: #595959;
-    --text-muted: #8c8c8c;
-    --border-color: rgba(0, 0, 0, 0.06);
+    --bg-primary: #fafafa;
+    --bg-secondary: #f0f0f0;
+    --bg-tertiary: #e5e5e5;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: rgba(0, 0, 0, 0.08);
     --code-bg: #f5f5f5;
     --accent-blue: #0050b3;
     --accent-cyan: #006d75;
     --accent-orange: #d46b08;
     --accent-green: #389e0d;
     --accent-yellow: #d4b106;
-    --scrollbar-track: #f5f5f5;
-    --scrollbar-thumb: #d9d9d9;
-    --scrollbar-thumb-hover: #bfbfbf;
+    --scrollbar-track: #f0f0f0;
+    --scrollbar-thumb: #cccccc;
+    --scrollbar-thumb-hover: #aaaaaa;
   }
 
   /* Apply CSS variables */
@@ -59,10 +67,10 @@
   .border-theme-border { border-color: var(--border-color); }
   .code-block-bg { background: var(--code-bg); }
 
-  /* Custom scrollbar styles */
+  /* Scrollbar - thinner for dev feel */
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
@@ -71,53 +79,43 @@
 
   ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: var(--scrollbar-thumb-hover);
   }
 
-  /* Code syntax colors (WebStorm theme) */
+  /* Code syntax colors */
   .syntax-keyword { color: #cc7832; }
   .syntax-string { color: #6a8759; }
   .syntax-number { color: #6897bb; }
   .syntax-function { color: #ffc66d; }
-  .syntax-comment { color: #808080; }
+  .syntax-comment { color: #666666; }
   .syntax-type { color: #299999; }
-  .syntax-variable { color: #a9b7c6; }
+  .syntax-variable { color: #e0e0e0; }
 }
 
 @layer components {
   .forge-button {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-150;
     @apply bg-forge-600 text-white hover:bg-forge-500;
-    @apply shadow-sm hover:shadow-md;
   }
 
   .forge-button-outline {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    @apply px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-150;
     @apply border border-forge-500 text-forge-500;
     @apply hover:bg-forge-500 hover:text-white;
   }
 
   .forge-card {
-    @apply bg-theme-secondary border border-theme-border rounded-xl p-6;
-    @apply transition-all duration-200 hover:border-forge-500/30;
+    @apply bg-theme-secondary border border-theme-border rounded-lg p-4;
+    @apply transition-all duration-150 hover:border-forge-500/30;
   }
 
-  /* Terminal styles - pizzint.watch inspired with WebStorm colors */
+  /* Terminal styles */
   .forge-stack__terminal {
-    @apply font-mono;
-  }
-
-  .forge-stack__terminal-frame {
-    animation: terminal-flicker 0.15s infinite alternate;
-  }
-
-  @keyframes terminal-flicker {
-    0% { opacity: 0.97; }
-    100% { opacity: 1; }
+    @apply font-mono text-sm;
   }
 
   .forge-stack__terminal-cursor {
@@ -126,22 +124,5 @@
 
   @keyframes blink {
     50% { opacity: 0; }
-  }
-
-  .forge-stack__terminal-line {
-    @apply flex;
-  }
-
-  .forge-stack__terminal-token {
-    white-space: pre;
-  }
-
-  /* Glow effect for active elements */
-  .forge-stack__terminal-status-dot {
-    box-shadow: 0 0 8px currentColor;
-  }
-
-  .forge-stack__nav-dot {
-    box-shadow: 0 0 4px currentColor;
   }
 }

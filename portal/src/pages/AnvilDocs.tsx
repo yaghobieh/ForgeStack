@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Routes, Route, NavLink, useLocation, Navigate } from 'react-router-dom';
 import { AnvilDocContent } from '../components/AnvilDocContent';
+import { MobileDocsNav } from '../components/MobileDocsNav';
 import { ANVIL_NAV } from '../constants/anvil-docs.const';
 
 // Anvil brand color - Pink
@@ -90,8 +91,20 @@ export const AnvilDocsNav: FC = () => {
 // Layout wrapper for Anvil docs pages
 export const AnvilDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex gap-8 px-6 py-8 max-w-7xl mx-auto">
+    <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
+      {/* Mobile Navigation */}
+      <MobileDocsNav
+        items={ANVIL_NAV}
+        basePath="/anvil"
+        color={ANVIL_COLOR}
+        title="Anvil"
+        icon={<AnvilIcon size={20} />}
+      />
+      
+      {/* Desktop Navigation */}
       <AnvilDocsNav />
+      
+      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { VersionDropdown } from '../components/VersionDropdown';
+import { MobileDocsNav } from '../components/MobileDocsNav';
 
 // Harbor brand color
 const HARBOR_COLOR = '#0066cc';
@@ -63,6 +64,14 @@ export const HARBOR_NAV: HarborNavGroup[] = [
   },
 ];
 
+// Flattened nav items for mobile
+const HARBOR_NAV_FLAT = HARBOR_NAV.flatMap((group) =>
+  group.sections.map((section) => ({
+    path: `docs/${section.path}`,
+    label: section.title,
+  }))
+);
+
 // Navigation component - exported for reuse
 export const HarborDocsNav: FC = () => {
   const location = useLocation();
@@ -111,8 +120,20 @@ export const HarborDocsNav: FC = () => {
 // Layout wrapper - exported for use in App.tsx
 export const HarborDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex gap-8 px-6 py-8 max-w-7xl mx-auto">
+    <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
+      {/* Mobile Navigation */}
+      <MobileDocsNav
+        items={HARBOR_NAV_FLAT}
+        basePath="/harbor"
+        color={HARBOR_COLOR}
+        title="Harbor"
+        icon={<span className="text-lg">⚓</span>}
+      />
+      
+      {/* Desktop Navigation */}
       <HarborDocsNav />
+      
+      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>

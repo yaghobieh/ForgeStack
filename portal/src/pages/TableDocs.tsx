@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { TABLE_NAV_ITEMS, TABLE_COLOR } from '../constants/table-docs.const';
+import { MobileDocsNav } from '../components/MobileDocsNav';
 
 // Navigation component - exported for reuse
 export const TableDocsNav: FC = () => {
@@ -49,8 +50,20 @@ export const TableDocsNav: FC = () => {
 // Layout wrapper - exported for use in App.tsx
 export const TableDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex gap-8 px-6 py-8 max-w-7xl mx-auto">
+    <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
+      {/* Mobile Navigation */}
+      <MobileDocsNav
+        items={TABLE_NAV_ITEMS}
+        basePath="/table"
+        color={TABLE_COLOR}
+        title="Grid Table"
+        icon={<span className="text-lg">📊</span>}
+      />
+      
+      {/* Desktop Navigation */}
       <TableDocsNav />
+      
+      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>

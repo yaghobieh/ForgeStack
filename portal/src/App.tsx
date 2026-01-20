@@ -1,25 +1,42 @@
+import { useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
+import { MobileNav } from './components/MobileNav';
 import { Home } from './pages/Home';
 import { HarborDocsLayout, DocContent } from './pages/HarborDocs';
 import { TableDocsLayout, TableDocContent } from './pages/TableDocs';
 import { SynapseDocsLayout, SynapseDocContent } from './pages/SynapseDocs';
 import { AnvilDocsLayout } from './pages/AnvilDocs';
 import { AnvilDocContent } from './components/AnvilDocContent';
+import { BearDocsLayout } from './pages/BearDocs';
+import { BearDocContent } from './components/BearDocContent';
+import { KilnDocsLayout } from './pages/KilnDocs';
+import { KilnDocContent } from './components/KilnDocContent';
 import { Showcase } from './pages/Showcase';
 import { Extensions } from './pages/Extensions';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
+  const handleMobileNavToggle = useCallback(() => {
+    setMobileNavOpen((prev) => !prev);
+  }, []);
+
+  const handleMobileNavClose = useCallback(() => {
+    setMobileNavOpen(false);
+  }, []);
+
   return (
     <BrowserRouter>
       <ThemeProvider>
-        <div className="min-h-screen bg-theme-primary text-theme-primary transition-colors duration-200">
-          <Navbar />
+        <div className="min-h-screen bg-theme-primary text-theme-primary transition-colors duration-200 overflow-x-hidden">
+          <Navbar onMobileMenuToggle={handleMobileNavToggle} />
+          <MobileNav isOpen={isMobileNavOpen} onClose={handleMobileNavClose} />
           <div className="flex">
             <Sidebar className="fixed left-0 top-16 bottom-0 z-40 hidden lg:flex" />
-            <main className="flex-1 lg:ml-56">
+            <main className="flex-1 lg:ml-56 min-w-0">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/harbor" element={<Navigate to="/harbor/docs/quick-start" replace />} />
@@ -85,6 +102,50 @@ function App() {
                 <Route path="/anvil/api" element={<AnvilDocsLayout><AnvilDocContent page="api" /></AnvilDocsLayout>} />
                 <Route path="/anvil/cn" element={<Navigate to="/anvil/style-forge" replace />} />
                 <Route path="/anvil/*" element={<Navigate to="/anvil" replace />} />
+                {/* Bear Routes */}
+                <Route path="/bear" element={<BearDocsLayout><BearDocContent page="overview" /></BearDocsLayout>} />
+                <Route path="/bear/installation" element={<BearDocsLayout><BearDocContent page="installation" /></BearDocsLayout>} />
+                <Route path="/bear/theme-provider" element={<BearDocsLayout><BearDocContent page="theme-provider" /></BearDocsLayout>} />
+                <Route path="/bear/button" element={<BearDocsLayout><BearDocContent page="button" /></BearDocsLayout>} />
+                <Route path="/bear/card" element={<BearDocsLayout><BearDocContent page="card" /></BearDocsLayout>} />
+                <Route path="/bear/modal" element={<BearDocsLayout><BearDocContent page="modal" /></BearDocsLayout>} />
+                <Route path="/bear/drawer" element={<BearDocsLayout><BearDocContent page="drawer" /></BearDocsLayout>} />
+                <Route path="/bear/tooltip" element={<BearDocsLayout><BearDocContent page="tooltip" /></BearDocsLayout>} />
+                <Route path="/bear/input" element={<BearDocsLayout><BearDocContent page="input" /></BearDocsLayout>} />
+                <Route path="/bear/select" element={<BearDocsLayout><BearDocContent page="select" /></BearDocsLayout>} />
+                <Route path="/bear/switch" element={<BearDocsLayout><BearDocContent page="switch" /></BearDocsLayout>} />
+                <Route path="/bear/grid" element={<BearDocsLayout><BearDocContent page="grid" /></BearDocsLayout>} />
+                <Route path="/bear/flex" element={<BearDocsLayout><BearDocContent page="flex" /></BearDocsLayout>} />
+                <Route path="/bear/container" element={<BearDocsLayout><BearDocContent page="container" /></BearDocsLayout>} />
+                <Route path="/bear/badge" element={<BearDocsLayout><BearDocContent page="badge" /></BearDocsLayout>} />
+                <Route path="/bear/spinner" element={<BearDocsLayout><BearDocContent page="spinner" /></BearDocsLayout>} />
+                <Route path="/bear/icons" element={<BearDocsLayout><BearDocContent page="icons" /></BearDocsLayout>} />
+                <Route path="/bear/hooks" element={<BearDocsLayout><BearDocContent page="hooks" /></BearDocsLayout>} />
+                <Route path="/bear/multiselect" element={<BearDocsLayout><BearDocContent page="multiselect" /></BearDocsLayout>} />
+                <Route path="/bear/autocomplete" element={<BearDocsLayout><BearDocContent page="autocomplete" /></BearDocsLayout>} />
+                <Route path="/bear/datatable" element={<BearDocsLayout><BearDocContent page="datatable" /></BearDocsLayout>} />
+                <Route path="/bear/carousel" element={<BearDocsLayout><BearDocContent page="carousel" /></BearDocsLayout>} />
+                <Route path="/bear/accordion" element={<BearDocsLayout><BearDocContent page="accordion" /></BearDocsLayout>} />
+                <Route path="/bear/tabs" element={<BearDocsLayout><BearDocContent page="tabs" /></BearDocsLayout>} />
+                <Route path="/bear/avatar" element={<BearDocsLayout><BearDocContent page="avatar" /></BearDocsLayout>} />
+                <Route path="/bear/progress" element={<BearDocsLayout><BearDocContent page="progress" /></BearDocsLayout>} />
+                <Route path="/bear/api" element={<BearDocsLayout><BearDocContent page="api" /></BearDocsLayout>} />
+                <Route path="/bear/*" element={<Navigate to="/bear" replace />} />
+                {/* Redirect old ember routes to bear */}
+                <Route path="/ember/*" element={<Navigate to="/bear" replace />} />
+                {/* Kiln Routes */}
+                <Route path="/kiln" element={<KilnDocsLayout><KilnDocContent page="overview" /></KilnDocsLayout>} />
+                <Route path="/kiln/installation" element={<KilnDocsLayout><KilnDocContent page="installation" /></KilnDocsLayout>} />
+                <Route path="/kiln/quick-start" element={<KilnDocsLayout><KilnDocContent page="quick-start" /></KilnDocsLayout>} />
+                <Route path="/kiln/config" element={<KilnDocsLayout><KilnDocContent page="config" /></KilnDocsLayout>} />
+                <Route path="/kiln/stories" element={<KilnDocsLayout><KilnDocContent page="stories" /></KilnDocsLayout>} />
+                <Route path="/kiln/canvas" element={<KilnDocsLayout><KilnDocContent page="canvas" /></KilnDocsLayout>} />
+                <Route path="/kiln/theming" element={<KilnDocsLayout><KilnDocContent page="theming" /></KilnDocsLayout>} />
+                <Route path="/kiln/cli" element={<KilnDocsLayout><KilnDocContent page="cli" /></KilnDocsLayout>} />
+                <Route path="/kiln/api" element={<KilnDocsLayout><KilnDocContent page="api" /></KilnDocsLayout>} />
+                <Route path="/kiln/*" element={<Navigate to="/kiln" replace />} />
+                {/* Redirect old spark routes to kiln */}
+                <Route path="/spark/*" element={<Navigate to="/kiln" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
