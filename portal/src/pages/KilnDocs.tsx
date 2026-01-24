@@ -18,21 +18,17 @@ export const KilnIcon: FC<{ size?: number }> = ({ size = 24 }) => (
         <stop offset="100%" stopColor="#fbbf24" />
       </linearGradient>
     </defs>
-    {/* Background */}
     <rect x="5" y="5" width="90" height="90" rx="15" fill="#1a1a2e" />
-    {/* Kiln body - arch shape */}
     <path
       d="M20 75 L20 40 Q20 20 50 20 Q80 20 80 40 L80 75 Z"
       fill="url(#kilnIconGrad)"
       stroke="#92400e"
       strokeWidth="2"
     />
-    {/* Kiln opening */}
     <path
       d="M30 75 L30 50 Q30 35 50 35 Q70 35 70 50 L70 75 Z"
       fill="#18181b"
     />
-    {/* Fire/flame */}
     <path
       d="M50 70 Q40 55 45 45 Q50 55 55 50 Q60 55 55 65 Q55 70 50 70 Z"
       fill="url(#kilnFlameGrad)"
@@ -97,7 +93,6 @@ export const KilnDocsNav: FC = () => {
 export const KilnDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
-      {/* Mobile Navigation */}
       <MobileDocsNav
         items={KILN_NAV}
         basePath="/kiln"
@@ -106,10 +101,8 @@ export const KilnDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) 
         icon={<KilnIcon size={20} />}
       />
       
-      {/* Desktop Navigation */}
       <KilnDocsNav />
       
-      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>

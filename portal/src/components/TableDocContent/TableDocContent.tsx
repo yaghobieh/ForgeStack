@@ -189,14 +189,12 @@ export const TableDocContent: FC<TableDocContentProps> = ({ page }) => {
         </p>
       </div>
 
-      {/* Overview Live Preview */}
       {isOverview && doc.sections[0] && (
         <LivePreview title="Basic Table" code={doc.sections[0].code || ''}>
           <MockTable />
         </LivePreview>
       )}
 
-      {/* Features Grid (Overview only) */}
       {isOverview && doc.features && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {doc.features.map((feature) => (
@@ -213,7 +211,6 @@ export const TableDocContent: FC<TableDocContentProps> = ({ page }) => {
         </div>
       )}
 
-      {/* Quick Start and Selection have live previews */}
       {page === 'quick-start' && (
         <>
           {doc.sections.map((section) => (
@@ -265,7 +262,6 @@ export const TableDocContent: FC<TableDocContentProps> = ({ page }) => {
         </>
       )}
 
-      {/* Regular sections */}
       {!isOverview && page !== 'quick-start' && page !== 'selection' && page !== 'sticky' && (
         doc.sections.map((section) => (
           <div key={section.id} className="mb-8">
@@ -278,7 +274,6 @@ export const TableDocContent: FC<TableDocContentProps> = ({ page }) => {
         ))
       )}
 
-      {/* API Table */}
       {doc.apiTable && (
         <div className="overflow-x-auto">
           <table className="w-full border border-theme-border rounded-lg text-sm">

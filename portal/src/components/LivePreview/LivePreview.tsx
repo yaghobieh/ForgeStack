@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import type { LivePreviewProps } from './types';
+import type { LivePreviewProps, PreviewViewMode } from './types';
 import {
   COPY_FEEDBACK_DELAY,
   DEFAULT_ACCENT_COLOR,
@@ -30,6 +30,7 @@ export const LivePreview: FC<LivePreviewProps> = ({
   showResponsive = false,
   className = '',
 }) => {
+  const [, setViewMode] = useState<PreviewViewMode>(defaultView === 'code' ? 'code' : 'preview');
   const [showCode, setShowCode] = useState(defaultView !== 'code');
   const [copied, setCopied] = useState(false);
   const [responsive, setResponsive] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
@@ -45,6 +46,7 @@ export const LivePreview: FC<LivePreviewProps> = ({
 
   const toggleCode = () => {
     setShowCode(!showCode);
+    setViewMode(showCode ? 'code' : 'preview');
   };
 
   const getPreviewWidth = () => {
@@ -74,7 +76,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
 
   return (
     <div className={`rounded-xl border border-gray-700 overflow-hidden bg-gray-900/50 mb-6 ${className}`}>
-      {/* Header */}
       {(title || description) && (
         <div className="px-4 py-3 border-b border-gray-700">
           {title && (
@@ -86,7 +87,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
         </div>
       )}
 
-      {/* Preview Area */}
       <div
         className={`${sizeConfig.padding} ${backgroundClass} ${
           centered ? 'flex items-center justify-center' : ''
@@ -101,10 +101,8 @@ export const LivePreview: FC<LivePreviewProps> = ({
         </div>
       </div>
 
-      {/* Toolbar */}
       <div className="flex items-center justify-between px-4 py-2 border-t border-b border-gray-700 bg-gray-800/50">
         <div className="flex items-center gap-2">
-          {/* View Mode Toggle */}
           <button
             onClick={toggleCode}
             className={`${TOOLBAR_BUTTON_CLASSES.base} ${
@@ -120,7 +118,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Responsive Toggle */}
           {showResponsive && (
             <div className="flex items-center gap-1 mr-2">
               {(Object.keys(RESPONSIVE_SIZES) as Array<keyof typeof RESPONSIVE_SIZES>).map((key) => (
@@ -140,7 +137,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
             </div>
           )}
 
-          {/* Fullscreen */}
           {showFullscreen && (
             <button
               className={`${TOOLBAR_BUTTON_CLASSES.base} ${TOOLBAR_BUTTON_CLASSES.inactive}`}
@@ -150,7 +146,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
             </button>
           )}
 
-          {/* Copy */}
           <button
             onClick={handleCopy}
             className={`${TOOLBAR_BUTTON_CLASSES.base} ${TOOLBAR_BUTTON_CLASSES.inactive}`}
@@ -160,7 +155,6 @@ export const LivePreview: FC<LivePreviewProps> = ({
         </div>
       </div>
 
-      {/* Code Area */}
       {showCode && (
         <div className={CODE_BLOCK_CLASSES.container}>
           <pre className={CODE_BLOCK_CLASSES.pre}>

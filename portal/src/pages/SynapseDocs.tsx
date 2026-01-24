@@ -52,7 +52,6 @@ export const SynapseDocsNav: FC = () => {
 export const SynapseDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
-      {/* Mobile Navigation */}
       <MobileDocsNav
         items={SYNAPSE_NAV_ITEMS}
         basePath="/synapse"
@@ -61,10 +60,8 @@ export const SynapseDocsLayout: FC<{ children: React.ReactNode }> = ({ children 
         icon={<SynapseIcon size={20} />}
       />
       
-      {/* Desktop Navigation */}
       <SynapseDocsNav />
       
-      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>

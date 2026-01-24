@@ -14,28 +14,75 @@ export const BEAR_NAV: BearNavItem[] = [
   { path: '', label: 'Overview', exact: true },
   { path: 'installation', label: 'Installation' },
   { path: 'theme-provider', label: 'Theme Provider' },
-  { path: 'button', label: 'Button' },
-  { path: 'card', label: 'Card' },
-  { path: 'modal', label: 'Modal' },
-  { path: 'drawer', label: 'Drawer' },
-  { path: 'tooltip', label: 'Tooltip' },
-  { path: 'input', label: 'Input' },
-  { path: 'select', label: 'Select' },
-  { path: 'switch', label: 'Switch' },
+  // Layout
   { path: 'grid', label: 'Grid' },
   { path: 'flex', label: 'Flex' },
   { path: 'container', label: 'Container' },
-  { path: 'badge', label: 'Badge' },
-  { path: 'spinner', label: 'Spinner' },
-  { path: 'icons', label: 'Icons' },
+  { path: 'paper', label: 'Paper' },
+  { path: 'divider', label: 'Divider' },
+  // Inputs
+  { path: 'button', label: 'Button' },
+  { path: 'button-group', label: 'ButtonGroup' },
+  { path: 'input', label: 'Input' },
+  { path: 'select', label: 'Select' },
   { path: 'multiselect', label: 'MultiSelect' },
   { path: 'autocomplete', label: 'Autocomplete' },
-  { path: 'datatable', label: 'DataTable' },
-  { path: 'carousel', label: 'Carousel' },
-  { path: 'accordion', label: 'Accordion' },
-  { path: 'tabs', label: 'Tabs' },
+  { path: 'checkbox', label: 'Checkbox' },
+  { path: 'radio', label: 'Radio' },
+  { path: 'switch', label: 'Switch' },
+  { path: 'rating', label: 'Rating' },
+  { path: 'transfer-list', label: 'TransferList' },
+  // Data Display
+  { path: 'typography', label: 'Typography' },
+  { path: 'badge', label: 'Badge' },
   { path: 'avatar', label: 'Avatar' },
+  { path: 'list', label: 'List' },
+  { path: 'card', label: 'Card' },
+  { path: 'datatable', label: 'DataTable' },
+  { path: 'tooltip', label: 'Tooltip' },
+  // Feedback
+  { path: 'alert', label: 'Alert' },
+  { path: 'toast', label: 'Toast' },
+  { path: 'skeleton', label: 'Skeleton' },
+  { path: 'spinner', label: 'Spinner' },
   { path: 'progress', label: 'Progress' },
+  { path: 'pagination', label: 'Pagination' },
+  { path: 'slider', label: 'Slider' },
+  { path: 'modal', label: 'Modal' },
+  { path: 'drawer', label: 'Drawer' },
+  { path: 'bear-loader', label: 'BearLoader' },
+  // Navigation
+  { path: 'tabs', label: 'Tabs' },
+  { path: 'menu', label: 'Menu' },
+  { path: 'dropdown', label: 'Dropdown' },
+  { path: 'link', label: 'Link' },
+  { path: 'speed-dial', label: 'SpeedDial' },
+  { path: 'fab', label: 'FAB' },
+  { path: 'breadcrumbs', label: 'Breadcrumbs' },
+  { path: 'stepper', label: 'Stepper' },
+  { path: 'bottom-navigation', label: 'BottomNavigation' },
+  // Other
+  { path: 'accordion', label: 'Accordion' },
+  { path: 'carousel', label: 'Carousel' },
+  { path: 'date-picker', label: 'DatePicker' },
+  { path: 'time-picker', label: 'TimePicker' },
+  { path: 'color-picker', label: 'ColorPicker' },
+  { path: 'file-upload', label: 'FileUpload' },
+  { path: 'number-input', label: 'NumberInput' },
+  { path: 'otp-input', label: 'OTPInput' },
+  { path: 'chip', label: 'Chip' },
+  { path: 'tree-view', label: 'TreeView' },
+  { path: 'timeline', label: 'Timeline' },
+  { path: 'statistic', label: 'Statistic' },
+  { path: 'empty-state', label: 'EmptyState' },
+  { path: 'image', label: 'Image' },
+  { path: 'popover', label: 'Popover' },
+  { path: 'app-bar', label: 'AppBar' },
+  { path: 'scroll-area', label: 'ScrollArea' },
+  { path: 'collapsible', label: 'Collapsible' },
+  { path: 'kbd', label: 'Kbd' },
+  { path: 'copy-button', label: 'CopyButton' },
+  { path: 'icons', label: 'Icons' },
   { path: 'hooks', label: 'Hooks' },
   { path: 'api', label: 'API Reference' },
 ];
@@ -962,6 +1009,766 @@ function UsersTable() {
       },
     ],
   },
+  // NEW COMPONENTS
+  rating: {
+    slug: 'rating',
+    title: 'Rating',
+    description: 'Star rating input with half-star support and customization.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Interactive star rating:',
+        code: `import { Rating } from '@forgedevstack/bear';
+
+<Rating value={3} onChange={(val) => console.log(val)} />
+<Rating value={4.5} precision={0.5} />
+<Rating value={5} readOnly />
+<Rating max={10} value={7} />`,
+        filename: 'RatingBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'sizes',
+        title: 'Sizes',
+        content: 'Different rating sizes:',
+        code: `<Rating size="sm" value={3} />
+<Rating size="md" value={4} />
+<Rating size="lg" value={5} />`,
+        filename: 'RatingSizes.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  radio: {
+    slug: 'radio',
+    title: 'Radio',
+    description: 'Radio buttons for single-selection in a group.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Radio group for single selection:',
+        code: `import { RadioGroup, Radio } from '@forgedevstack/bear';
+
+<RadioGroup value={selected} onChange={setSelected}>
+  <Radio value="option1" label="Option 1" />
+  <Radio value="option2" label="Option 2" />
+  <Radio value="option3" label="Option 3" />
+</RadioGroup>`,
+        filename: 'RadioBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'variants',
+        title: 'Variants',
+        content: 'Colored radio buttons:',
+        code: `<RadioGroup>
+  <Radio value="primary" variant="primary" label="Primary" />
+  <Radio value="success" variant="success" label="Success" />
+  <Radio value="danger" variant="danger" label="Danger" />
+</RadioGroup>`,
+        filename: 'RadioVariants.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  checkbox: {
+    slug: 'checkbox',
+    title: 'Checkbox',
+    description: 'Checkbox for multiple selections with indeterminate state.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Standalone and grouped checkboxes:',
+        code: `import { Checkbox } from '@forgedevstack/bear';
+
+<Checkbox label="Accept terms" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} />
+<Checkbox label="Subscribe to newsletter" />
+<Checkbox label="Remember me" defaultChecked />`,
+        filename: 'CheckboxBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'indeterminate',
+        title: 'Indeterminate State',
+        content: 'Parent checkbox with partial selection:',
+        code: `<Checkbox label="Select All" indeterminate={someSelected} />`,
+        filename: 'CheckboxIndeterminate.tsx',
+      },
+    ],
+  },
+  'button-group': {
+    slug: 'button-group',
+    title: 'ButtonGroup',
+    description: 'Group related buttons together.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Grouped buttons:',
+        code: `import { ButtonGroup, Button } from '@forgedevstack/bear';
+
+<ButtonGroup>
+  <Button>Left</Button>
+  <Button>Center</Button>
+  <Button>Right</Button>
+</ButtonGroup>`,
+        filename: 'ButtonGroupBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'variants',
+        title: 'Variants',
+        content: 'Different button group styles:',
+        code: `<ButtonGroup variant="outline">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</ButtonGroup>`,
+        filename: 'ButtonGroupVariants.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  fab: {
+    slug: 'fab',
+    title: 'FAB',
+    description: 'Floating Action Button for primary actions.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Fixed position action button:',
+        code: `import { Fab } from '@forgedevstack/bear';
+import { PlusIcon, EditIcon } from '@forgedevstack/bear';
+
+<Fab position="bottom-right" onClick={handleAdd}>
+  <PlusIcon />
+</Fab>
+
+<Fab extended variant="success">
+  <EditIcon /> Edit
+</Fab>`,
+        filename: 'FabBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  'transfer-list': {
+    slug: 'transfer-list',
+    title: 'TransferList',
+    description: 'Dual-list control for moving items between collections.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Move items between lists:',
+        code: `import { TransferList } from '@forgedevstack/bear';
+
+const items = [
+  { id: 1, label: 'Item 1' },
+  { id: 2, label: 'Item 2' },
+  { id: 3, label: 'Item 3' },
+];
+
+<TransferList
+  items={items}
+  leftTitle="Available"
+  rightTitle="Selected"
+  onChange={(left, right) => console.log(left, right)}
+/>`,
+        filename: 'TransferListBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  divider: {
+    slug: 'divider',
+    title: 'Divider',
+    description: 'Visual separator for content sections.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Horizontal and vertical dividers:',
+        code: `import { Divider } from '@forgedevstack/bear';
+
+<Divider />
+<Divider orientation="vertical" />
+<Divider>OR</Divider>
+<Divider textAlign="left">Section</Divider>`,
+        filename: 'DividerBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  typography: {
+    slug: 'typography',
+    title: 'Typography',
+    description: 'Text components with consistent styling.',
+    sections: [
+      {
+        id: 'variants',
+        title: 'Variants',
+        content: 'Different typography styles:',
+        code: `import { Typography } from '@forgedevstack/bear';
+
+<Typography variant="h1">Heading 1</Typography>
+<Typography variant="h2">Heading 2</Typography>
+<Typography variant="h3">Heading 3</Typography>
+<Typography variant="body1">Body text 1</Typography>
+<Typography variant="body2">Body text 2</Typography>
+<Typography variant="caption">Caption text</Typography>
+<Typography variant="overline">OVERLINE</Typography>`,
+        filename: 'TypographyVariants.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'colors',
+        title: 'Colors',
+        content: 'Colored text:',
+        code: `<Typography color="primary">Primary</Typography>
+<Typography color="secondary">Secondary</Typography>
+<Typography color="success">Success</Typography>
+<Typography color="error">Error</Typography>`,
+        filename: 'TypographyColors.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  list: {
+    slug: 'list',
+    title: 'List',
+    description: 'Organized lists with items, icons, and actions.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Simple list with items:',
+        code: `import { List, ListItem } from '@forgedevstack/bear';
+
+<List>
+  <ListItem primary="Inbox" secondary="You have 3 new messages" />
+  <ListItem primary="Drafts" />
+  <ListItem primary="Sent" secondary="Last sent: 2 days ago" />
+</List>`,
+        filename: 'ListBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'with-icons',
+        title: 'With Icons',
+        content: 'List items with leading icons:',
+        code: `<List>
+  <ListItem icon={<InboxIcon />} primary="Inbox" />
+  <ListItem icon={<SendIcon />} primary="Sent" />
+  <ListItem icon={<SettingsIcon />} primary="Settings" />
+</List>`,
+        filename: 'ListWithIcons.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  alert: {
+    slug: 'alert',
+    title: 'Alert',
+    description: 'Feedback messages for user actions.',
+    sections: [
+      {
+        id: 'severities',
+        title: 'Severities',
+        content: 'Different alert types:',
+        code: `import { Alert } from '@forgedevstack/bear';
+
+<Alert severity="success">Operation completed successfully!</Alert>
+<Alert severity="info">This is an informational message.</Alert>
+<Alert severity="warning">Warning: Check your input.</Alert>
+<Alert severity="error">Error: Something went wrong.</Alert>`,
+        filename: 'AlertSeverities.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'with-title',
+        title: 'With Title',
+        content: 'Alerts with title and actions:',
+        code: `<Alert severity="success" title="Success" closable onClose={() => {}}>
+  Your changes have been saved.
+</Alert>`,
+        filename: 'AlertWithTitle.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  paper: {
+    slug: 'paper',
+    title: 'Paper',
+    description: 'Elevated surface for content.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Paper with elevation:',
+        code: `import { Paper } from '@forgedevstack/bear';
+
+<Paper>Default paper</Paper>
+<Paper elevation={2}>Elevated paper</Paper>
+<Paper elevation={4}>Higher elevation</Paper>
+<Paper variant="outlined">Outlined paper</Paper>`,
+        filename: 'PaperBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  link: {
+    slug: 'link',
+    title: 'Link',
+    description: 'Styled anchor links with variants.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Link components:',
+        code: `import { Link } from '@forgedevstack/bear';
+
+<Link href="#">Default Link</Link>
+<Link href="#" variant="primary">Primary Link</Link>
+<Link href="#" variant="secondary">Secondary Link</Link>
+<Link href="https://example.com" external>External Link</Link>`,
+        filename: 'LinkBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  menu: {
+    slug: 'menu',
+    title: 'Menu',
+    description: 'Popup menu for actions and navigation.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Menu with items:',
+        code: `import { Menu, MenuItem, MenuDivider } from '@forgedevstack/bear';
+
+<Menu trigger={<Button>Open Menu</Button>}>
+  <MenuItem onClick={() => {}}>Profile</MenuItem>
+  <MenuItem onClick={() => {}}>Settings</MenuItem>
+  <MenuDivider />
+  <MenuItem onClick={() => {}} danger>Logout</MenuItem>
+</Menu>`,
+        filename: 'MenuBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  dropdown: {
+    slug: 'dropdown',
+    title: 'Dropdown',
+    description: 'Customizable dropdown for actions and navigation.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Dropdown with options:',
+        code: `import { Dropdown } from '@forgedevstack/bear';
+
+<Dropdown
+  trigger={<Button>Options</Button>}
+  items={[
+    { label: 'Edit', onClick: () => {} },
+    { label: 'Duplicate', onClick: () => {} },
+    { divider: true },
+    { label: 'Delete', onClick: () => {}, variant: 'danger' },
+  ]}
+/>`,
+        filename: 'DropdownBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  'speed-dial': {
+    slug: 'speed-dial',
+    title: 'SpeedDial',
+    description: 'Floating action button with expandable actions.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Speed dial with actions:',
+        code: `import { SpeedDial } from '@forgedevstack/bear';
+import { PlusIcon, EditIcon, DeleteIcon, ShareIcon } from '@forgedevstack/bear';
+
+<SpeedDial
+  icon={<PlusIcon />}
+  position="bottom-right"
+  actions={[
+    { key: 'edit', label: 'Edit', icon: <EditIcon /> },
+    { key: 'share', label: 'Share', icon: <ShareIcon /> },
+    { key: 'delete', label: 'Delete', icon: <DeleteIcon /> },
+  ]}
+/>`,
+        filename: 'SpeedDialBasic.tsx',
+        livePreview: true,
+      },
+    ],
+  },
+  toast: {
+    slug: 'toast',
+    title: 'Toast',
+    description: 'Notification toasts for user feedback.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Show toast notifications from anywhere:',
+        code: `import { ToastProvider, useToast } from '@forgedevstack/bear';
+
+// Wrap your app with ToastProvider
+<ToastProvider>
+  <App />
+</ToastProvider>
+
+// Use the hook in any component
+function MyComponent() {
+  const toast = useToast();
+  
+  return (
+    <Button onClick={() => toast.success('Saved successfully!')}>
+      Save
+    </Button>
+  );
+}`,
+        filename: 'ToastBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'types',
+        title: 'Toast Types',
+        content: 'Different toast variants:',
+        code: `toast.success('Operation completed!');
+toast.error('Something went wrong');
+toast.warning('Please check your input');
+toast.info('New update available');`,
+        filename: 'ToastTypes.tsx',
+      },
+      {
+        id: 'positions',
+        title: 'Positions',
+        content: 'Toast positioning:',
+        code: `<ToastProvider position="top-right">
+<ToastProvider position="top-center">
+<ToastProvider position="bottom-left">
+<ToastProvider position="bottom-center">`,
+        filename: 'ToastPositions.tsx',
+      },
+    ],
+  },
+  skeleton: {
+    slug: 'skeleton',
+    title: 'Skeleton',
+    description: 'Loading placeholders for content.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Show skeleton loaders while content loads:',
+        code: `import { Skeleton } from '@forgedevstack/bear';
+
+<Skeleton variant="text" width={200} />
+<Skeleton variant="circular" width={40} height={40} />
+<Skeleton variant="rectangular" width={210} height={118} />`,
+        filename: 'SkeletonBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'animation',
+        title: 'Animation',
+        content: 'Different animation modes:',
+        code: `<Skeleton animation="pulse" />
+<Skeleton animation="wave" />
+<Skeleton animation={false} />`,
+        filename: 'SkeletonAnimation.tsx',
+      },
+    ],
+  },
+  pagination: {
+    slug: 'pagination',
+    title: 'Pagination',
+    description: 'Navigate through pages of content.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Page navigation controls:',
+        code: `import { Pagination } from '@forgedevstack/bear';
+
+const [page, setPage] = useState(1);
+
+<Pagination
+  currentPage={page}
+  totalPages={10}
+  onPageChange={setPage}
+/>`,
+        filename: 'PaginationBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'options',
+        title: 'Options',
+        content: 'Customize pagination behavior:',
+        code: `<Pagination
+  currentPage={page}
+  totalPages={20}
+  onPageChange={setPage}
+  showFirstLast
+  showPrevNext
+  maxVisiblePages={5}
+/>`,
+        filename: 'PaginationOptions.tsx',
+      },
+    ],
+  },
+  slider: {
+    slug: 'slider',
+    title: 'Slider',
+    description: 'Input slider for selecting values within a range.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Single value slider:',
+        code: `import { Slider } from '@forgedevstack/bear';
+
+const [value, setValue] = useState(50);
+
+<Slider
+  value={value}
+  onChange={setValue}
+  min={0}
+  max={100}
+/>`,
+        filename: 'SliderBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'range',
+        title: 'Range Slider',
+        content: 'Select a range of values:',
+        code: `const [range, setRange] = useState([20, 80]);
+
+<Slider
+  value={range}
+  onChange={setRange}
+  min={0}
+  max={100}
+/>`,
+        filename: 'SliderRange.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'variants',
+        title: 'Variants',
+        content: 'Different slider styles:',
+        code: `<Slider variant="primary" value={50} />
+<Slider variant="success" value={75} />
+<Slider variant="warning" value={30} />`,
+        filename: 'SliderVariants.tsx',
+      },
+    ],
+  },
+  'bear-loader': {
+    slug: 'bear-loader',
+    title: 'BearLoader',
+    description: 'Animated Lotso-style bear loading animation.',
+    sections: [
+      {
+        id: 'basic',
+        title: 'Basic Usage',
+        content: 'Full-page loading animation:',
+        code: `import { BearLoader } from '@forgedevstack/bear';
+
+// Show during initial load
+<BearLoader duration={2000} onComplete={() => setLoading(false)} />`,
+        filename: 'BearLoaderBasic.tsx',
+        livePreview: true,
+      },
+      {
+        id: 'props',
+        title: 'Props',
+        content: '• duration - Animation duration in ms (default: 2000)\n• onComplete - Callback when animation completes',
+      },
+    ],
+  },
+  'date-picker': {
+    slug: 'date-picker',
+    title: 'DatePicker',
+    description: 'Calendar-based date selection component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Select dates with a calendar popup:', code: `import { DatePicker } from '@forgedevstack/bear';\n\nconst [date, setDate] = useState<Date | null>(null);\n\n<DatePicker value={date} onChange={setDate} label="Select Date" />`, filename: 'DatePickerBasic.tsx', livePreview: true },
+    ],
+  },
+  'time-picker': {
+    slug: 'time-picker',
+    title: 'TimePicker',
+    description: 'Time selection input component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Select time with hour, minute, and period:', code: `import { TimePicker } from '@forgedevstack/bear';\n\nconst [time, setTime] = useState('');\n\n<TimePicker value={time} onChange={setTime} label="Select Time" />`, filename: 'TimePickerBasic.tsx', livePreview: true },
+    ],
+  },
+  breadcrumbs: {
+    slug: 'breadcrumbs',
+    title: 'Breadcrumbs',
+    description: 'Navigation breadcrumb trail component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Show navigation path:', code: `import { Breadcrumbs } from '@forgedevstack/bear';\n\n<Breadcrumbs items={[\n  { label: 'Home', href: '/' },\n  { label: 'Products', href: '/products' },\n  { label: 'Current Page' },\n]} />`, filename: 'BreadcrumbsBasic.tsx', livePreview: true },
+    ],
+  },
+  stepper: {
+    slug: 'stepper',
+    title: 'Stepper',
+    description: 'Multi-step form wizard component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Show progress through steps:', code: `import { Stepper } from '@forgedevstack/bear';\n\n<Stepper\n  steps={[\n    { label: 'Account' },\n    { label: 'Details' },\n    { label: 'Review' },\n  ]}\n  activeStep={1}\n/>`, filename: 'StepperBasic.tsx', livePreview: true },
+    ],
+  },
+  popover: {
+    slug: 'popover',
+    title: 'Popover',
+    description: 'Click-triggered popup content component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Show content on click:', code: `import { Popover } from '@forgedevstack/bear';\n\n<Popover content={<div>Popover content</div>}>\n  <Button>Click me</Button>\n</Popover>`, filename: 'PopoverBasic.tsx', livePreview: true },
+    ],
+  },
+  chip: {
+    slug: 'chip',
+    title: 'Chip',
+    description: 'Small dismissible label component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Display tags and filters:', code: `import { Chip } from '@forgedevstack/bear';\n\n<Chip>Default</Chip>\n<Chip color="primary" onDelete={() => {}}>Deletable</Chip>\n<Chip variant="outlined">Outlined</Chip>`, filename: 'ChipBasic.tsx', livePreview: true },
+    ],
+  },
+  'tree-view': {
+    slug: 'tree-view',
+    title: 'TreeView',
+    description: 'Hierarchical data display component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Display tree structure:', code: `import { TreeView } from '@forgedevstack/bear';\n\n<TreeView\n  data={[\n    { id: '1', label: 'Folder 1', children: [\n      { id: '1.1', label: 'File 1' },\n    ]},\n  ]}\n  onSelect={(node) => console.log(node)}\n/>`, filename: 'TreeViewBasic.tsx', livePreview: true },
+    ],
+  },
+  timeline: {
+    slug: 'timeline',
+    title: 'Timeline',
+    description: 'Vertical timeline for events component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Display events chronologically:', code: `import { Timeline } from '@forgedevstack/bear';\n\n<Timeline\n  items={[\n    { id: '1', title: 'Event 1', date: '2024-01-01' },\n    { id: '2', title: 'Event 2', date: '2024-02-01' },\n  ]}\n/>`, filename: 'TimelineBasic.tsx', livePreview: true },
+    ],
+  },
+  'file-upload': {
+    slug: 'file-upload',
+    title: 'FileUpload',
+    description: 'Drag-and-drop file upload component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Upload files with drag and drop:', code: `import { FileUpload } from '@forgedevstack/bear';\n\n<FileUpload\n  onFilesSelect={(files) => console.log(files)}\n  accept="image/*"\n  multiple\n/>`, filename: 'FileUploadBasic.tsx', livePreview: true },
+    ],
+  },
+  'number-input': {
+    slug: 'number-input',
+    title: 'NumberInput',
+    description: 'Numeric input with stepper buttons.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Number input with +/- buttons:', code: `import { NumberInput } from '@forgedevstack/bear';\n\nconst [value, setValue] = useState(0);\n\n<NumberInput value={value} onChange={setValue} min={0} max={100} />`, filename: 'NumberInputBasic.tsx', livePreview: true },
+    ],
+  },
+  'otp-input': {
+    slug: 'otp-input',
+    title: 'OTPInput',
+    description: 'One-time password input component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'OTP verification input:', code: `import { OTPInput } from '@forgedevstack/bear';\n\n<OTPInput\n  length={6}\n  onComplete={(code) => console.log(code)}\n/>`, filename: 'OTPInputBasic.tsx', livePreview: true },
+    ],
+  },
+  'color-picker': {
+    slug: 'color-picker',
+    title: 'ColorPicker',
+    description: 'Color selection component with presets.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Pick colors with presets:', code: `import { ColorPicker } from '@forgedevstack/bear';\n\nconst [color, setColor] = useState('#ec4899');\n\n<ColorPicker value={color} onChange={setColor} />`, filename: 'ColorPickerBasic.tsx', livePreview: true },
+    ],
+  },
+  statistic: {
+    slug: 'statistic',
+    title: 'Statistic',
+    description: 'Display metrics with icons and trends.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Show statistics:', code: `import { Statistic } from '@forgedevstack/bear';\n\n<Statistic\n  title="Total Users"\n  value={1234}\n  trend={{ value: 12, isUpward: true }}\n/>`, filename: 'StatisticBasic.tsx', livePreview: true },
+    ],
+  },
+  'empty-state': {
+    slug: 'empty-state',
+    title: 'EmptyState',
+    description: 'Placeholder for empty content states.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Show when no data exists:', code: `import { EmptyState, Button } from '@forgedevstack/bear';\n\n<EmptyState\n  title="No results found"\n  description="Try adjusting your search or filters"\n  action={<Button>Clear filters</Button>}\n/>`, filename: 'EmptyStateBasic.tsx', livePreview: true },
+    ],
+  },
+  image: {
+    slug: 'image',
+    title: 'Image',
+    description: 'Image component with lazy loading and fallback.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Lazy loaded images:', code: `import { Image } from '@forgedevstack/bear';\n\n<Image\n  src="/photo.jpg"\n  alt="Description"\n  aspectRatio="16:9"\n  rounded="lg"\n/>`, filename: 'ImageBasic.tsx', livePreview: true },
+    ],
+  },
+  'app-bar': {
+    slug: 'app-bar',
+    title: 'AppBar',
+    description: 'Top application bar component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Application header:', code: `import { AppBar } from '@forgedevstack/bear';\n\n<AppBar\n  leftContent={<Logo />}\n  rightContent={<UserMenu />}\n/>`, filename: 'AppBarBasic.tsx', livePreview: true },
+    ],
+  },
+  'bottom-navigation': {
+    slug: 'bottom-navigation',
+    title: 'BottomNavigation',
+    description: 'Mobile bottom navigation bar.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Mobile navigation:', code: `import { BottomNavigation } from '@forgedevstack/bear';\n\n<BottomNavigation\n  items={[\n    { id: 'home', label: 'Home', icon: <HomeIcon /> },\n    { id: 'search', label: 'Search', icon: <SearchIcon /> },\n  ]}\n  value={activeTab}\n  onChange={setActiveTab}\n/>`, filename: 'BottomNavigationBasic.tsx', livePreview: true },
+    ],
+  },
+  'scroll-area': {
+    slug: 'scroll-area',
+    title: 'ScrollArea',
+    description: 'Custom scrollbar container.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Styled scrollable area:', code: `import { ScrollArea } from '@forgedevstack/bear';\n\n<ScrollArea maxHeight={300}>\n  {/* Long content */}\n</ScrollArea>`, filename: 'ScrollAreaBasic.tsx', livePreview: true },
+    ],
+  },
+  collapsible: {
+    slug: 'collapsible',
+    title: 'Collapsible',
+    description: 'Animated expand/collapse component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Toggle content visibility:', code: `import { Collapsible } from '@forgedevstack/bear';\n\n<Collapsible trigger={<Button>Toggle</Button>}>\n  <div>Hidden content here</div>\n</Collapsible>`, filename: 'CollapsibleBasic.tsx', livePreview: true },
+    ],
+  },
+  kbd: {
+    slug: 'kbd',
+    title: 'Kbd',
+    description: 'Keyboard shortcut display component.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Show keyboard shortcuts:', code: `import { Kbd } from '@forgedevstack/bear';\n\n<Kbd keys={['cmd', 'k']} />\n<Kbd>Enter</Kbd>`, filename: 'KbdBasic.tsx', livePreview: true },
+    ],
+  },
+  'copy-button': {
+    slug: 'copy-button',
+    title: 'CopyButton',
+    description: 'One-click copy to clipboard button.',
+    sections: [
+      { id: 'basic', title: 'Basic Usage', content: 'Copy text to clipboard:', code: `import { CopyButton } from '@forgedevstack/bear';\n\n<CopyButton value="Text to copy" showText />`, filename: 'CopyButtonBasic.tsx', livePreview: true },
+    ],
+  },
   api: {
     slug: 'api',
     title: 'API Reference',
@@ -970,7 +1777,7 @@ function UsersTable() {
       {
         id: 'components',
         title: 'Components',
-        content: '• Button - Clickable button with variants\n• Card, CardHeader, CardBody, CardFooter - Content containers\n• Modal - Dialog overlay\n• Drawer - Slide-out panel\n• Tooltip - Hover information\n• Input - Text input\n• Select - Dropdown selection\n• Switch - Toggle control\n• MultiSelect - Multi-option selection with tags\n• Autocomplete - Text input with suggestions\n• DataTable - Flexible data table\n• Grid, GridItem - CSS Grid layout\n• Flex - Flexbox layout\n• Container - Width-constrained wrapper\n• Badge - Status labels\n• Spinner - Loading indicator\n• Icon - SVG wrapper\n• BearLogo - Bear brand logo',
+        content: '• Button, ButtonGroup - Clickable buttons\n• Card, CardHeader, CardBody, CardFooter - Content containers\n• Modal - Dialog overlay\n• Drawer - Slide-out panel\n• Tooltip - Hover information\n• Input - Text input\n• Select - Dropdown selection\n• MultiSelect - Multi-option selection\n• Autocomplete - Text input with suggestions\n• Checkbox - Multiple selection\n• Radio, RadioGroup - Single selection\n• Rating - Star rating\n• Switch - Toggle control\n• TransferList - Dual-list transfer\n• DataTable - Data grid\n• Grid, GridItem - CSS Grid layout\n• Flex - Flexbox layout\n• Container - Width-constrained wrapper\n• Paper - Elevated surface\n• Divider - Content separator\n• Typography - Text styling\n• Badge - Status labels\n• Avatar - User avatars\n• List, ListItem - Organized lists\n• Alert - Feedback messages\n• Spinner - Loading indicator\n• Progress - Progress bars\n• Menu, MenuItem - Popup menu\n• Dropdown - Action dropdown\n• Link - Styled links\n• Tabs - Tab navigation\n• Accordion - Collapsible content\n• Carousel - Image slider\n• SpeedDial - Expandable FAB\n• Fab - Floating action button\n• Icons - 300+ SVG icons',
       },
       {
         id: 'hooks-list',

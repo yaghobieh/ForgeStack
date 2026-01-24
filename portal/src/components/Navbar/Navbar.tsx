@@ -13,9 +13,7 @@ export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
     <nav className="sticky top-0 z-50 bg-theme-secondary border-b border-theme-border">
       <div className="px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          {/* Left: Menu button + Logo */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Mobile menu button */}
             <button
               onClick={onMobileMenuToggle}
               className="lg:hidden p-2 -ml-2 rounded-lg text-theme-muted hover:text-theme-primary hover:bg-theme-tertiary transition-colors"
@@ -32,9 +30,7 @@ export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
             </Link>
           </div>
 
-          {/* Right: Actions */}
           <div className="flex items-center gap-1">
-            {/* Desktop only icons */}
             <Link
               to="/extensions"
               className="hidden sm:flex p-2 rounded-lg text-theme-muted hover:text-theme-primary hover:bg-white/5 transition-colors"

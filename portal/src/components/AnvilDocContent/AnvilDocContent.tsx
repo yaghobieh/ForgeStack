@@ -23,7 +23,6 @@ export const AnvilDocContent: FC<AnvilDocContentProps> = ({ page }) => {
 
   return (
     <article className="space-y-8">
-      {/* Header */}
       <div>
         <h1 className="text-3xl font-bold mb-4" style={{ color: ANVIL_COLOR }}>
           {doc.title}
@@ -33,7 +32,6 @@ export const AnvilDocContent: FC<AnvilDocContentProps> = ({ page }) => {
         </p>
       </div>
 
-      {/* Sections */}
       {doc.sections.map((section) => (
         <div key={section.id} id={section.id}>
           {section.title && (
@@ -55,7 +53,6 @@ export const AnvilDocContent: FC<AnvilDocContentProps> = ({ page }) => {
         </div>
       ))}
 
-      {/* Framework Examples */}
       {doc.examples && doc.examples.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold text-theme-primary mb-4">
