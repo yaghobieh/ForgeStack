@@ -36,7 +36,6 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
 
   const content = (
     <>
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] transition-opacity duration-300 lg:hidden ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -44,13 +43,11 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
         onClick={onClose}
       />
 
-      {/* Drawer */}
       <div
         className={`fixed top-0 left-0 bottom-0 w-72 bg-theme-secondary z-[101] transform transition-transform duration-300 ease-out lg:hidden overflow-y-auto ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-theme-border">
           <Link to="/" className="flex items-center gap-2" onClick={onClose}>
             <span className="text-xl font-bold text-theme-primary">ForgeStack</span>
@@ -66,7 +63,6 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Packages */}
         <div className="p-4">
           <h3 className="text-xs uppercase tracking-wider text-theme-muted font-semibold mb-3 px-2">
             Packages
@@ -111,7 +107,6 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
 
         <div className="border-t border-theme-border mx-4" />
 
-        {/* Quick Links */}
         <div className="p-4">
           <h3 className="text-xs uppercase tracking-wider text-theme-muted font-semibold mb-3 px-2">
             Quick Links
@@ -152,7 +147,6 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
           </nav>
         </div>
 
-        {/* Get Started CTA */}
         <div className="p-4 mt-auto">
           <Link
             to="/harbor/docs/quick-start"

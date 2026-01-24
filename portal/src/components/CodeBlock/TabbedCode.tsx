@@ -50,7 +50,6 @@ export const TabbedCode: FC<TabbedCodeProps> = ({
 
   return (
     <div className={`rounded-xl overflow-hidden border border-theme-border bg-[#1a1a2e] ${className}`}>
-      {/* Tab Header */}
       <div className="flex items-center gap-1 px-4 py-3 bg-[#16162a] border-b border-theme-border overflow-x-auto">
         {examples.map((example, idx) => {
           const Icon = getFrameworkIcon(example.framework);
@@ -71,7 +70,6 @@ export const TabbedCode: FC<TabbedCodeProps> = ({
         })}
       </div>
       
-      {/* Code Content */}
       <div className="p-0">
         <CodeBlock 
           code={examples[activeTab].code} 

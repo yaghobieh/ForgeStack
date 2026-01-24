@@ -102,7 +102,6 @@ function App() {
                 <Route path="/anvil/api" element={<AnvilDocsLayout><AnvilDocContent page="api" /></AnvilDocsLayout>} />
                 <Route path="/anvil/cn" element={<Navigate to="/anvil/style-forge" replace />} />
                 <Route path="/anvil/*" element={<Navigate to="/anvil" replace />} />
-                {/* Bear Routes */}
                 <Route path="/bear" element={<BearDocsLayout><BearDocContent page="overview" /></BearDocsLayout>} />
                 <Route path="/bear/installation" element={<BearDocsLayout><BearDocContent page="installation" /></BearDocsLayout>} />
                 <Route path="/bear/theme-provider" element={<BearDocsLayout><BearDocContent page="theme-provider" /></BearDocsLayout>} />
@@ -129,11 +128,50 @@ function App() {
                 <Route path="/bear/tabs" element={<BearDocsLayout><BearDocContent page="tabs" /></BearDocsLayout>} />
                 <Route path="/bear/avatar" element={<BearDocsLayout><BearDocContent page="avatar" /></BearDocsLayout>} />
                 <Route path="/bear/progress" element={<BearDocsLayout><BearDocContent page="progress" /></BearDocsLayout>} />
+                <Route path="/bear/rating" element={<BearDocsLayout><BearDocContent page="rating" /></BearDocsLayout>} />
+                <Route path="/bear/radio" element={<BearDocsLayout><BearDocContent page="radio" /></BearDocsLayout>} />
+                <Route path="/bear/checkbox" element={<BearDocsLayout><BearDocContent page="checkbox" /></BearDocsLayout>} />
+                <Route path="/bear/button-group" element={<BearDocsLayout><BearDocContent page="button-group" /></BearDocsLayout>} />
+                <Route path="/bear/fab" element={<BearDocsLayout><BearDocContent page="fab" /></BearDocsLayout>} />
+                <Route path="/bear/transfer-list" element={<BearDocsLayout><BearDocContent page="transfer-list" /></BearDocsLayout>} />
+                <Route path="/bear/divider" element={<BearDocsLayout><BearDocContent page="divider" /></BearDocsLayout>} />
+                <Route path="/bear/typography" element={<BearDocsLayout><BearDocContent page="typography" /></BearDocsLayout>} />
+                <Route path="/bear/list" element={<BearDocsLayout><BearDocContent page="list" /></BearDocsLayout>} />
+                <Route path="/bear/alert" element={<BearDocsLayout><BearDocContent page="alert" /></BearDocsLayout>} />
+                <Route path="/bear/toast" element={<BearDocsLayout><BearDocContent page="toast" /></BearDocsLayout>} />
+                <Route path="/bear/skeleton" element={<BearDocsLayout><BearDocContent page="skeleton" /></BearDocsLayout>} />
+                <Route path="/bear/pagination" element={<BearDocsLayout><BearDocContent page="pagination" /></BearDocsLayout>} />
+                <Route path="/bear/slider" element={<BearDocsLayout><BearDocContent page="slider" /></BearDocsLayout>} />
+                <Route path="/bear/bear-loader" element={<BearDocsLayout><BearDocContent page="bear-loader" /></BearDocsLayout>} />
+                <Route path="/bear/date-picker" element={<BearDocsLayout><BearDocContent page="date-picker" /></BearDocsLayout>} />
+                <Route path="/bear/time-picker" element={<BearDocsLayout><BearDocContent page="time-picker" /></BearDocsLayout>} />
+                <Route path="/bear/breadcrumbs" element={<BearDocsLayout><BearDocContent page="breadcrumbs" /></BearDocsLayout>} />
+                <Route path="/bear/stepper" element={<BearDocsLayout><BearDocContent page="stepper" /></BearDocsLayout>} />
+                <Route path="/bear/popover" element={<BearDocsLayout><BearDocContent page="popover" /></BearDocsLayout>} />
+                <Route path="/bear/chip" element={<BearDocsLayout><BearDocContent page="chip" /></BearDocsLayout>} />
+                <Route path="/bear/tree-view" element={<BearDocsLayout><BearDocContent page="tree-view" /></BearDocsLayout>} />
+                <Route path="/bear/timeline" element={<BearDocsLayout><BearDocContent page="timeline" /></BearDocsLayout>} />
+                <Route path="/bear/file-upload" element={<BearDocsLayout><BearDocContent page="file-upload" /></BearDocsLayout>} />
+                <Route path="/bear/number-input" element={<BearDocsLayout><BearDocContent page="number-input" /></BearDocsLayout>} />
+                <Route path="/bear/otp-input" element={<BearDocsLayout><BearDocContent page="otp-input" /></BearDocsLayout>} />
+                <Route path="/bear/color-picker" element={<BearDocsLayout><BearDocContent page="color-picker" /></BearDocsLayout>} />
+                <Route path="/bear/statistic" element={<BearDocsLayout><BearDocContent page="statistic" /></BearDocsLayout>} />
+                <Route path="/bear/empty-state" element={<BearDocsLayout><BearDocContent page="empty-state" /></BearDocsLayout>} />
+                <Route path="/bear/image" element={<BearDocsLayout><BearDocContent page="image" /></BearDocsLayout>} />
+                <Route path="/bear/app-bar" element={<BearDocsLayout><BearDocContent page="app-bar" /></BearDocsLayout>} />
+                <Route path="/bear/bottom-navigation" element={<BearDocsLayout><BearDocContent page="bottom-navigation" /></BearDocsLayout>} />
+                <Route path="/bear/scroll-area" element={<BearDocsLayout><BearDocContent page="scroll-area" /></BearDocsLayout>} />
+                <Route path="/bear/collapsible" element={<BearDocsLayout><BearDocContent page="collapsible" /></BearDocsLayout>} />
+                <Route path="/bear/kbd" element={<BearDocsLayout><BearDocContent page="kbd" /></BearDocsLayout>} />
+                <Route path="/bear/copy-button" element={<BearDocsLayout><BearDocContent page="copy-button" /></BearDocsLayout>} />
+                <Route path="/bear/paper" element={<BearDocsLayout><BearDocContent page="paper" /></BearDocsLayout>} />
+                <Route path="/bear/link" element={<BearDocsLayout><BearDocContent page="link" /></BearDocsLayout>} />
+                <Route path="/bear/menu" element={<BearDocsLayout><BearDocContent page="menu" /></BearDocsLayout>} />
+                <Route path="/bear/dropdown" element={<BearDocsLayout><BearDocContent page="dropdown" /></BearDocsLayout>} />
+                <Route path="/bear/speed-dial" element={<BearDocsLayout><BearDocContent page="speed-dial" /></BearDocsLayout>} />
                 <Route path="/bear/api" element={<BearDocsLayout><BearDocContent page="api" /></BearDocsLayout>} />
                 <Route path="/bear/*" element={<Navigate to="/bear" replace />} />
-                {/* Redirect old ember routes to bear */}
                 <Route path="/ember/*" element={<Navigate to="/bear" replace />} />
-                {/* Kiln Routes */}
                 <Route path="/kiln" element={<KilnDocsLayout><KilnDocContent page="overview" /></KilnDocsLayout>} />
                 <Route path="/kiln/installation" element={<KilnDocsLayout><KilnDocContent page="installation" /></KilnDocsLayout>} />
                 <Route path="/kiln/quick-start" element={<KilnDocsLayout><KilnDocContent page="quick-start" /></KilnDocsLayout>} />
@@ -144,7 +182,6 @@ function App() {
                 <Route path="/kiln/cli" element={<KilnDocsLayout><KilnDocContent page="cli" /></KilnDocsLayout>} />
                 <Route path="/kiln/api" element={<KilnDocsLayout><KilnDocContent page="api" /></KilnDocsLayout>} />
                 <Route path="/kiln/*" element={<Navigate to="/kiln" replace />} />
-                {/* Redirect old spark routes to kiln */}
                 <Route path="/spark/*" element={<Navigate to="/kiln" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />

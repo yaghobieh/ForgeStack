@@ -86,17 +86,14 @@ const SectionRenderer: FC<{ section: KilnDocSection }> = ({ section }) => {
         </div>
       )}
 
-      {/* Render comparison table */}
       {section.comparison && (
         <ComparisonTable comparison={section.comparison} />
       )}
 
-      {/* Render feature grid */}
       {section.features && (
         <FeatureGrid features={section.features} />
       )}
 
-      {/* Render code block or live preview */}
       {section.code && !section.livePreview && (
         <CodeBlock 
           code={section.code} 
@@ -105,7 +102,6 @@ const SectionRenderer: FC<{ section: KilnDocSection }> = ({ section }) => {
         />
       )}
 
-      {/* Render live preview when specified */}
       {section.code && section.livePreview && (
         <LivePreview
           code={section.code}
@@ -140,7 +136,6 @@ export const KilnDocContent: FC<KilnDocContentProps> = ({ page }) => {
 
   return (
     <article className="max-w-none">
-      {/* Header */}
       <header className="mb-8 pb-8 border-b border-theme-border">
         <div className="flex items-center gap-3 mb-3">
           <span 
@@ -156,14 +151,12 @@ export const KilnDocContent: FC<KilnDocContentProps> = ({ page }) => {
         <p className="text-lg text-theme-secondary">{doc.description}</p>
       </header>
 
-      {/* Sections */}
       <div className="space-y-10">
         {doc.sections.map((section) => (
           <SectionRenderer key={section.id} section={section} />
         ))}
       </div>
 
-      {/* Footer CTA */}
       <div 
         className="mt-12 p-6 rounded-xl border"
         style={{ borderColor: `${KILN_COLOR}40`, backgroundColor: `${KILN_COLOR}10` }}
@@ -182,7 +175,6 @@ export const KilnDocContent: FC<KilnDocContentProps> = ({ page }) => {
         </code>
       </div>
 
-      {/* Next Steps */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {page === 'overview' && (
           <>

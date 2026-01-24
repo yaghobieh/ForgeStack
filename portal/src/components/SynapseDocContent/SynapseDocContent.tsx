@@ -102,7 +102,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
 
   return (
     <article className="max-w-none space-y-8">
-      {/* Header */}
       <div>
         <div className="flex items-center gap-3 mb-4">
           {isOverview && <SynapseIcon size={56} />}
@@ -123,7 +122,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
         </p>
       </div>
 
-      {/* Overview "Why Synapse" section */}
       {isOverview && (
         <div 
           className="rounded-xl p-6 border"
@@ -159,7 +157,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
         </div>
       )}
 
-      {/* DevTools Features Grid */}
       {isDevtools && doc.features && (
         <div 
           className="rounded-xl p-6 border"
@@ -182,7 +179,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
         </div>
       )}
 
-      {/* Middleware cards grid */}
       {isMiddleware && doc.middleware && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {doc.middleware.map((mw) => (
@@ -191,7 +187,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
         </div>
       )}
 
-      {/* Sections */}
       {doc.sections.map((section) => (
         <div key={section.id}>
           <h2 className="text-xl font-semibold text-theme-primary mb-4">{section.title}</h2>
@@ -202,7 +197,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
         </div>
       ))}
 
-      {/* Overview features grid */}
       {isOverview && doc.features && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {doc.features.map((feature) => (
@@ -216,7 +210,6 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
         </div>
       )}
 
-      {/* API Table (for nucleus comparison, devtools shortcuts, api reference) */}
       {doc.apiTable && (
         <div className="overflow-x-auto">
           <table className="w-full border border-theme-border rounded-lg text-sm">

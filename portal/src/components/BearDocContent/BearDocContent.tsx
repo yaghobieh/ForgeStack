@@ -610,8 +610,824 @@ const ProgressPreview: FC = () => (
   </div>
 );
 
+// NEW COMPONENT PREVIEWS
+
+const RatingPreview: FC = () => {
+  const [value, setValue] = useState(3);
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            onClick={() => setValue(star)}
+            className="text-2xl transition-colors"
+          >
+            <span style={{ color: star <= value ? '#ec4899' : '#52525b' }}>★</span>
+          </button>
+        ))}
+      </div>
+      <span className="text-zinc-400 text-sm">Rating: {value}/5</span>
+    </div>
+  );
+};
+
+const RatingSizesPreview: FC = () => (
+  <div className="flex flex-col items-center gap-3">
+    <div className="flex gap-1 text-lg">{[1,2,3].map(i => <span key={i} style={{ color: '#ec4899' }}>★</span>)}{[4,5].map(i => <span key={i} style={{ color: '#52525b' }}>★</span>)}</div>
+    <div className="flex gap-1 text-2xl">{[1,2,3,4].map(i => <span key={i} style={{ color: '#ec4899' }}>★</span>)}{[5].map(i => <span key={i} style={{ color: '#52525b' }}>★</span>)}</div>
+    <div className="flex gap-1 text-3xl">{[1,2,3,4,5].map(i => <span key={i} style={{ color: '#ec4899' }}>★</span>)}</div>
+  </div>
+);
+
+const RadioPreview: FC = () => {
+  const [selected, setSelected] = useState('option1');
+  return (
+    <div className="flex flex-col gap-3">
+      {['option1', 'option2', 'option3'].map((opt) => (
+        <label key={opt} className="flex items-center gap-2 cursor-pointer">
+          <div 
+            onClick={() => setSelected(opt)}
+            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+              selected === opt ? 'border-pink-500' : 'border-zinc-500'
+            }`}
+          >
+            {selected === opt && <div className="w-3 h-3 rounded-full bg-pink-500" />}
+          </div>
+          <span className="text-zinc-300">Option {opt.slice(-1)}</span>
+        </label>
+      ))}
+    </div>
+  );
+};
+
+const RadioVariantsPreview: FC = () => (
+  <div className="flex flex-col gap-3">
+    {[
+      { label: 'Primary', color: '#ec4899' },
+      { label: 'Success', color: '#22c55e' },
+      { label: 'Danger', color: '#ef4444' },
+    ].map((opt, i) => (
+      <label key={opt.label} className="flex items-center gap-2">
+        <div 
+          className="w-5 h-5 rounded-full border-2 flex items-center justify-center"
+          style={{ borderColor: opt.color }}
+        >
+          {i === 0 && <div className="w-3 h-3 rounded-full" style={{ backgroundColor: opt.color }} />}
+        </div>
+        <span className="text-zinc-300">{opt.label}</span>
+      </label>
+    ))}
+  </div>
+);
+
+const CheckboxPreview: FC = () => {
+  const [checked, setChecked] = useState([true, false, true]);
+  return (
+    <div className="flex flex-col gap-3">
+      {['Accept terms', 'Subscribe to newsletter', 'Remember me'].map((label, i) => (
+        <label key={label} className="flex items-center gap-2 cursor-pointer">
+          <div 
+            onClick={() => {
+              const newChecked = [...checked];
+              newChecked[i] = !newChecked[i];
+              setChecked(newChecked);
+            }}
+            className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+              checked[i] ? 'bg-pink-500 border-pink-500' : 'border-zinc-500'
+            }`}
+          >
+            {checked[i] && <span className="text-white text-xs">✓</span>}
+          </div>
+          <span className="text-zinc-300">{label}</span>
+        </label>
+      ))}
+    </div>
+  );
+};
+
+const ButtonGroupPreview: FC = () => (
+  <div className="flex justify-center">
+    <div className="inline-flex rounded-lg overflow-hidden border border-pink-500">
+      <button className="px-4 py-2 bg-pink-500 text-white border-r border-pink-600">Left</button>
+      <button className="px-4 py-2 bg-pink-500/20 text-pink-400 border-r border-pink-500/30 hover:bg-pink-500/30">Center</button>
+      <button className="px-4 py-2 bg-pink-500/20 text-pink-400 hover:bg-pink-500/30">Right</button>
+    </div>
+  </div>
+);
+
+const ButtonGroupVariantsPreview: FC = () => (
+  <div className="flex justify-center">
+    <div className="inline-flex rounded-lg overflow-hidden">
+      <button className="px-4 py-2 border border-zinc-600 text-zinc-300 hover:bg-zinc-700 rounded-l-lg">One</button>
+      <button className="px-4 py-2 border-t border-b border-zinc-600 text-zinc-300 hover:bg-zinc-700">Two</button>
+      <button className="px-4 py-2 border border-zinc-600 text-zinc-300 hover:bg-zinc-700 rounded-r-lg">Three</button>
+    </div>
+  </div>
+);
+
+const FabPreview: FC = () => (
+  <div className="flex justify-center gap-4 items-center">
+    <button className="w-14 h-14 rounded-full bg-pink-500 text-white shadow-lg hover:bg-pink-600 flex items-center justify-center text-2xl">
+      +
+    </button>
+    <button className="px-5 py-3 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 flex items-center gap-2">
+      <span>✏️</span> Edit
+    </button>
+  </div>
+);
+
+const TransferListPreview: FC = () => {
+  const [left, setLeft] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [right, setRight] = useState(['Item 4']);
+  const [selectedLeft, setSelectedLeft] = useState<string[]>([]);
+  
+  return (
+    <div className="flex items-center gap-4 justify-center">
+      <div className="border border-zinc-700 rounded-lg p-3 min-w-[140px]">
+        <div className="text-xs text-zinc-400 mb-2">Available</div>
+        {left.map(item => (
+          <label key={item} className="flex items-center gap-2 text-sm text-zinc-300 py-1 cursor-pointer">
+            <input 
+              type="checkbox" 
+              checked={selectedLeft.includes(item)}
+              onChange={(e) => setSelectedLeft(e.target.checked ? [...selectedLeft, item] : selectedLeft.filter(i => i !== item))}
+              className="accent-pink-500"
+            />
+            {item}
+          </label>
+        ))}
+      </div>
+      <div className="flex flex-col gap-1">
+        <button 
+          onClick={() => {
+            setRight([...right, ...selectedLeft]);
+            setLeft(left.filter(i => !selectedLeft.includes(i)));
+            setSelectedLeft([]);
+          }}
+          className="px-2 py-1 bg-zinc-700 text-zinc-300 rounded text-sm hover:bg-zinc-600"
+        >→</button>
+        <button className="px-2 py-1 bg-zinc-700 text-zinc-300 rounded text-sm hover:bg-zinc-600">←</button>
+      </div>
+      <div className="border border-zinc-700 rounded-lg p-3 min-w-[140px]">
+        <div className="text-xs text-zinc-400 mb-2">Selected</div>
+        {right.map(item => (
+          <div key={item} className="text-sm text-zinc-300 py-1">{item}</div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const DividerPreview: FC = () => (
+  <div className="max-w-md mx-auto space-y-6">
+    <hr className="border-zinc-700" />
+    <div className="flex items-center">
+      <hr className="flex-1 border-zinc-700" />
+      <span className="px-3 text-zinc-400 text-sm">OR</span>
+      <hr className="flex-1 border-zinc-700" />
+    </div>
+    <div className="flex items-center">
+      <span className="pr-3 text-zinc-400 text-sm">Section</span>
+      <hr className="flex-1 border-zinc-700" />
+    </div>
+  </div>
+);
+
+const TypographyPreview: FC = () => (
+  <div className="space-y-2">
+    <h1 className="text-4xl font-bold text-white">Heading 1</h1>
+    <h2 className="text-3xl font-bold text-white">Heading 2</h2>
+    <h3 className="text-2xl font-semibold text-white">Heading 3</h3>
+    <p className="text-base text-zinc-300">Body text 1</p>
+    <p className="text-sm text-zinc-400">Body text 2</p>
+    <span className="text-xs text-zinc-500">Caption text</span>
+    <span className="text-xs uppercase tracking-wider text-zinc-500 block">OVERLINE</span>
+  </div>
+);
+
+const TypographyColorsPreview: FC = () => (
+  <div className="flex flex-wrap gap-4">
+    <span style={{ color: '#ec4899' }}>Primary</span>
+    <span style={{ color: '#6b7280' }}>Secondary</span>
+    <span style={{ color: '#22c55e' }}>Success</span>
+    <span style={{ color: '#ef4444' }}>Error</span>
+  </div>
+);
+
+const ListPreview: FC = () => (
+  <div className="max-w-sm mx-auto bg-zinc-800 rounded-lg overflow-hidden">
+    {[
+      { primary: 'Inbox', secondary: 'You have 3 new messages' },
+      { primary: 'Drafts', secondary: null },
+      { primary: 'Sent', secondary: 'Last sent: 2 days ago' },
+    ].map((item, i) => (
+      <div key={item.primary} className={`px-4 py-3 hover:bg-zinc-700/50 cursor-pointer ${i > 0 ? 'border-t border-zinc-700' : ''}`}>
+        <div className="text-white">{item.primary}</div>
+        {item.secondary && <div className="text-sm text-zinc-400">{item.secondary}</div>}
+      </div>
+    ))}
+  </div>
+);
+
+const ListWithIconsPreview: FC = () => (
+  <div className="max-w-sm mx-auto bg-zinc-800 rounded-lg overflow-hidden">
+    {[
+      { icon: '📥', label: 'Inbox' },
+      { icon: '📤', label: 'Sent' },
+      { icon: '⚙️', label: 'Settings' },
+    ].map((item, i) => (
+      <div key={item.label} className={`px-4 py-3 flex items-center gap-3 hover:bg-zinc-700/50 cursor-pointer ${i > 0 ? 'border-t border-zinc-700' : ''}`}>
+        <span className="text-xl">{item.icon}</span>
+        <span className="text-white">{item.label}</span>
+      </div>
+    ))}
+  </div>
+);
+
+const AlertPreview: FC = () => (
+  <div className="space-y-3 max-w-md mx-auto">
+    <div className="flex items-start gap-3 p-3 rounded-lg bg-green-500/20 border border-green-500/30">
+      <span className="text-green-400">✓</span>
+      <span className="text-green-300">Operation completed successfully!</span>
+    </div>
+    <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-500/20 border border-blue-500/30">
+      <span className="text-blue-400">ℹ</span>
+      <span className="text-blue-300">This is an informational message.</span>
+    </div>
+    <div className="flex items-start gap-3 p-3 rounded-lg bg-yellow-500/20 border border-yellow-500/30">
+      <span className="text-yellow-400">⚠</span>
+      <span className="text-yellow-300">Warning: Check your input.</span>
+    </div>
+    <div className="flex items-start gap-3 p-3 rounded-lg bg-red-500/20 border border-red-500/30">
+      <span className="text-red-400">✕</span>
+      <span className="text-red-300">Error: Something went wrong.</span>
+    </div>
+  </div>
+);
+
+const AlertWithTitlePreview: FC = () => (
+  <div className="max-w-md mx-auto">
+    <div className="p-4 rounded-lg bg-green-500/20 border border-green-500/30">
+      <div className="flex justify-between items-start">
+        <div className="flex items-center gap-2">
+          <span className="text-green-400">✓</span>
+          <span className="font-semibold text-green-300">Success</span>
+        </div>
+        <button className="text-green-400 hover:text-green-300">✕</button>
+      </div>
+      <p className="text-green-300/80 mt-1 ml-6">Your changes have been saved.</p>
+    </div>
+  </div>
+);
+
+const PaperPreview: FC = () => (
+  <div className="flex gap-4 justify-center flex-wrap">
+    <div className="p-4 bg-zinc-800 rounded-lg">Default paper</div>
+    <div className="p-4 bg-zinc-800 rounded-lg shadow-md">Elevated paper</div>
+    <div className="p-4 bg-zinc-800 rounded-lg shadow-xl">Higher elevation</div>
+    <div className="p-4 bg-zinc-800 rounded-lg border border-zinc-600">Outlined paper</div>
+  </div>
+);
+
+const LinkPreview: FC = () => (
+  <div className="flex gap-6 justify-center flex-wrap">
+    <a href="#" className="text-zinc-300 hover:underline">Default Link</a>
+    <a href="#" className="text-pink-400 hover:text-pink-300">Primary Link</a>
+    <a href="#" className="text-zinc-400 hover:text-zinc-300">Secondary Link</a>
+    <a href="#" className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1">
+      External Link <span className="text-xs">↗</span>
+    </a>
+  </div>
+);
+
+const MenuPreview: FC = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex justify-center relative">
+      <button 
+        onClick={() => setOpen(!open)}
+        className="px-4 py-2 rounded-lg bg-pink-500 text-white hover:bg-pink-600 transition-colors"
+      >
+        Open Menu
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0" onClick={() => setOpen(false)} />
+          <div className="absolute top-full mt-2 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl overflow-hidden min-w-[160px] z-10">
+            <button className="w-full px-4 py-2 text-left text-zinc-300 hover:bg-zinc-700">Profile</button>
+            <button className="w-full px-4 py-2 text-left text-zinc-300 hover:bg-zinc-700">Settings</button>
+            <hr className="border-zinc-700" />
+            <button className="w-full px-4 py-2 text-left text-red-400 hover:bg-zinc-700">Logout</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+const DropdownPreview: FC = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex justify-center relative">
+      <button 
+        onClick={() => setOpen(!open)}
+        className="px-4 py-2 rounded-lg bg-zinc-700 text-white hover:bg-zinc-600 transition-colors flex items-center gap-2"
+      >
+        Options <span className="text-xs">▼</span>
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0" onClick={() => setOpen(false)} />
+          <div className="absolute top-full mt-2 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl overflow-hidden min-w-[160px] z-10">
+            <button className="w-full px-4 py-2 text-left text-zinc-300 hover:bg-zinc-700">Edit</button>
+            <button className="w-full px-4 py-2 text-left text-zinc-300 hover:bg-zinc-700">Duplicate</button>
+            <hr className="border-zinc-700" />
+            <button className="w-full px-4 py-2 text-left text-red-400 hover:bg-zinc-700">Delete</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+const SpeedDialPreview: FC = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex justify-center relative h-32">
+      <div className="absolute bottom-0">
+        {open && (
+          <div className="flex flex-col-reverse gap-2 mb-2">
+            {['✏️ Edit', '📤 Share', '🗑️ Delete'].map((action) => (
+              <button key={action} className="px-3 py-2 rounded-full bg-zinc-700 text-sm text-white shadow-lg hover:bg-zinc-600">
+                {action}
+              </button>
+            ))}
+          </div>
+        )}
+        <button 
+          onClick={() => setOpen(!open)}
+          className={`w-14 h-14 rounded-full bg-pink-500 text-white shadow-lg flex items-center justify-center text-2xl transition-transform ${open ? 'rotate-45' : ''}`}
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ToastPreview: FC = () => {
+  const [toasts, setToasts] = useState<Array<{id: number, type: string, message: string}>>([]);
+  const addToast = (type: string, message: string) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, type, message }]);
+    setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3000);
+  };
+  
+  return (
+    <div className="relative">
+      <div className="flex flex-wrap gap-2 justify-center">
+        <button onClick={() => addToast('success', 'Saved successfully!')} className="px-3 py-2 rounded-lg bg-green-600 text-white text-sm">Success</button>
+        <button onClick={() => addToast('error', 'Something went wrong')} className="px-3 py-2 rounded-lg bg-red-600 text-white text-sm">Error</button>
+        <button onClick={() => addToast('warning', 'Please check input')} className="px-3 py-2 rounded-lg bg-yellow-600 text-white text-sm">Warning</button>
+        <button onClick={() => addToast('info', 'New update available')} className="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm">Info</button>
+      </div>
+      <div className="fixed top-4 right-4 z-50 space-y-2">
+        {toasts.map(t => (
+          <div key={t.id} className={`px-4 py-3 rounded-lg shadow-lg text-white text-sm animate-pulse ${
+            t.type === 'success' ? 'bg-green-600' : t.type === 'error' ? 'bg-red-600' : t.type === 'warning' ? 'bg-yellow-600' : 'bg-blue-600'
+          }`}>
+            {t.message}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const SkeletonPreview: FC = () => (
+  <div className="flex flex-col gap-4 items-center">
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 rounded-full bg-zinc-700 animate-pulse" />
+      <div className="space-y-2">
+        <div className="h-4 w-32 bg-zinc-700 rounded animate-pulse" />
+        <div className="h-3 w-24 bg-zinc-700 rounded animate-pulse" />
+      </div>
+    </div>
+    <div className="w-full max-w-xs space-y-2">
+      <div className="h-4 w-full bg-zinc-700 rounded animate-pulse" />
+      <div className="h-4 w-3/4 bg-zinc-700 rounded animate-pulse" />
+      <div className="h-4 w-5/6 bg-zinc-700 rounded animate-pulse" />
+    </div>
+    <div className="h-24 w-40 bg-zinc-700 rounded-lg animate-pulse" />
+  </div>
+);
+
+const PaginationPreview: FC = () => {
+  const [page, setPage] = useState(1);
+  const totalPages = 10;
+  
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex items-center gap-1">
+        <button 
+          onClick={() => setPage(1)} 
+          disabled={page === 1}
+          className="px-2 py-1 rounded text-sm text-zinc-400 hover:bg-zinc-700 disabled:opacity-50"
+        >
+          ««
+        </button>
+        <button 
+          onClick={() => setPage(p => Math.max(1, p - 1))} 
+          disabled={page === 1}
+          className="px-2 py-1 rounded text-sm text-zinc-400 hover:bg-zinc-700 disabled:opacity-50"
+        >
+          ‹
+        </button>
+        {[...Array(5)].map((_, i) => {
+          const pageNum = Math.max(1, Math.min(page - 2, totalPages - 4)) + i;
+          if (pageNum > totalPages) return null;
+          return (
+            <button
+              key={pageNum}
+              onClick={() => setPage(pageNum)}
+              className={`w-8 h-8 rounded text-sm font-medium ${
+                pageNum === page ? 'bg-pink-500 text-white' : 'text-zinc-400 hover:bg-zinc-700'
+              }`}
+            >
+              {pageNum}
+            </button>
+          );
+        })}
+        <button 
+          onClick={() => setPage(p => Math.min(totalPages, p + 1))} 
+          disabled={page === totalPages}
+          className="px-2 py-1 rounded text-sm text-zinc-400 hover:bg-zinc-700 disabled:opacity-50"
+        >
+          ›
+        </button>
+        <button 
+          onClick={() => setPage(totalPages)} 
+          disabled={page === totalPages}
+          className="px-2 py-1 rounded text-sm text-zinc-400 hover:bg-zinc-700 disabled:opacity-50"
+        >
+          »»
+        </button>
+      </div>
+      <span className="text-zinc-400 text-sm">Page {page} of {totalPages}</span>
+    </div>
+  );
+};
+
+const SliderPreview: FC = () => {
+  const [value, setValue] = useState(50);
+  
+  return (
+    <div className="max-w-sm mx-auto space-y-4">
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm text-zinc-400">
+          <span>0</span>
+          <span>{value}</span>
+          <span>100</span>
+        </div>
+        <div className="relative h-2 bg-zinc-700 rounded-full">
+          <div className="absolute h-full bg-pink-500 rounded-full" style={{ width: `${value}%` }} />
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={value}
+            onChange={(e) => setValue(Number(e.target.value))}
+            className="absolute inset-0 w-full opacity-0 cursor-pointer"
+          />
+          <div 
+            className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg"
+            style={{ left: `calc(${value}% - 8px)` }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SliderRangePreview: FC = () => {
+  const [range] = useState([20, 80]);
+  
+  return (
+    <div className="max-w-sm mx-auto space-y-4">
+      <div className="flex justify-between text-sm text-zinc-400">
+        <span>Min: {range[0]}</span>
+        <span>Max: {range[1]}</span>
+      </div>
+      <div className="relative h-2 bg-zinc-700 rounded-full">
+        <div 
+          className="absolute h-full bg-pink-500 rounded-full"
+          style={{ left: `${range[0]}%`, width: `${range[1] - range[0]}%` }}
+        />
+        <div 
+          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg cursor-pointer"
+          style={{ left: `calc(${range[0]}% - 8px)` }}
+        />
+        <div 
+          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg cursor-pointer"
+          style={{ left: `calc(${range[1]}% - 8px)` }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const BearLoaderPreview: FC = () => (
+  <div className="flex justify-center">
+    <div className="relative w-24 h-24">
+      <svg viewBox="0 0 100 100" className="w-full h-full animate-bounce">
+        <ellipse cx="50" cy="72" rx="26" ry="20" fill="#db2777" />
+        <ellipse cx="50" cy="73" rx="16" ry="12" fill="#fde68a" />
+        <ellipse cx="32" cy="88" rx="12" ry="9" fill="#db2777" />
+        <ellipse cx="68" cy="88" rx="12" ry="9" fill="#db2777" />
+        <ellipse cx="24" cy="68" rx="8" ry="12" fill="#db2777" transform="rotate(-15 24 68)" />
+        <ellipse cx="76" cy="68" rx="8" ry="12" fill="#db2777" transform="rotate(15 76 68)" />
+        <ellipse cx="50" cy="36" rx="26" ry="24" fill="#db2777" />
+        <ellipse cx="28" cy="16" rx="10" ry="10" fill="#db2777" />
+        <ellipse cx="28" cy="16" rx="6" ry="6" fill="#fcd34d" />
+        <ellipse cx="72" cy="16" rx="10" ry="10" fill="#db2777" />
+        <ellipse cx="72" cy="16" rx="6" ry="6" fill="#fcd34d" />
+        <ellipse cx="50" cy="44" rx="14" ry="10" fill="#fde68a" />
+        <ellipse cx="50" cy="40" rx="6" ry="4" fill="#7c3aed" />
+        <path d="M32 24 Q38 21 44 25" stroke="#581c87" strokeWidth="3" strokeLinecap="round" fill="none" />
+        <path d="M68 24 Q62 21 56 25" stroke="#581c87" strokeWidth="3" strokeLinecap="round" fill="none" />
+        <ellipse cx="38" cy="32" rx="6" ry="7" fill="#ffffff" />
+        <ellipse cx="39" cy="33" rx="4" ry="5" fill="#78350f" />
+        <ellipse cx="62" cy="32" rx="6" ry="7" fill="#ffffff" />
+        <ellipse cx="61" cy="33" rx="4" ry="5" fill="#78350f" />
+      </svg>
+      <div className="text-center mt-2 text-pink-400 text-sm animate-pulse">Loading...</div>
+    </div>
+  </div>
+);
+
+// New component previews
+const DatePickerPreview: FC = () => (
+  <div className="max-w-xs mx-auto">
+    <input type="date" className="w-full px-4 py-2 bg-zinc-800 border border-zinc-600 rounded-lg text-white" />
+  </div>
+);
+
+const TimePickerPreview: FC = () => (
+  <div className="max-w-xs mx-auto">
+    <input type="time" className="w-full px-4 py-2 bg-zinc-800 border border-zinc-600 rounded-lg text-white" />
+  </div>
+);
+
+const ColorPickerPreview: FC = () => {
+  const [color, setColor] = useState('#ec4899');
+  const presets = ['#ec4899', '#3B82F6', '#10B981', '#8B5CF6', '#EF4444'];
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex gap-2">
+        {presets.map(c => (
+          <button key={c} onClick={() => setColor(c)} className={`w-8 h-8 rounded-full border-2 ${color === c ? 'border-white' : 'border-transparent'}`} style={{ background: c }} />
+        ))}
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-10 h-10 rounded" style={{ background: color }} />
+        <code className="text-zinc-400 text-sm">{color}</code>
+      </div>
+    </div>
+  );
+};
+
+const FileUploadPreview: FC = () => (
+  <div className="max-w-sm mx-auto border-2 border-dashed border-zinc-600 rounded-lg p-8 text-center hover:border-pink-500 transition-colors cursor-pointer">
+    <div className="text-4xl mb-2">📁</div>
+    <p className="text-zinc-400">Drag files here or click to browse</p>
+  </div>
+);
+
+const NumberInputPreview: FC = () => {
+  const [value, setValue] = useState(5);
+  return (
+    <div className="flex items-center justify-center gap-2">
+      <button onClick={() => setValue(v => v - 1)} className="w-10 h-10 bg-zinc-700 rounded-lg hover:bg-zinc-600 text-xl">−</button>
+      <input type="number" value={value} onChange={e => setValue(Number(e.target.value))} className="w-16 text-center py-2 bg-zinc-800 border border-zinc-600 rounded-lg text-white" />
+      <button onClick={() => setValue(v => v + 1)} className="w-10 h-10 bg-zinc-700 rounded-lg hover:bg-zinc-600 text-xl">+</button>
+    </div>
+  );
+};
+
+const OTPInputPreview: FC = () => (
+  <div className="flex justify-center gap-2">
+    {[1, 2, 3, 4, 5, 6].map(i => (
+      <input key={i} type="text" maxLength={1} className="w-12 h-14 text-center text-xl font-bold bg-zinc-800 border-2 border-zinc-600 rounded-lg text-white focus:border-pink-500" />
+    ))}
+  </div>
+);
+
+const ChipPreview: FC = () => {
+  const [chips, setChips] = useState(['React', 'TypeScript', 'Tailwind']);
+  return (
+    <div className="flex flex-wrap gap-2 justify-center">
+      {chips.map(chip => (
+        <span key={chip} className="inline-flex items-center gap-1 px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">
+          {chip}
+          <button onClick={() => setChips(c => c.filter(x => x !== chip))} className="w-4 h-4 rounded-full hover:bg-pink-800 flex items-center justify-center">×</button>
+        </span>
+      ))}
+    </div>
+  );
+};
+
+const TreeViewPreview: FC = () => {
+  const [expanded, setExpanded] = useState(['1']);
+  return (
+    <div className="max-w-sm mx-auto text-left">
+      <div className="py-1">
+        <button onClick={() => setExpanded(e => e.includes('1') ? e.filter(x => x !== '1') : [...e, '1'])} className="flex items-center gap-2 hover:bg-zinc-700 px-2 py-1 rounded w-full text-left">
+          <span>{expanded.includes('1') ? '▼' : '▶'}</span>
+          <span>📁 Documents</span>
+        </button>
+        {expanded.includes('1') && (
+          <div className="ml-6 border-l border-zinc-700">
+            <div className="py-1 px-4 hover:bg-zinc-700 rounded-r">📄 Report.pdf</div>
+            <div className="py-1 px-4 hover:bg-zinc-700 rounded-r">📄 Notes.txt</div>
+          </div>
+        )}
+      </div>
+      <div className="py-1 px-2 hover:bg-zinc-700 rounded">📁 Downloads</div>
+    </div>
+  );
+};
+
+const TimelinePreview: FC = () => (
+  <div className="max-w-sm mx-auto">
+    {['Project Started', 'Development Phase', 'Testing Complete'].map((event, i) => (
+      <div key={i} className="flex gap-4 pb-6 last:pb-0">
+        <div className="flex flex-col items-center">
+          <div className="w-3 h-3 rounded-full bg-pink-500" />
+          {i < 2 && <div className="w-0.5 flex-1 bg-zinc-700 mt-2" />}
+        </div>
+        <div>
+          <p className="font-medium text-white">{event}</p>
+          <p className="text-sm text-zinc-400">Description text</p>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+const StatisticPreview: FC = () => (
+  <div className="grid grid-cols-3 gap-4">
+    {[{ label: 'Users', value: '1,234', trend: '+12%' }, { label: 'Revenue', value: '$45K', trend: '+8%' }, { label: 'Orders', value: '892', trend: '+5%' }].map(stat => (
+      <div key={stat.label} className="p-4 bg-zinc-800 rounded-lg text-center">
+        <p className="text-zinc-400 text-sm">{stat.label}</p>
+        <p className="text-2xl font-bold text-white">{stat.value}</p>
+        <p className="text-green-400 text-sm">{stat.trend}</p>
+      </div>
+    ))}
+  </div>
+);
+
+const EmptyStatePreview: FC = () => (
+  <div className="p-8 bg-zinc-800 rounded-lg text-center">
+    <div className="text-4xl mb-4">📭</div>
+    <h3 className="text-lg font-medium text-white mb-2">No data found</h3>
+    <p className="text-zinc-400 mb-4">Try adjusting your filters</p>
+    <button className="px-4 py-2 bg-pink-500 text-white rounded-lg">Clear Filters</button>
+  </div>
+);
+
+const ImagePreview: FC = () => (
+  <div className="flex justify-center">
+    <div className="w-48 h-32 bg-zinc-700 rounded-lg flex items-center justify-center text-zinc-500">Image Placeholder</div>
+  </div>
+);
+
+const PopoverPreview: FC = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex justify-center relative">
+      <button onClick={() => setOpen(!open)} className="px-4 py-2 bg-pink-500 text-white rounded-lg">Open Popover</button>
+      {open && (
+        <>
+          <div className="fixed inset-0" onClick={() => setOpen(false)} />
+          <div className="absolute top-full mt-2 p-4 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl z-10 min-w-[200px]">
+            <h4 className="font-medium text-white mb-2">Popover Title</h4>
+            <p className="text-zinc-400 text-sm">Content goes here</p>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+const AppBarPreview: FC = () => (
+  <div className="w-full bg-pink-600 text-white px-4 py-3 flex items-center justify-between rounded-lg">
+    <span className="font-semibold">My App</span>
+    <nav className="flex gap-4 text-sm">
+      <a href="#" className="hover:opacity-80">Home</a>
+      <a href="#" className="hover:opacity-80">About</a>
+    </nav>
+  </div>
+);
+
+const BottomNavigationPreview: FC = () => {
+  const [active, setActive] = useState(0);
+  const items = [{ icon: '🏠', label: 'Home' }, { icon: '🔍', label: 'Search' }, { icon: '❤️', label: 'Favorites' }, { icon: '👤', label: 'Profile' }];
+  return (
+    <div className="max-w-xs mx-auto bg-zinc-800 rounded-2xl overflow-hidden">
+      <div className="h-24 bg-zinc-700 flex items-center justify-center text-zinc-500">Content</div>
+      <div className="flex justify-around py-3 border-t border-zinc-700">
+        {items.map((item, i) => (
+          <button key={i} onClick={() => setActive(i)} className={`flex flex-col items-center gap-1 ${active === i ? 'text-pink-400' : 'text-zinc-400'}`}>
+            <span>{item.icon}</span>
+            <span className="text-xs">{item.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ScrollAreaPreview: FC = () => (
+  <div className="max-w-xs mx-auto h-32 overflow-y-auto border border-zinc-700 rounded-lg p-2">
+    {Array.from({ length: 10 }, (_, i) => (
+      <div key={i} className="py-2 border-b border-zinc-800 text-zinc-300">Item {i + 1}</div>
+    ))}
+  </div>
+);
+
+const CollapsiblePreview: FC = () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div className="max-w-sm mx-auto">
+      <button onClick={() => setOpen(!open)} className="w-full px-4 py-3 bg-zinc-700 rounded-lg text-left flex items-center justify-between">
+        <span>Toggle Content</span>
+        <span className={`transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
+      </button>
+      {open && (
+        <div className="p-4 bg-zinc-800 rounded-b-lg border-t-0 border border-zinc-700">
+          <p className="text-zinc-400">Collapsible content here</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const KbdPreview: FC = () => (
+  <div className="flex items-center justify-center gap-2">
+    <kbd className="px-2 py-1 bg-zinc-700 border border-zinc-600 rounded text-sm">⌘</kbd>
+    <span className="text-zinc-400">+</span>
+    <kbd className="px-2 py-1 bg-zinc-700 border border-zinc-600 rounded text-sm">K</kbd>
+    <span className="text-zinc-500 ml-2">to search</span>
+  </div>
+);
+
+const CopyButtonPreview: FC = () => {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => { setCopied(true); setTimeout(() => setCopied(false), 2000); };
+  return (
+    <div className="flex items-center justify-center gap-2 p-4 bg-zinc-800 rounded-lg">
+      <code className="text-zinc-300 text-sm">npm install @forgedevstack/bear</code>
+      <button onClick={handleCopy} className={`p-2 rounded ${copied ? 'text-green-400' : 'text-zinc-400 hover:text-white'}`}>
+        {copied ? '✓' : '📋'}
+      </button>
+    </div>
+  );
+};
+
+const BreadcrumbsPreview: FC = () => (
+  <div className="flex items-center gap-2 text-sm">
+    <a href="#" className="text-pink-400 hover:underline">Home</a>
+    <span className="text-zinc-500">/</span>
+    <a href="#" className="text-pink-400 hover:underline">Products</a>
+    <span className="text-zinc-500">/</span>
+    <span className="text-zinc-400">Current</span>
+  </div>
+);
+
+const StepperPreview: FC = () => {
+  const steps = ['Account', 'Details', 'Complete'];
+  const active = 1;
+  return (
+    <div className="flex items-center justify-center gap-4">
+      {steps.map((step, i) => (
+        <div key={step} className="flex items-center gap-2">
+          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${
+            i < active ? 'bg-pink-500 text-white' : i === active ? 'border-2 border-pink-500 text-pink-500' : 'bg-zinc-700 text-zinc-400'
+          }`}>
+            {i < active ? '✓' : i + 1}
+          </div>
+          <span className={i <= active ? 'text-white' : 'text-zinc-500'}>{step}</span>
+          {i < steps.length - 1 && <div className={`w-12 h-0.5 ${i < active ? 'bg-pink-500' : 'bg-zinc-700'}`} />}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 // Map of section previews
 const SECTION_PREVIEWS: Record<string, FC> = {
+  // Existing
   'button:variants': ButtonVariantsPreview,
   'button:sizes': ButtonSizesPreview,
   'button:loading': ButtonLoadingPreview,
@@ -635,6 +1451,56 @@ const SECTION_PREVIEWS: Record<string, FC> = {
   'tabs:basic': TabsPreview,
   'avatar:basic': AvatarPreview,
   'progress:basic': ProgressPreview,
+  // New components
+  'rating:basic': RatingPreview,
+  'rating:sizes': RatingSizesPreview,
+  'radio:basic': RadioPreview,
+  'radio:variants': RadioVariantsPreview,
+  'checkbox:basic': CheckboxPreview,
+  'button-group:basic': ButtonGroupPreview,
+  'button-group:variants': ButtonGroupVariantsPreview,
+  'fab:basic': FabPreview,
+  'transfer-list:basic': TransferListPreview,
+  'divider:basic': DividerPreview,
+  'typography:variants': TypographyPreview,
+  'typography:colors': TypographyColorsPreview,
+  'list:basic': ListPreview,
+  'list:with-icons': ListWithIconsPreview,
+  'alert:severities': AlertPreview,
+  'alert:with-title': AlertWithTitlePreview,
+  'paper:basic': PaperPreview,
+  'link:basic': LinkPreview,
+  'menu:basic': MenuPreview,
+  'dropdown:basic': DropdownPreview,
+  'speed-dial:basic': SpeedDialPreview,
+  'toast:basic': ToastPreview,
+  'skeleton:basic': SkeletonPreview,
+  'pagination:basic': PaginationPreview,
+  'slider:basic': SliderPreview,
+  'slider:range': SliderRangePreview,
+  'bear-loader:basic': BearLoaderPreview,
+  // New component previews
+  'date-picker:basic': DatePickerPreview,
+  'time-picker:basic': TimePickerPreview,
+  'color-picker:basic': ColorPickerPreview,
+  'file-upload:basic': FileUploadPreview,
+  'number-input:basic': NumberInputPreview,
+  'otp-input:basic': OTPInputPreview,
+  'chip:basic': ChipPreview,
+  'tree-view:basic': TreeViewPreview,
+  'timeline:basic': TimelinePreview,
+  'statistic:basic': StatisticPreview,
+  'empty-state:basic': EmptyStatePreview,
+  'image:basic': ImagePreview,
+  'popover:basic': PopoverPreview,
+  'app-bar:basic': AppBarPreview,
+  'bottom-navigation:basic': BottomNavigationPreview,
+  'scroll-area:basic': ScrollAreaPreview,
+  'collapsible:basic': CollapsiblePreview,
+  'kbd:basic': KbdPreview,
+  'copy-button:basic': CopyButtonPreview,
+  'breadcrumbs:basic': BreadcrumbsPreview,
+  'stepper:basic': StepperPreview,
 };
 
 /**
@@ -664,7 +1530,6 @@ export const BearDocContent: FC<BearDocContentProps> = ({ page }) => {
 
   return (
     <article className="max-w-none">
-      {/* Header */}
       <header className="mb-8 pb-8 border-b border-theme-border">
         <h1 className="text-3xl sm:text-4xl font-bold text-theme-primary mb-3">
           {doc.title}
@@ -672,7 +1537,6 @@ export const BearDocContent: FC<BearDocContentProps> = ({ page }) => {
         <p className="text-lg text-theme-secondary">{doc.description}</p>
       </header>
 
-      {/* Sections */}
       <div className="space-y-10">
         {doc.sections.map((section) => {
           const preview = section.livePreview ? getPreview(section.id) : null;

@@ -29,7 +29,6 @@ export const MobileDocsNav: FC<MobileDocsNavProps> = ({ items, basePath, color, 
 
   return (
     <div className="xl:hidden mb-6">
-      {/* Current Page Header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-theme-border bg-theme-secondary"
@@ -53,7 +52,6 @@ export const MobileDocsNav: FC<MobileDocsNavProps> = ({ items, basePath, color, 
         </svg>
       </button>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div className="mt-2 rounded-lg border border-theme-border bg-theme-secondary overflow-hidden max-h-64 overflow-y-auto">
           {items.map((item) => {

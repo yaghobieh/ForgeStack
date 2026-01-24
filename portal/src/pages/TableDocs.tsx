@@ -51,7 +51,6 @@ export const TableDocsNav: FC = () => {
 export const TableDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
-      {/* Mobile Navigation */}
       <MobileDocsNav
         items={TABLE_NAV_ITEMS}
         basePath="/table"
@@ -60,10 +59,8 @@ export const TableDocsLayout: FC<{ children: React.ReactNode }> = ({ children })
         icon={<span className="text-lg">📊</span>}
       />
       
-      {/* Desktop Navigation */}
       <TableDocsNav />
       
-      {/* Content */}
       <div className="flex-1 min-w-0 max-w-4xl">
         {children}
       </div>
