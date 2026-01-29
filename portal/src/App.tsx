@@ -165,6 +165,10 @@ function App() {
                 <Route path="/bear/kbd" element={<BearDocsLayout><BearDocContent page="kbd" /></BearDocsLayout>} />
                 <Route path="/bear/copy-button" element={<BearDocsLayout><BearDocContent page="copy-button" /></BearDocsLayout>} />
                 <Route path="/bear/paper" element={<BearDocsLayout><BearDocContent page="paper" /></BearDocsLayout>} />
+                <Route path="/bear/calendar" element={<BearDocsLayout><BearDocContent page="calendar" /></BearDocsLayout>} />
+                <Route path="/bear/date-time-picker" element={<BearDocsLayout><BearDocContent page="date-time-picker" /></BearDocsLayout>} />
+                <Route path="/bear/sidebar" element={<BearDocsLayout><BearDocContent page="sidebar" /></BearDocsLayout>} />
+                <Route path="/bear/columns" element={<BearDocsLayout><BearDocContent page="columns" /></BearDocsLayout>} />
                 <Route path="/bear/link" element={<BearDocsLayout><BearDocContent page="link" /></BearDocsLayout>} />
                 <Route path="/bear/menu" element={<BearDocsLayout><BearDocContent page="menu" /></BearDocsLayout>} />
                 <Route path="/bear/dropdown" element={<BearDocsLayout><BearDocContent page="dropdown" /></BearDocsLayout>} />

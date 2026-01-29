@@ -192,7 +192,7 @@ export const PACKAGES: ForgePackage[] = [
       'Tree-shakeable',
     ],
     color: '#d97706',
-    version: '0.1.0',
+    version: '1.0.3',
   },
   {
     id: 'kiln',

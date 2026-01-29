@@ -5,6 +5,7 @@ export { DocContent } from './DocContent';
 export { Footer } from './Footer';
 export { Hero } from './Hero';
 export * from './Icons';
+export { LinesOfCode } from './LinesOfCode';
 export { Logo } from './Logo';
 export { Navbar } from './Navbar';
 export { PackageGrid } from './PackageGrid';

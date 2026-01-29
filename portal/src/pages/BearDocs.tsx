@@ -57,11 +57,20 @@ export const BearDocsNav: FC = () => {
           <BearIcon size={28} />
           <span className="font-semibold" style={{ color: BEAR_COLOR }}>Bear</span>
           <span 
-            className="text-xs px-2 py-0.5 rounded"
+            className="text-xs px-2 py-0.5 rounded font-medium animate-pulse"
             style={{ backgroundColor: `${BEAR_COLOR}20`, color: BEAR_COLOR }}
           >
-            v0.1.0
+            v1.0.2
           </span>
+          <a 
+            href="https://bearui.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-xs px-2 py-0.5 rounded ml-1 transition-all hover:scale-105"
+            style={{ backgroundColor: BEAR_COLOR, color: '#fff' }}
+          >
+            bearui.com →
+          </a>
         </div>
 
         <div className="flex-1 overflow-y-auto space-y-1 pr-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
@@ -75,14 +84,26 @@ export const BearDocsNav: FC = () => {
               <NavLink
                 key={item.path || 'overview'}
                 to={path}
-                className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors ${
                   isActive
                     ? 'font-medium'
                     : 'text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary'
                 }`}
                 style={isActive ? { backgroundColor: `${BEAR_COLOR}20`, color: BEAR_COLOR } : undefined}
               >
-                {item.label}
+                <span>{item.label}</span>
+                {item.isNew && (
+                  <span 
+                    className="text-[10px] px-1.5 py-0.5 rounded-full font-semibold animate-pulse shadow-lg"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${BEAR_COLOR}, #f472b6)`,
+                      color: '#fff',
+                      boxShadow: `0 0 8px ${BEAR_COLOR}60`
+                    }}
+                  >
+                    NEW
+                  </span>
+                )}
               </NavLink>
             );
           })}

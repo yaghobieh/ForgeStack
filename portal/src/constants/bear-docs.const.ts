@@ -8,6 +8,7 @@ export interface BearNavItem {
   path: string;
   label: string;
   exact?: boolean;
+  isNew?: boolean;
 }
 
 export const BEAR_NAV: BearNavItem[] = [
@@ -20,6 +21,10 @@ export const BEAR_NAV: BearNavItem[] = [
   { path: 'container', label: 'Container' },
   { path: 'paper', label: 'Paper' },
   { path: 'divider', label: 'Divider' },
+  { path: 'app-bar', label: 'AppBar', isNew: true },
+  { path: 'scroll-area', label: 'ScrollArea', isNew: true },
+  { path: 'sidebar', label: 'Sidebar', isNew: true },
+  { path: 'columns', label: 'Columns', isNew: true },
   // Inputs
   { path: 'button', label: 'Button' },
   { path: 'button-group', label: 'ButtonGroup' },
@@ -31,57 +36,57 @@ export const BEAR_NAV: BearNavItem[] = [
   { path: 'radio', label: 'Radio' },
   { path: 'switch', label: 'Switch' },
   { path: 'rating', label: 'Rating' },
+  { path: 'slider', label: 'Slider' },
+  { path: 'calendar', label: 'Calendar', isNew: true },
+  { path: 'date-picker', label: 'DatePicker', isNew: true },
+  { path: 'date-time-picker', label: 'DateTimePicker', isNew: true },
+  { path: 'time-picker', label: 'TimePicker', isNew: true },
+  { path: 'color-picker', label: 'ColorPicker', isNew: true },
+  { path: 'file-upload', label: 'FileUpload', isNew: true },
+  { path: 'number-input', label: 'NumberInput', isNew: true },
+  { path: 'otp-input', label: 'OTPInput', isNew: true },
   { path: 'transfer-list', label: 'TransferList' },
   // Data Display
   { path: 'typography', label: 'Typography' },
   { path: 'badge', label: 'Badge' },
   { path: 'avatar', label: 'Avatar' },
+  { path: 'chip', label: 'Chip', isNew: true },
   { path: 'list', label: 'List' },
   { path: 'card', label: 'Card' },
   { path: 'datatable', label: 'DataTable' },
+  { path: 'tree-view', label: 'TreeView', isNew: true },
+  { path: 'timeline', label: 'Timeline', isNew: true },
+  { path: 'statistic', label: 'Statistic', isNew: true },
   { path: 'tooltip', label: 'Tooltip' },
+  { path: 'popover', label: 'Popover', isNew: true },
+  { path: 'carousel', label: 'Carousel' },
+  { path: 'image', label: 'Image', isNew: true },
+  { path: 'pagination', label: 'Pagination' },
+  { path: 'empty-state', label: 'EmptyState', isNew: true },
   // Feedback
   { path: 'alert', label: 'Alert' },
   { path: 'toast', label: 'Toast' },
   { path: 'skeleton', label: 'Skeleton' },
   { path: 'spinner', label: 'Spinner' },
   { path: 'progress', label: 'Progress' },
-  { path: 'pagination', label: 'Pagination' },
-  { path: 'slider', label: 'Slider' },
   { path: 'modal', label: 'Modal' },
   { path: 'drawer', label: 'Drawer' },
+  { path: 'collapsible', label: 'Collapsible', isNew: true },
   { path: 'bear-loader', label: 'BearLoader' },
   // Navigation
   { path: 'tabs', label: 'Tabs' },
   { path: 'menu', label: 'Menu' },
   { path: 'dropdown', label: 'Dropdown' },
   { path: 'link', label: 'Link' },
+  { path: 'breadcrumbs', label: 'Breadcrumbs', isNew: true },
+  { path: 'stepper', label: 'Stepper', isNew: true },
   { path: 'speed-dial', label: 'SpeedDial' },
   { path: 'fab', label: 'FAB' },
-  { path: 'breadcrumbs', label: 'Breadcrumbs' },
-  { path: 'stepper', label: 'Stepper' },
-  { path: 'bottom-navigation', label: 'BottomNavigation' },
+  { path: 'bottom-navigation', label: 'BottomNavigation', isNew: true },
   // Other
   { path: 'accordion', label: 'Accordion' },
-  { path: 'carousel', label: 'Carousel' },
-  { path: 'date-picker', label: 'DatePicker' },
-  { path: 'time-picker', label: 'TimePicker' },
-  { path: 'color-picker', label: 'ColorPicker' },
-  { path: 'file-upload', label: 'FileUpload' },
-  { path: 'number-input', label: 'NumberInput' },
-  { path: 'otp-input', label: 'OTPInput' },
-  { path: 'chip', label: 'Chip' },
-  { path: 'tree-view', label: 'TreeView' },
-  { path: 'timeline', label: 'Timeline' },
-  { path: 'statistic', label: 'Statistic' },
-  { path: 'empty-state', label: 'EmptyState' },
-  { path: 'image', label: 'Image' },
-  { path: 'popover', label: 'Popover' },
-  { path: 'app-bar', label: 'AppBar' },
-  { path: 'scroll-area', label: 'ScrollArea' },
-  { path: 'collapsible', label: 'Collapsible' },
-  { path: 'kbd', label: 'Kbd' },
-  { path: 'copy-button', label: 'CopyButton' },
+  { path: 'kbd', label: 'Kbd', isNew: true },
+  { path: 'copy-button', label: 'CopyButton', isNew: true },
   { path: 'icons', label: 'Icons' },
   { path: 'hooks', label: 'Hooks' },
   { path: 'api', label: 'API Reference' },
@@ -101,6 +106,8 @@ export interface BearDocPage {
   title: string;
   description: string;
   sections: BearDocSection[];
+  /** Lines of code for the component */
+  linesOfCode?: number;
 }
 
 export const BEAR_DOCS: Record<string, BearDocPage> = {
@@ -108,6 +115,7 @@ export const BEAR_DOCS: Record<string, BearDocPage> = {
     slug: 'overview',
     title: 'Bear',
     description: 'Strong, reliable React UI components. Tailwind-powered, zero config required.',
+    linesOfCode: 12000,
     sections: [
       {
         id: 'intro',
@@ -249,6 +257,7 @@ function ThemeToggle() {
     slug: 'button',
     title: 'Button',
     description: 'Accessible button component with multiple variants and sizes.',
+    linesOfCode: 120,
     sections: [
       {
         id: 'variants',
@@ -292,6 +301,7 @@ function ThemeToggle() {
     slug: 'modal',
     title: 'Modal',
     description: 'Accessible modal dialog with backdrop and animations.',
+    linesOfCode: 180,
     sections: [
       {
         id: 'basic',
@@ -336,6 +346,7 @@ function ThemeToggle() {
     slug: 'drawer',
     title: 'Drawer',
     description: 'Slide-out panel from any edge of the screen.',
+    linesOfCode: 150,
     sections: [
       {
         id: 'basic',
@@ -376,6 +387,7 @@ function ThemeToggle() {
     slug: 'tooltip',
     title: 'Tooltip',
     description: 'Informative text popup on hover.',
+    linesOfCode: 95,
     sections: [
       {
         id: 'basic',
@@ -397,6 +409,7 @@ function ThemeToggle() {
     slug: 'input',
     title: 'Input',
     description: 'Text input with labels, validation, and addons.',
+    linesOfCode: 200,
     sections: [
       {
         id: 'basic',
@@ -1767,6 +1780,51 @@ const [value, setValue] = useState(50);
     description: 'One-click copy to clipboard button.',
     sections: [
       { id: 'basic', title: 'Basic Usage', content: 'Copy text to clipboard:', code: `import { CopyButton } from '@forgedevstack/bear';\n\n<CopyButton value="Text to copy" showText />`, filename: 'CopyButtonBasic.tsx', livePreview: true },
+    ],
+  },
+  calendar: {
+    slug: 'calendar',
+    title: 'Calendar',
+    description: 'Standalone calendar component with date selection, navigation, and customizable slots (react-calendar style).',
+    linesOfCode: 180,
+    sections: [
+      { id: 'import', title: 'Import', content: 'Import the Calendar component:', code: `import { Calendar } from '@forgedevstack/bear';` },
+      { id: 'basic', title: 'Basic Usage', content: 'Display a calendar with date selection:', code: `import { Calendar } from '@forgedevstack/bear';\nimport { useState } from 'react';\n\nfunction Example() {\n  const [viewDate, setViewDate] = useState(new Date());\n  const [selected, setSelected] = useState<Date | null>(null);\n\n  return (\n    <Calendar\n      viewDate={viewDate}\n      onViewChange={setViewDate}\n      value={selected}\n      onSelect={setSelected}\n      inline\n    />\n  );\n}`, filename: 'CalendarBasic.tsx', livePreview: true },
+      { id: 'highlighted', title: 'Highlighted Dates', content: 'Highlight specific dates:', code: `<Calendar\n  viewDate={new Date()}\n  highlightedDates={[new Date(2026, 0, 15), new Date(2026, 0, 20)]}\n  inline\n/>`, filename: 'CalendarHighlighted.tsx' },
+      { id: 'minmax', title: 'Min/Max Dates', content: 'Restrict selectable date range:', code: `<Calendar\n  viewDate={new Date()}\n  minDate={new Date()}\n  maxDate={new Date(2026, 11, 31)}\n  inline\n/>`, filename: 'CalendarMinMax.tsx' },
+      { id: 'props', title: 'Props', content: '| Prop | Type | Default | Description |\\n|------|------|---------|-------------|\\n| viewDate | Date | - | Current displayed month/year |\\n| value | Date \\| null | null | Selected date |\\n| onSelect | (date: Date) => void | - | Date selection callback |\\n| onViewChange | (date: Date) => void | - | View change callback |\\n| minDate | Date | - | Minimum selectable date |\\n| maxDate | Date | - | Maximum selectable date |\\n| disabledDates | Date[] | [] | Dates that cannot be selected |\\n| highlightedDates | Date[] | [] | Dates to highlight |\\n| weekdayLabels | string[] | - | Custom weekday labels |\\n| firstDayOfWeek | 0-6 | 0 | First day of week (0 = Sunday) |\\n| inline | boolean | false | Render inline (no dropdown positioning) |\\n| clearable | boolean | true | Show clear button |\\n| showTodayButton | boolean | true | Show today button |\\n| slots | CalendarSlots | {} | Custom render slots |' },
+    ],
+  },
+  'date-time-picker': {
+    slug: 'date-time-picker',
+    title: 'DateTimePicker',
+    description: 'Combined date and time selection component.',
+    sections: [
+      { id: 'import', title: 'Import', content: 'Import the DateTimePicker component:', code: `import { DateTimePicker } from '@forgedevstack/bear';` },
+      { id: 'basic', title: 'Basic Usage', content: 'Pick date and time together:', code: `import { DateTimePicker } from '@forgedevstack/bear';\nimport { useState } from 'react';\n\nfunction Example() {\n  const [value, setValue] = useState<Date | null>(null);\n\n  return (\n    <DateTimePicker\n      value={value}\n      onChange={setValue}\n      label="Select date and time"\n    />\n  );\n}`, filename: 'DateTimePickerBasic.tsx', livePreview: true },
+      { id: 'props', title: 'Props', content: '| Prop | Type | Default | Description |\\n|------|------|---------|-------------|\\n| value | Date \\| null | - | Selected date/time |\\n| onChange | (date: Date \\| null) => void | - | Change callback |\\n| label | string | - | Field label |\\n| placeholder | string | - | Placeholder text |\\n| minDate | Date | - | Minimum selectable date |\\n| maxDate | Date | - | Maximum selectable date |\\n| disabled | boolean | false | Disable picker |' },
+    ],
+  },
+  sidebar: {
+    slug: 'sidebar',
+    title: 'Sidebar',
+    description: 'Collapsible navigation sidebar with nested items and customizable styling.',
+    sections: [
+      { id: 'import', title: 'Import', content: 'Import the Sidebar component:', code: `import { Sidebar, SidebarGroup } from '@forgedevstack/bear';` },
+      { id: 'basic', title: 'Basic Usage', content: 'Create a navigation sidebar:', code: `import { Sidebar } from '@forgedevstack/bear';\nimport { useState } from 'react';\n\nconst items = [\n  { id: 'home', label: 'Home', icon: <HomeIcon /> },\n  { id: 'users', label: 'Users', icon: <UsersIcon /> },\n  { id: 'settings', label: 'Settings', icon: <SettingsIcon />, children: [\n    { id: 'profile', label: 'Profile' },\n    { id: 'security', label: 'Security' },\n  ]},\n];\n\nfunction Example() {\n  const [collapsed, setCollapsed] = useState(false);\n  const [active, setActive] = useState('home');\n\n  return (\n    <Sidebar\n      items={items}\n      collapsed={collapsed}\n      onCollapsedChange={setCollapsed}\n      activeItemId={active}\n      onItemClick={(item) => setActive(item.id)}\n      header={<Logo />}\n    />\n  );\n}`, filename: 'SidebarBasic.tsx', livePreview: true },
+      { id: 'variants', title: 'Variants', content: 'Different sidebar styles:', code: `<Sidebar items={items} variant="default" />\n<Sidebar items={items} variant="bordered" />\n<Sidebar items={items} variant="floating" />`, filename: 'SidebarVariants.tsx' },
+      { id: 'props', title: 'Props', content: '| Prop | Type | Default | Description |\\n|------|------|---------|-------------|\\n| items | SidebarItem[] | - | Navigation items |\\n| collapsed | boolean | false | Collapsed state |\\n| onCollapsedChange | (collapsed: boolean) => void | - | Collapse toggle callback |\\n| width | number \\| string | 256 | Expanded width |\\n| collapsedWidth | number \\| string | 64 | Collapsed width |\\n| header | ReactNode | - | Header content |\\n| footer | ReactNode | - | Footer content |\\n| activeItemId | string | - | Active item ID |\\n| variant | "default" \\| "bordered" \\| "floating" | "default" | Visual style |\\n| position | "left" \\| "right" | "left" | Sidebar position |' },
+    ],
+  },
+  columns: {
+    slug: 'columns',
+    title: 'Columns',
+    description: 'CSS columns layout component for newspaper-style content flow.',
+    sections: [
+      { id: 'import', title: 'Import', content: 'Import the Columns component:', code: `import { Columns, Column } from '@forgedevstack/bear';` },
+      { id: 'basic', title: 'Basic Usage', content: 'Create multi-column layouts:', code: `import { Columns, Column } from '@forgedevstack/bear';\n\n<Columns count={3} gap="md">\n  <Column>\n    <Card>First item</Card>\n  </Column>\n  <Column>\n    <Card>Second item</Card>\n  </Column>\n  <Column>\n    <Card>Third item</Card>\n  </Column>\n  <Column>\n    <Card>Fourth item</Card>\n  </Column>\n</Columns>`, filename: 'ColumnsBasic.tsx', livePreview: true },
+      { id: 'auto', title: 'Auto Columns', content: 'Responsive columns with minimum width:', code: `<Columns count="auto" minWidth={200} gap="lg">\n  {items.map(item => (\n    <Column key={item.id}>\n      <Card>{item.content}</Card>\n    </Column>\n  ))}\n</Columns>`, filename: 'ColumnsAuto.tsx' },
+      { id: 'props', title: 'Props', content: '| Prop | Type | Default | Description |\\n|------|------|---------|-------------|\\n| count | 1-6 \\| "auto" | "auto" | Number of columns |\\n| gap | "none" \\| "xs" \\| "sm" \\| "md" \\| "lg" \\| "xl" | "md" | Gap between columns |\\n| fill | boolean | false | Balance column heights |\\n| minWidth | string \\| number | - | Minimum column width |' },
     ],
   },
   api: {

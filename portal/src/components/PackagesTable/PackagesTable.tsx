@@ -20,6 +20,7 @@ interface PackageVersionInfo {
   version: string;
   date: string;
   highlights: string[];
+  externalUrl?: string;
 }
 
 const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
@@ -71,6 +72,38 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
       'Pagination',
     ],
   },
+  bear: {
+    version: '1.0.3',
+    date: '2026-01-26',
+    highlights: [
+      'Calendar component',
+      'DatePicker & TimePicker',
+      'OTPInput component',
+      'Sidebar & Columns',
+      '300+ Icons',
+      'Theme hooks',
+    ],
+    externalUrl: 'https://bearui.com',
+  },
+  anvil: {
+    version: '1.0.3',
+    date: '2026-01-26',
+    highlights: [
+      '100+ utility functions',
+      'React hooks',
+      'Vue composables',
+      'Type guards',
+    ],
+  },
+  kiln: {
+    version: '1.0.3',
+    date: '2026-01-26',
+    highlights: [
+      'Zero-config setup',
+      'Live preview canvas',
+      'Story file format',
+    ],
+  },
 };
 
 interface VersionDropdownContentProps {
@@ -101,15 +134,15 @@ const VersionDropdownContent: FC<VersionDropdownContentProps> = ({ packageId, co
           ))}
         </ul>
       </div>
-      {packageId === 'harbor' && (
+      {(packageId === 'harbor' || versionInfo.externalUrl) && (
         <a
-          href="https://github.com/yaghobieh/ForgeStack/blob/main/packages/harbor/CHANGELOG.md"
+          href={versionInfo.externalUrl || "https://github.com/yaghobieh/ForgeStack/blob/main/packages/harbor/CHANGELOG.md"}
           target="_blank"
           rel="noopener noreferrer"
           className="block p-2 text-center text-xs border-t border-theme-border transition-colors hover:bg-theme-tertiary"
           style={{ color }}
         >
-          View full changelog →
+          {versionInfo.externalUrl ? 'View full docs →' : 'View full changelog →'}
         </a>
       )}
     </div>

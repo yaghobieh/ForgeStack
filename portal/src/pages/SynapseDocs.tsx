@@ -7,7 +7,7 @@ import { MobileDocsNav } from '../components/MobileDocsNav';
 // Navigation component - exported for reuse
 export const SynapseDocsNav: FC = () => {
   const location = useLocation();
-
+  
   return (
     <nav className="sticky top-20 w-56 shrink-0 hidden xl:block">
       <div className="flex items-center gap-2 px-3 mb-4">
@@ -24,16 +24,16 @@ export const SynapseDocsNav: FC = () => {
       <div className="space-y-1">
         {SYNAPSE_NAV_ITEMS.map((item) => {
           const path = `/synapse${item.path ? `/${item.path}` : ''}`;
-          const isActive = item.exact
+          const isActive = item.exact 
             ? location.pathname === '/synapse' || location.pathname === '/synapse/'
             : location.pathname === path;
-
+            
           return (
             <NavLink
               key={item.path}
               to={path}
               className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
-                isActive
+                isActive 
                   ? 'font-medium'
                   : 'text-theme-secondary hover:text-theme-primary hover:bg-theme-hover'
               }`}

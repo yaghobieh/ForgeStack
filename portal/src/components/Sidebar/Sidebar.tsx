@@ -16,7 +16,8 @@ import {
   ExternalLinkIcon,
   ChevronDownIcon,
   CloseIcon,
-  ExtensionIcon
+  ExtensionIcon,
+  RobotIcon
 } from '../Icons';
 import { SidebarProps } from './types';
 
@@ -31,6 +32,7 @@ const ICON_MAP: Record<string, FC<{ className?: string; size?: number }>> = {
   package: PackageIcon,
   external: ExternalLinkIcon,
   extension: ExtensionIcon,
+  robot: RobotIcon,
 };
 
 const SidebarIcon: FC<{ name?: SidebarLink['iconName']; className?: string }> = ({ name, className }) => {

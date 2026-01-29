@@ -1,7 +1,7 @@
 export interface SidebarLink {
   id: string;
   label: string;
-  iconName?: 'github' | 'email' | 'npm' | 'book' | 'blog' | 'sparkles' | 'palette' | 'package' | 'external' | 'extension';
+  iconName?: 'github' | 'email' | 'npm' | 'book' | 'blog' | 'sparkles' | 'palette' | 'package' | 'external' | 'extension' | 'robot';
   href?: string;
   badge?: 'NEW' | 'BETA' | 'ALPHA' | 'SOON';
   external?: boolean;
@@ -20,6 +20,8 @@ export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | 
   query: 'ALPHA',
   table: undefined,
   anvil: 'NEW',
+  bear: 'NEW',
+  mcp: 'SOON',
 };
 
 export const SHOWCASE_REPOS = [
@@ -59,6 +61,7 @@ export const SIDEBAR_SECTIONS: SidebarSection[] = [
     links: [
       { id: 'showcase', label: 'Showcase', iconName: 'sparkles' },
       { id: 'extensions', label: 'Extensions', iconName: 'extension', badge: 'NEW' },
+      { id: 'mcp', label: 'MCP', iconName: 'robot', badge: 'SOON' },
       { id: 'blog', label: 'Blog', iconName: 'blog', badge: 'SOON' },
       { id: 'learn', label: 'Learn', iconName: 'book' },
     ],
