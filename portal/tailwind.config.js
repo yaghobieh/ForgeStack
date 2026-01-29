@@ -8,67 +8,74 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ForgeStack brand colors (WebStorm-inspired)
+        // ForgeStack brand colors
         forge: {
           50: '#e6f7ff',
           100: '#bae7ff',
           200: '#91d5ff',
           300: '#69c0ff',
           400: '#40a9ff',
-          500: '#1890ff',  // Primary blue
+          500: '#1890ff',
           600: '#096dd9',
           700: '#0050b3',
           800: '#003a8c',
           900: '#002766',
         },
-        // Harbor brand colors (Deep blue/teal)
         harbor: {
           50: '#e6f4ff',
           100: '#b3d4ff',
           200: '#80b4ff',
           300: '#4d94ff',
           400: '#1a74ff',
-          500: '#0066cc',  // Primary harbor blue
+          500: '#0066cc',
           600: '#0052a3',
           700: '#003d7a',
           800: '#002952',
           900: '#001429',
         },
-        // Cyan accent (WebStorm-like)
         accent: {
           50: '#e6fffb',
           100: '#b5f5ec',
           200: '#87e8de',
           300: '#5cdbd3',
           400: '#36cfc9',
-          500: '#13c2c2',  // Cyan accent
+          500: '#13c2c2',
           600: '#08979c',
           700: '#006d75',
           800: '#00474f',
           900: '#002329',
         },
-        // Dark theme backgrounds (JetBrains style)
         jet: {
-          950: '#1e1e1e',   // Deepest background
-          900: '#2b2b2b',   // Main background
-          850: '#242424',
-          800: '#3c3c3c',   // Surface
-          700: '#4e4e4e',   // Elevated
-          600: '#5a5a5a',
-          500: '#6e6e6e',
-        },
-        // Light mode colors
-        light: {
-          bg: '#ffffff',
-          surface: '#f5f5f5',
-          border: '#e8e8e8',
-          text: '#262626',
-          muted: '#8c8c8c',
+          950: '#0d0d0d',
+          900: '#161616',
+          850: '#1a1a1a',
+          800: '#1f1f1f',
+          700: '#2a2a2a',
+          600: '#333333',
+          500: '#444444',
         },
       },
       fontFamily: {
-        sans: ['"Inter"', '"Plus Jakarta Sans"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        sans: ['"IBM Plex Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Fira Code"', '"IBM Plex Mono"', 'monospace'],
+      },
+      fontSize: {
+        '2xs': ['0.65rem', { lineHeight: '0.9rem' }],
+        'xs': ['0.75rem', { lineHeight: '1rem' }],
+        'sm': ['0.8125rem', { lineHeight: '1.25rem' }],
+        'base': ['0.875rem', { lineHeight: '1.375rem' }],
+        'lg': ['1rem', { lineHeight: '1.5rem' }],
+        'xl': ['1.125rem', { lineHeight: '1.625rem' }],
+        '2xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        '3xl': ['1.5rem', { lineHeight: '2rem' }],
+        '4xl': ['1.875rem', { lineHeight: '2.25rem' }],
+      },
+      borderRadius: {
+        'sm': '0.25rem',
+        DEFAULT: '0.375rem',
+        'md': '0.5rem',
+        'lg': '0.625rem',
+        'xl': '0.75rem',
       },
     },
   },

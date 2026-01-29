@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { BEAR_DOCS, BEAR_COLOR } from '../../constants/bear-docs.const';
 import { CodeBlock } from '../CodeBlock';
 import { LivePreview } from '../LivePreview';
+import { LinesOfCode } from '../LinesOfCode';
 
 interface BearDocContentProps {
   page: keyof typeof BEAR_DOCS;
@@ -1531,9 +1532,12 @@ export const BearDocContent: FC<BearDocContentProps> = ({ page }) => {
   return (
     <article className="max-w-none">
       <header className="mb-8 pb-8 border-b border-theme-border">
-        <h1 className="text-3xl sm:text-4xl font-bold text-theme-primary mb-3">
-          {doc.title}
-        </h1>
+        <div className="flex items-center gap-3 mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-theme-primary">
+            {doc.title}
+          </h1>
+          {doc.linesOfCode && <LinesOfCode lines={doc.linesOfCode} />}
+        </div>
         <p className="text-lg text-theme-secondary">{doc.description}</p>
       </header>
 
