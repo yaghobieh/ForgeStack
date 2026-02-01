@@ -108,10 +108,13 @@ export const Footer: FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-theme-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-theme-muted">
-            © {new Date().getFullYear()} ForgeStack. MIT License.
-          </p>
+          <div className="border-t border-theme-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 text-sm text-theme-muted">
+            <span>© {new Date().getFullYear()} ForgeStack. MIT License.</span>
+            <Link to="/privacy" className="hover:text-theme-primary transition-colors">
+              Privacy Policy
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/yaghobieh/ForgeStack"

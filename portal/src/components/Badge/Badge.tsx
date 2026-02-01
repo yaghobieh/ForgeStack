@@ -42,8 +42,8 @@ export const Badge: FC<BadgeProps> = ({ variant, className = '', showIcon = true
     <span
       className={`
         inline-flex items-center gap-0.5
-        text-[9px] font-black uppercase tracking-wider
-        px-1.5 py-0.5 rounded-md
+        text-[10px] font-black uppercase tracking-wider
+        px-2 py-0.5 rounded-md
         shadow-sm
         transition-all duration-200
         hover:scale-105 hover:shadow-md
@@ -56,7 +56,7 @@ export const Badge: FC<BadgeProps> = ({ variant, className = '', showIcon = true
         textShadow: '0 1px 2px rgba(0,0,0,0.2)',
       }}
     >
-      {showIcon && <span className="text-[8px]">{config.icon}</span>}
+      {showIcon && <span className="text-[10px]">{config.icon}</span>}
       <span>{variant}</span>
     </span>
   );

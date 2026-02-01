@@ -2,7 +2,15 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PACKAGES } from '@/constants/content.const';
 import { usePackageTheme } from '../../context/ThemeContext';
+import { useNpmVersions } from '../../hooks';
 import type { PackagesTableProps } from './types';
+
+const NPM_ID_TO_PACKAGE: Record<string, string> = {
+  'grid-table': 'table',
+  'anvil': 'anvil',
+  'bear': 'bear',
+  'synapse': 'synapse',
+};
 
 const STATUS_LABELS = {
   'ready': 'Ready',
@@ -47,6 +55,15 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
       'Param validation',
     ],
   },
+  'form-manager': {
+    version: '0.0.1',
+    date: 'Coming Soon',
+    highlights: [
+      'Declarative form state',
+      'Built-in validation',
+      'Nested fields',
+    ],
+  },
   synapse: {
     version: '0.1.0-alpha',
     date: 'Coming Soon',
@@ -54,14 +71,6 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
       'Simple store creation',
       'Computed values',
       'Async actions',
-    ],
-  },
-  query: {
-    version: 'Planned',
-    date: 'TBD',
-    highlights: [
-      'Automatic caching',
-      'Background refetching',
     ],
   },
   table: {
@@ -109,17 +118,19 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
 interface VersionDropdownContentProps {
   packageId: string;
   color: string;
+  version?: string;
 }
 
-const VersionDropdownContent: FC<VersionDropdownContentProps> = ({ packageId, color }) => {
+const VersionDropdownContent: FC<VersionDropdownContentProps> = ({ packageId, color, version }) => {
   const versionInfo = PACKAGE_VERSIONS[packageId];
   if (!versionInfo) return null;
+  const displayVersion = version || versionInfo.version;
 
   return (
     <div className="absolute top-full left-0 mt-2 w-72 bg-theme-secondary border border-theme-border rounded-lg shadow-xl z-50 overflow-hidden">
       <div className="p-3 border-b border-theme-border" style={{ backgroundColor: `${color}10` }}>
         <div className="flex items-center justify-between">
-          <span className="font-mono font-semibold text-theme-primary">v{versionInfo.version}</span>
+          <span className="font-mono font-semibold text-theme-primary">v{displayVersion}</span>
           <span className="text-xs text-theme-muted">{versionInfo.date}</span>
         </div>
       </div>
@@ -153,6 +164,14 @@ export const PackagesTable: FC<PackagesTableProps> = ({ className = '' }) => {
   const [expandedPackage, setExpandedPackage] = useState<string | null>(null);
   const [hoveredPackage, setHoveredPackage] = useState<string | null>(null);
   const { setActivePackageId } = usePackageTheme();
+  const npmVersions = useNpmVersions();
+
+  const getVersion = (pkgId: string): string => {
+    const npmId = Object.entries(NPM_ID_TO_PACKAGE).find(([, id]) => id === pkgId)?.[0];
+    const fromNpm = npmId && npmVersions[npmId as keyof typeof npmVersions];
+    if (fromNpm) return fromNpm;
+    return PACKAGE_VERSIONS[pkgId]?.version ?? '-';
+  };
 
   return (
     <section id="packages" className={`py-24 bg-theme-primary ${className}`}>
@@ -187,7 +206,6 @@ export const PackagesTable: FC<PackagesTableProps> = ({ className = '' }) => {
             </thead>
             <tbody>
               {PACKAGES.map((pkg) => {
-                const versionInfo = PACKAGE_VERSIONS[pkg.id];
                 const isExpanded = expandedPackage === pkg.id;
                 const isHovered = hoveredPackage === pkg.id;
 
@@ -256,7 +274,7 @@ export const PackagesTable: FC<PackagesTableProps> = ({ className = '' }) => {
                         className="flex items-center gap-1.5 px-2 py-1 rounded-md font-mono text-sm transition-colors hover:bg-theme-tertiary"
                         style={{ color: pkg.color }}
                       >
-                        <span className="font-semibold">v{versionInfo?.version || '-'}</span>
+                        <span className="font-semibold">v{getVersion(pkg.id)}</span>
                         <svg
                           className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
                           fill="none"
@@ -266,7 +284,7 @@ export const PackagesTable: FC<PackagesTableProps> = ({ className = '' }) => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
-                      {isExpanded && <VersionDropdownContent packageId={pkg.id} color={pkg.color} />}
+                      {isExpanded && <VersionDropdownContent packageId={pkg.id} color={pkg.color} version={getVersion(pkg.id)} />}
                     </td>
                     <td className="py-4 px-4">
                       <span className={`px-2.5 py-1 text-xs rounded-full border ${STATUS_STYLES[pkg.status]}`}>

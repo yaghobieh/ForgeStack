@@ -39,7 +39,7 @@ const SidebarIcon: FC<{ name?: SidebarLink['iconName']; className?: string }> = 
   if (!name) return null;
   const IconComponent = ICON_MAP[name];
   if (!IconComponent) return null;
-  return <IconComponent className={className} size={14} />;
+  return <IconComponent className={className} size={16} />;
 };
 
 export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClose }) => {
@@ -57,7 +57,7 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
 
   return (
     <aside 
-      className={`forge-stack__sidebar w-56 h-full bg-theme-secondary border-r border-theme-border flex flex-col transition-transform duration-300 ${className} ${
+      className={`forge-stack__sidebar w-56 h-[calc(100vh-4rem)] bg-theme-secondary border-r border-theme-border flex flex-col min-h-0 transition-transform duration-300 ${className} ${
         isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}
     >
@@ -70,6 +70,7 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
         </button>
       )}
 
+      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
       <div className="forge-stack__sidebar-packages p-4 pt-10 lg:pt-4">
         <nav className="space-y-1">
           {PACKAGES.map((pkg) => {
@@ -81,7 +82,7 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
                 key={pkg.id}
                 to={pkg.status === 'ready' ? `${pkg.docsPath}/docs/quick-start` : '#'}
                 onClick={() => handlePackageClick(pkg.id)}
-                className={`forge-stack__sidebar-link group flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`forge-stack__sidebar-link group flex items-center justify-between px-3 py-2.5 rounded-lg text-base font-semibold transition-all ${
                   isActive
                     ? 'text-white'
                     : 'text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary'
@@ -108,16 +109,16 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
       <div className="border-t border-theme-border mx-4" />
 
       <div className="forge-stack__sidebar-showcase p-4">
-        <Link
+          <Link
           to="/showcase"
-          className="forge-stack__sidebar-link flex items-center gap-2 px-3 py-2 text-sm text-theme-secondary hover:text-theme-primary w-full text-left rounded-lg hover:bg-theme-tertiary transition-colors"
+          className="forge-stack__sidebar-link flex items-center gap-2 px-3 py-2.5 text-base font-medium text-theme-secondary hover:text-theme-primary w-full text-left rounded-lg hover:bg-theme-tertiary transition-colors"
         >
-          <PackageIcon size={14} />
+          <PackageIcon size={16} />
           <span>Showcase</span>
         </Link>
 
         <button
-          className="forge-stack__sidebar-link flex items-center gap-2 px-3 py-2 text-sm text-theme-secondary hover:text-theme-primary w-full text-left rounded-lg hover:bg-theme-tertiary transition-colors"
+          className="forge-stack__sidebar-link flex items-center gap-2 px-3 py-2.5 text-base font-medium text-theme-secondary hover:text-theme-primary w-full text-left rounded-lg hover:bg-theme-tertiary transition-colors"
           onClick={() => setShowShowcase(!showShowcase)}
         >
           <GitHubIcon size={14} />
@@ -135,7 +136,7 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
                 href={repo.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 py-1.5 text-xs text-theme-muted hover:text-theme-primary transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-theme-muted hover:text-theme-primary transition-colors"
               >
                 <ExternalLinkIcon size={12} />
                 <span>{repo.name}</span>
@@ -150,45 +151,60 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
       {SIDEBAR_SECTIONS.map((section) => (
         <div key={section.id} className="p-4">
           {section.title && (
-            <h4 className="text-[10px] uppercase tracking-wider text-theme-muted font-semibold mb-2 px-3">
+            <h4 className="text-xs uppercase tracking-wider text-theme-muted font-semibold mb-2 px-3">
               {section.title}
             </h4>
           )}
           <nav className="space-y-1">
-            {section.links.map((link) => (
-              link.external ? (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-3 py-2 text-sm text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary rounded-lg transition-colors"
-                >
+            {section.links.map((link) => {
+              const linkContent = (
+                <>
                   <div className="flex items-center gap-2">
-                    <SidebarIcon name={link.iconName} />
+                    <SidebarIcon name={link.iconName} className="opacity-70" />
                     <span>{link.label}</span>
                   </div>
                   {link.badge && <Badge variant={link.badge} />}
-                </a>
-              ) : (
+                </>
+              );
+              const disabledClass = 'opacity-60 cursor-not-allowed';
+              if (link.disabled) {
+                return (
+                  <span
+                    key={link.id}
+                    className={`flex items-center justify-between px-3 py-2.5 text-base font-medium text-theme-muted rounded-lg ${disabledClass}`}
+                  >
+                    {linkContent}
+                  </span>
+                );
+              }
+              if (link.external) {
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-3 py-2.5 text-base font-medium text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary rounded-lg transition-colors"
+                  >
+                    {linkContent}
+                  </a>
+                );
+              }
+              return (
                 <Link
                   key={link.id}
                   to={`/${link.id}`}
-                  className="flex items-center justify-between px-3 py-2 text-sm text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary rounded-lg transition-colors w-full text-left"
+                  className="flex items-center justify-between px-3 py-2.5 text-base font-medium text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary rounded-lg transition-colors w-full text-left"
                 >
-                  <div className="flex items-center gap-2">
-                    <SidebarIcon name={link.iconName} />
-                    <span>{link.label}</span>
-                  </div>
-                  {link.badge && <Badge variant={link.badge} />}
+                  {linkContent}
                 </Link>
-              )
-            ))}
+              );
+            })}
           </nav>
         </div>
       ))}
 
-      <div className="flex-1" />
+      </div>
 
       {activePackage && (
         <div
@@ -198,10 +214,10 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
           <div className="flex items-center gap-2">
             <span className="text-2xl">{activePackage.icon}</span>
             <div>
-              <div className="text-sm font-semibold" style={{ color: primaryColor }}>
+              <div className="text-base font-semibold" style={{ color: primaryColor }}>
                 {activePackage.name}
               </div>
-              <div className="text-xs text-theme-muted">{activePackage.version}</div>
+              <div className="text-sm text-theme-muted">{activePackage.version}</div>
             </div>
           </div>
         </div>

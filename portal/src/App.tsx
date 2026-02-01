@@ -15,6 +15,7 @@ import { KilnDocsLayout } from './pages/KilnDocs';
 import { KilnDocContent } from './components/KilnDocContent';
 import { Showcase } from './pages/Showcase';
 import { Extensions } from './pages/Extensions';
+import { Privacy } from './pages/Privacy';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -189,6 +190,8 @@ function App() {
                 <Route path="/spark/*" element={<Navigate to="/kiln" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/privacy/forge-query-devtools" element={<Privacy />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>

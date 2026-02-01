@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { BEAR_NAV, BEAR_COLOR } from '../constants/bear-docs.const';
 import { MobileDocsNav } from '../components/MobileDocsNav';
+import { useNpmVersions } from '../hooks';
 
 // Bear Logo - Full body Lotso-style pink teddy bear with angry eyebrows
 // Using solid colors for better small-size rendering
@@ -49,28 +50,30 @@ export const BearIcon: FC<{ size?: number }> = ({ size = 24 }) => (
 // Navigation component - Fixed position with internal scroll
 export const BearDocsNav: FC = () => {
   const location = useLocation();
+  const { bear } = useNpmVersions();
+  const version = bear ?? '1.0.6';
 
   return (
     <nav className="fixed top-20 w-56 shrink-0 hidden xl:block" style={{ height: 'calc(100vh - 5rem)' }}>
       <div className="h-full flex flex-col">
-        <div className="flex items-center gap-2 px-3 pb-4 flex-shrink-0">
-          <BearIcon size={28} />
-          <span className="font-semibold" style={{ color: BEAR_COLOR }}>Bear</span>
-          <span 
-            className="text-xs px-2 py-0.5 rounded font-medium animate-pulse"
-            style={{ backgroundColor: `${BEAR_COLOR}20`, color: BEAR_COLOR }}
-          >
-            v1.0.2
-          </span>
+        <div className="flex flex-wrap items-center gap-2 px-3 pb-4 flex-shrink-0">
           <a 
             href="https://bearui.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-xs px-2 py-0.5 rounded ml-1 transition-all hover:scale-105"
+            className="text-xs px-2 py-0.5 rounded transition-all hover:scale-105 font-medium"
             style={{ backgroundColor: BEAR_COLOR, color: '#fff' }}
           >
             bearui.com →
           </a>
+          <BearIcon size={28} />
+          <span className="font-semibold" style={{ color: BEAR_COLOR }}>Bear</span>
+          <span 
+            className="text-xs px-2 py-0.5 rounded font-medium"
+            style={{ backgroundColor: `${BEAR_COLOR}20`, color: BEAR_COLOR }}
+          >
+            v{version}
+          </span>
         </div>
 
         <div className="flex-1 overflow-y-auto space-y-1 pr-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
@@ -115,8 +118,25 @@ export const BearDocsNav: FC = () => {
 
 // Layout wrapper
 export const BearDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { bear } = useNpmVersions();
+  const version = bear ?? '1.0.6';
+
   return (
     <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
+      <div className="xl:hidden mb-2 flex items-center gap-2 flex-wrap">
+        <a 
+          href="https://bearui.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-xs px-2 py-1 rounded font-medium"
+          style={{ backgroundColor: BEAR_COLOR, color: '#fff' }}
+        >
+          bearui.com →
+        </a>
+        <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: `${BEAR_COLOR}20`, color: BEAR_COLOR }}>
+          v{version}
+        </span>
+      </div>
       <MobileDocsNav
         items={BEAR_NAV}
         basePath="/bear"
