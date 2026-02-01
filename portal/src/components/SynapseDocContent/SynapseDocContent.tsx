@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { SYNAPSE_DOCS, SYNAPSE_COLOR } from '@/constants/synapse-docs.const';
 import { CodeBlock } from '../CodeBlock';
 import { SynapseIcon } from '../Icons';
@@ -158,25 +159,41 @@ export const SynapseDocContent: FC<SynapseDocContentProps> = ({ page }) => {
       )}
 
       {isDevtools && doc.features && (
-        <div 
-          className="rounded-xl p-6 border"
-          style={{ 
-            background: `linear-gradient(to right, ${SYNAPSE_COLOR}20, #6366f120)`,
-            borderColor: `${SYNAPSE_COLOR}30`
-          }}
-        >
-          <h3 className="text-lg font-semibold text-theme-primary mb-4">Features</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {doc.features.map((feature) => (
-              <FeatureCard
-                key={feature.title}
-                icon={<svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/></svg>}
-                title={feature.title}
-                desc={feature.desc}
-              />
-            ))}
+        <>
+          <div 
+            className="rounded-xl p-6 border"
+            style={{ 
+              background: `linear-gradient(to right, ${SYNAPSE_COLOR}20, #6366f120)`,
+              borderColor: `${SYNAPSE_COLOR}30`
+            }}
+          >
+            <h3 className="text-lg font-semibold text-theme-primary mb-4">Features</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {doc.features.map((feature) => (
+                <FeatureCard
+                  key={feature.title}
+                  icon={<svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/></svg>}
+                  title={feature.title}
+                  desc={feature.desc}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+          <div className="rounded-xl p-4 border border-theme-border bg-theme-secondary">
+            <h3 className="text-lg font-semibold text-theme-primary mb-2">Privacy</h3>
+            <p className="text-sm text-theme-secondary mb-3">
+              The Synapse DevTools extension runs locally and does not collect or transmit data.
+            </p>
+            <Link
+              to="/privacy/synapse-devtools"
+              className="inline-flex items-center gap-2 text-sm font-medium hover:underline"
+              style={{ color: SYNAPSE_COLOR }}
+            >
+              Privacy Policy for the DevTools Extension
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
+        </>
       )}
 
       {isMiddleware && doc.middleware && (

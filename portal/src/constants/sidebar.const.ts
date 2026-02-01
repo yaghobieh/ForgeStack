@@ -19,6 +19,7 @@ export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | 
   compass: 'SOON',
   'form-manager': 'SOON',
   synapse: undefined,
+  query: 'NEW',
   table: undefined,
   anvil: undefined,
   bear: undefined,

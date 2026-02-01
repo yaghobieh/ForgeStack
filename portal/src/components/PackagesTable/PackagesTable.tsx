@@ -73,6 +73,18 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
       'Async actions',
     ],
   },
+  query: {
+    version: '1.0.0',
+    date: '2026-02-01',
+    highlights: [
+      'Smart caching (LRU)',
+      'Background refetching',
+      'Automatic retries',
+      'Chrome/Safari DevTools',
+      'TypeScript first',
+      '< 3KB gzipped',
+    ],
+  },
   table: {
     version: 'Planned',
     date: 'TBD',

@@ -15,6 +15,7 @@ import { KilnDocsLayout } from './pages/KilnDocs';
 import { KilnDocContent } from './components/KilnDocContent';
 import { Showcase } from './pages/Showcase';
 import { Extensions } from './pages/Extensions';
+import { ForgeQueryDocsLayout, ForgeQueryDocContent } from './pages/ForgeQueryDocs';
 import { Privacy } from './pages/Privacy';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -188,10 +189,21 @@ function App() {
                 <Route path="/kiln/api" element={<KilnDocsLayout><KilnDocContent page="api" /></KilnDocsLayout>} />
                 <Route path="/kiln/*" element={<Navigate to="/kiln" replace />} />
                 <Route path="/spark/*" element={<Navigate to="/kiln" replace />} />
+                <Route path="/query" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="overview" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/installation" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="installation" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/quick-start" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="quick-start" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/queries" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="queries" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/mutations" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="mutations" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/caching" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="caching" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/devtools" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="devtools" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/typescript" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="typescript" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/api" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="api" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/*" element={<Navigate to="/query" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/privacy/forge-query-devtools" element={<Privacy />} />
+                <Route path="/privacy/synapse-devtools" element={<Privacy />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
