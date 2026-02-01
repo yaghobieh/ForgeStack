@@ -5,6 +5,7 @@ export interface SidebarLink {
   href?: string;
   badge?: 'NEW' | 'BETA' | 'ALPHA' | 'SOON';
   external?: boolean;
+  disabled?: boolean;
 }
 
 export interface SidebarSection {
@@ -16,11 +17,11 @@ export interface SidebarSection {
 export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | undefined> = {
   harbor: undefined,
   compass: 'SOON',
+  'form-manager': 'SOON',
   synapse: undefined,
-  query: 'ALPHA',
   table: undefined,
-  anvil: 'NEW',
-  bear: 'NEW',
+  anvil: undefined,
+  bear: undefined,
   mcp: 'SOON',
 };
 
@@ -64,14 +65,6 @@ export const SIDEBAR_SECTIONS: SidebarSection[] = [
       { id: 'mcp', label: 'MCP', iconName: 'robot', badge: 'SOON' },
       { id: 'blog', label: 'Blog', iconName: 'blog', badge: 'SOON' },
       { id: 'learn', label: 'Learn', iconName: 'book' },
-    ],
-  },
-  {
-    id: 'support',
-    title: 'Support',
-    links: [
-      { id: 'github', label: 'GitHub', iconName: 'github', href: 'https://github.com/yaghobieh/ForgeStack', external: true },
-      { id: 'email', label: 'Email', iconName: 'email', href: 'mailto:john@forgestack.dev', external: true },
     ],
   },
   {

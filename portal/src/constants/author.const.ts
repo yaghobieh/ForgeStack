@@ -9,5 +9,7 @@ export const AUTHOR = {
 export const SOCIAL_LINKS = {
   github: 'https://github.com/yaghobieh/ForgeStack',
   npm: 'https://www.npmjs.com/org/forgestack',
+  /** Add your Discord invite URL here to enable the link */
+  discord: '',
 } as const;
 

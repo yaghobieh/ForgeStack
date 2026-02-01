@@ -1,89 +1,108 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { Logo } from '../Logo';
+import { Link, useNavigate } from 'react-router-dom';
+import { Logo, LogoText, LogoExpanded } from '../Logo';
 import { CodeCarousel } from '../CodeCarousel';
-import { TITLE, TAGLINE, DESCRIPTION, STATS, AUTHOR } from '@constants';
+import { TAGLINE, DESCRIPTION, STATS, AUTHOR } from '@constants';
+
+const LIBRARY_ROUTES: Record<string, string> = {
+  harbor: '/harbor/docs/quick-start',
+  compass: '/compass',
+  synapse: '/synapse',
+  bear: '/bear',
+  anvil: '/anvil',
+  kiln: '/kiln',
+  table: '/table',
+};
 
 export const Hero: FC = () => {
+  const navigate = useNavigate();
+
+  const handleLibraryClick = (id: string) => {
+    const route = LIBRARY_ROUTES[id];
+    if (route) {
+      navigate(route);
+    }
+  };
+
   return (
     <section className="forge-stack__hero relative min-h-screen flex items-center pt-16 overflow-hidden">
-
       <div className="forge-stack__hero-bg absolute inset-0 z-0">
-        <div className="forge-stack__hero-glow-1 absolute top-1/4 left-1/4 w-96 h-96 bg-forge-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="forge-stack__hero-glow-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="forge-stack__hero-glow-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-forge-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="forge-stack__hero-container relative z-10 max-w-7xl mx-auto px-6 py-16 w-full">
-        <div className="forge-stack__hero-grid grid lg:grid-cols-2 gap-12 items-center">
-
-          <div className="forge-stack__hero-content text-left">
-
-            <div className="forge-stack__hero-logo mb-8">
-              <Logo size={80} className="mb-6" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="text-center lg:text-left">
+            <div className="flex items-center gap-3 justify-center lg:justify-start mb-6">
+              <Logo size={40} animated />
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                <LogoText />
+              </h1>
             </div>
 
-
-            <h1 className="forge-stack__hero-title text-5xl md:text-6xl font-extrabold mb-4">
-              <span className="forge-stack__hero-title-text bg-gradient-to-r from-forge-400 via-accent-400 to-forge-400 bg-clip-text text-transparent">
-                {TITLE}
-              </span>
-            </h1>
-            <p className="forge-stack__hero-tagline text-2xl md:text-3xl text-accent-400 font-semibold mb-6">
+            <p className="text-lg sm:text-xl lg:text-2xl text-pink-400 font-semibold mb-4">
               {TAGLINE}
             </p>
-            <p className="forge-stack__hero-description text-lg text-theme-muted mb-8 max-w-xl">
+            
+            <p className="text-sm sm:text-base text-theme-secondary mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               {DESCRIPTION}
             </p>
 
-
-            <div className="forge-stack__hero-stats flex gap-8 mb-8">
+            <div className="flex flex-wrap gap-6 justify-center lg:justify-start mb-8">
               {STATS.map((stat, index) => (
-                <div key={index} className="forge-stack__hero-stat text-left">
-                  <div className="forge-stack__hero-stat-value text-xl font-bold text-forge-400">
+                <div key={index} className="text-center lg:text-left">
+                  <div className="text-xl sm:text-2xl font-bold gradient-text">
                     {stat.value}
                   </div>
-                  <div className="forge-stack__hero-stat-label text-sm text-theme-muted">{stat.label}</div>
+                  <div className="text-sm text-theme-muted">{stat.label}</div>
                 </div>
               ))}
             </div>
 
-
-            <div className="forge-stack__hero-cta flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8">
               <Link
                 to="/harbor/docs/quick-start"
-                className="forge-stack__hero-cta-primary forge-button text-base px-6 py-3"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-mono text-sm font-medium bg-theme-tertiary text-theme-primary border border-theme-border hover:border-forge-500/50 hover:text-forge-400 transition-all text-center"
               >
-                Get Started
+                <span className="text-theme-muted">$</span> Quick Start
               </Link>
               <a
                 href="https://github.com/yaghobieh/ForgeStack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="forge-stack__hero-cta-secondary forge-button-outline text-base px-6 py-3"
+                className="forge-button-outline text-base px-6 sm:px-8 py-3 text-center"
               >
                 View on GitHub
               </a>
             </div>
 
+            <div className="hidden lg:block">
+              <LogoExpanded onLibraryClick={handleLibraryClick} />
+            </div>
+          </div>
 
-            <div className="forge-stack__hero-author flex items-center gap-4 pt-4 border-t border-white/10">
-              <span className="forge-stack__hero-author-label text-sm text-theme-muted">Created by</span>
-              <div className="forge-stack__hero-author-info flex items-center gap-3">
+          <div className="w-full">
+            <CodeCarousel />
+            
+            <div className="mt-6 flex items-center gap-4 justify-center lg:justify-start pt-4 border-t border-theme">
+              <span className="text-sm text-theme-muted">Created by</span>
+              <div className="flex items-center gap-3">
                 <a
                   href={AUTHOR.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="forge-stack__hero-author-name text-forge-400 hover:text-forge-300 font-medium transition-colors"
+                  className="text-pink-400 hover:text-pink-300 font-semibold transition-colors"
                 >
                   {AUTHOR.name}
                 </a>
-                <div className="forge-stack__hero-author-links flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <a
                     href={AUTHOR.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="forge-stack__hero-author-linkedin text-theme-muted hover:text-forge-400 transition-colors"
+                    className="text-theme-muted hover:text-pink-400 transition-colors"
                     title="LinkedIn"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -94,7 +113,7 @@ export const Hero: FC = () => {
                     href={AUTHOR.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="forge-stack__hero-author-github text-theme-muted hover:text-forge-400 transition-colors"
+                    className="text-theme-muted hover:text-pink-400 transition-colors"
                     title="GitHub"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -104,11 +123,6 @@ export const Hero: FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-
-          <div className="forge-stack__hero-terminal lg:pl-8">
-            <CodeCarousel />
           </div>
         </div>
       </div>
