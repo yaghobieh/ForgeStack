@@ -8,6 +8,7 @@ const LIBRARY_ROUTES: Record<string, string> = {
   harbor: '/harbor/docs/quick-start',
   compass: '/compass',
   synapse: '/synapse',
+  query: '/query',
   bear: '/bear',
   anvil: '/anvil',
   kiln: '/kiln',

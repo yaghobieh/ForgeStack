@@ -8,9 +8,10 @@ export const Privacy: FC = () => {
   useEffect(() => {
     if (location.pathname.includes('forge-query-devtools')) {
       const element = document.getElementById('forge-query-devtools');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname.includes('synapse-devtools')) {
+      const element = document.getElementById('synapse-devtools');
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
     }
   }, [location]);
   return (
@@ -166,6 +167,67 @@ export const Privacy: FC = () => {
             <div className="mt-4 p-4 bg-green-900/20 border border-green-800 rounded-lg">
               <p className="text-green-400 font-medium">
                 TL;DR: This extension is a local development tool. We don't collect, store, or transmit any of your data. Everything stays on your machine.
+              </p>
+            </div>
+          </section>
+
+          <section id="synapse-devtools" className="mb-8 scroll-mt-24">
+            <h2 className="text-2xl font-semibold mb-4">Synapse DevTools Extension</h2>
+            <p className="text-gray-300 mb-4">
+              The Synapse DevTools Chrome Extension helps developers inspect, debug, and time-travel through
+              state in React applications using the Synapse state management library.
+            </p>
+            
+            <h3 className="text-lg font-semibold mt-4 mb-2">Data We Access</h3>
+            <p className="text-gray-300">
+              The extension accesses the following data <strong>only within the inspected tab</strong>:
+            </p>
+            <ul className="text-gray-300 list-disc pl-6 mt-2">
+              <li>Nucleus (store) state and computed values</li>
+              <li>Action history for time-travel debugging</li>
+              <li>State diffs between actions</li>
+              <li>Performance metrics (update timing)</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold mt-4 mb-2">Data Storage</h3>
+            <p className="text-gray-300">
+              All data accessed by the extension is:
+            </p>
+            <ul className="text-gray-300 list-disc pl-6 mt-2">
+              <li>Stored in your browser's local storage only when you save a snapshot (optional)</li>
+              <li><strong>Never transmitted</strong> to any external servers</li>
+              <li>Used solely for display in the DevTools panel</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold mt-4 mb-2">Permissions Explained</h3>
+            <div className="bg-gray-900 rounded-lg p-4 mt-2">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-2 text-gray-400">Permission</th>
+                    <th className="text-left py-2 text-gray-400">Why It's Needed</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-300">
+                  <tr className="border-b border-gray-800">
+                    <td className="py-2"><code>storage</code></td>
+                    <td className="py-2">To save snapshots and panel preferences locally</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-2"><code>activeTab</code></td>
+                    <td className="py-2">To inspect the currently open tab when DevTools is open</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2"><code>Host access (localhost)</code></td>
+                    <td className="py-2">Content script runs only on localhost to communicate with Synapse state in your app</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 p-4 bg-green-900/20 border border-green-800 rounded-lg">
+              <p className="text-green-400 font-medium">
+                TL;DR: Synapse DevTools is a local development tool. No data is collected, transmitted, or stored off your device. Snapshots and preferences stay in your browser.
               </p>
             </div>
           </section>

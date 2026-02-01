@@ -7,6 +7,7 @@ const LIBRARIES = [
   { id: 'harbor', name: 'Harbor', color: '#0066cc', description: 'Backend Framework' },
   { id: 'compass', name: 'Compass', color: '#13c2c2', description: 'Router' },
   { id: 'synapse', name: 'Synapse', color: '#a855f7', description: 'State Management' },
+  { id: 'query', name: 'Query', color: '#eb2f96', description: 'Data Fetching' },
   { id: 'table', name: 'Table', color: '#52c41a', description: 'Data Grid' },
   { id: 'anvil', name: 'Anvil', color: '#EC4899', description: 'Utilities' },
   { id: 'bear', name: 'Bear', color: '#d97706', description: 'UI Components' },
