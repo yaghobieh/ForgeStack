@@ -16,6 +16,9 @@ import { KilnDocContent } from './components/KilnDocContent';
 import { Showcase } from './pages/Showcase';
 import { Extensions } from './pages/Extensions';
 import { ForgeQueryDocsLayout, ForgeQueryDocContent } from './pages/ForgeQueryDocs';
+import { CompassDocsLayout, CompassDocContent } from './pages/CompassDocs';
+import { FormDocsLayout, FormDocContent } from './pages/FormDocs';
+import { CliDocs } from './pages/CliDocs';
 import { Privacy } from './pages/Privacy';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -199,6 +202,30 @@ function App() {
                 <Route path="/query/typescript" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="typescript" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/api" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="api" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/*" element={<Navigate to="/query" replace />} />
+                <Route path="/compass" element={<CompassDocsLayout><CompassDocContent page="overview" /></CompassDocsLayout>} />
+                <Route path="/compass/installation" element={<CompassDocsLayout><CompassDocContent page="installation" /></CompassDocsLayout>} />
+                <Route path="/compass/quick-start" element={<CompassDocsLayout><CompassDocContent page="quick-start" /></CompassDocsLayout>} />
+                <Route path="/compass/routes" element={<CompassDocsLayout><CompassDocContent page="routes" /></CompassDocsLayout>} />
+                <Route path="/compass/guards" element={<CompassDocsLayout><CompassDocContent page="guards" /></CompassDocsLayout>} />
+                <Route path="/compass/navigation" element={<CompassDocsLayout><CompassDocContent page="navigation" /></CompassDocsLayout>} />
+                <Route path="/compass/hooks" element={<CompassDocsLayout><CompassDocContent page="hooks" /></CompassDocsLayout>} />
+                <Route path="/compass/advanced" element={<CompassDocsLayout><CompassDocContent page="advanced" /></CompassDocsLayout>} />
+                <Route path="/compass/devtools" element={<CompassDocsLayout><CompassDocContent page="devtools" /></CompassDocsLayout>} />
+                <Route path="/compass/api" element={<CompassDocsLayout><CompassDocContent page="api" /></CompassDocsLayout>} />
+                <Route path="/compass/*" element={<Navigate to="/compass" replace />} />
+                <Route path="/form" element={<FormDocsLayout><FormDocContent page="overview" /></FormDocsLayout>} />
+                <Route path="/form/installation" element={<FormDocsLayout><FormDocContent page="installation" /></FormDocsLayout>} />
+                <Route path="/form/quick-start" element={<FormDocsLayout><FormDocContent page="quick-start" /></FormDocsLayout>} />
+                <Route path="/form/fields" element={<FormDocsLayout><FormDocContent page="fields" /></FormDocsLayout>} />
+                <Route path="/form/validation" element={<FormDocsLayout><FormDocContent page="validation" /></FormDocsLayout>} />
+                <Route path="/form/submission" element={<FormDocsLayout><FormDocContent page="submission" /></FormDocsLayout>} />
+                <Route path="/form/caching" element={<FormDocsLayout><FormDocContent page="caching" /></FormDocsLayout>} />
+                <Route path="/form/devtools" element={<FormDocsLayout><FormDocContent page="devtools" /></FormDocsLayout>} />
+                <Route path="/form/api" element={<FormDocsLayout><FormDocContent page="api" /></FormDocsLayout>} />
+                <Route path="/form/*" element={<Navigate to="/form" replace />} />
+                <Route path="/cli" element={<CliDocs />} />
+                <Route path="/cli/docs/quick-start" element={<CliDocs />} />
+                <Route path="/cli/*" element={<Navigate to="/cli" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="/privacy" element={<Privacy />} />

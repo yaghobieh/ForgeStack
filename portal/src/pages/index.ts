@@ -5,3 +5,5 @@ export { SynapseDocsNav, SynapseDocsLayout } from './SynapseDocs';
 export { default as AnvilDocs } from './AnvilDocs';
 export { Extensions } from './Extensions';
 export { Showcase } from './Showcase';
+export { CompassDocsNav, CompassDocsLayout, CompassDocContent, CompassIcon, COMPASS_COLOR } from './CompassDocs';
+export { FormDocsNav, FormDocsLayout, FormDocContent, FormIcon, FORM_COLOR } from './FormDocs';

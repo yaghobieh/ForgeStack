@@ -13,6 +13,8 @@ const LIBRARY_ROUTES: Record<string, string> = {
   anvil: '/anvil',
   kiln: '/kiln',
   table: '/table',
+  form: '/form',
+  cli: '/cli',
 };
 
 export const Hero: FC = () => {
@@ -27,53 +29,101 @@ export const Hero: FC = () => {
 
   return (
     <section className="forge-stack__hero relative min-h-screen flex items-center pt-16 overflow-hidden">
-      <div className="forge-stack__hero-bg absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-600/5 rounded-full blur-3xl" />
+      {/* Enhanced animated background with more flare */}
+      <div className="forge-stack__hero-bg absolute inset-0 z-0 overflow-hidden">
+        {/* Main gradient orbs - smaller on mobile */}
+        <div className="absolute top-1/4 left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-pink-500/15 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-pink-600/10 rounded-full blur-3xl" />
+        
+        {/* Additional flare elements - hidden on mobile */}
+        <div className="hidden sm:block absolute top-20 right-20 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="hidden sm:block absolute bottom-20 left-20 w-64 h-64 bg-violet-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+        
+        {/* Gradient lines - hidden on mobile */}
+        <div className="hidden sm:block absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-pink-500/20 to-transparent" />
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent" />
+        </div>
+        
+        {/* Grid pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(236, 72, 153, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div className="text-center lg:text-left">
-            <div className="flex items-center gap-3 justify-center lg:justify-start mb-6">
-              <Logo size={40} animated />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-16 w-full">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
+          <div className="text-center lg:text-left min-w-0">
+            {/* Logo with animated glow */}
+            <div className="flex items-center gap-2 sm:gap-3 justify-center lg:justify-start mb-4 sm:mb-6">
+              <div className="relative flex-shrink-0">
+                <div className="absolute inset-0 bg-pink-500/30 rounded-xl blur-xl animate-pulse" />
+                <Logo size={36} animated />
+              </div>
+              <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold truncate">
                 <LogoText />
               </h1>
             </div>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-pink-400 font-semibold mb-4">
+            <p className="text-base sm:text-xl lg:text-2xl text-pink-400 font-semibold mb-3 sm:mb-4 leading-tight">
               {TAGLINE}
             </p>
             
-            <p className="text-sm sm:text-base text-theme-secondary mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-xs sm:text-base text-theme-secondary mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed px-2 sm:px-0">
               {DESCRIPTION}
             </p>
 
-            <div className="flex flex-wrap gap-6 justify-center lg:justify-start mb-8">
+            {/* Stats with enhanced styling */}
+            <div className="flex flex-wrap gap-4 sm:gap-6 justify-center lg:justify-start mb-6 sm:mb-8">
               {STATS.map((stat, index) => (
-                <div key={index} className="text-center lg:text-left">
-                  <div className="text-xl sm:text-2xl font-bold gradient-text">
+                <div key={index} className="text-center lg:text-left group">
+                  <div className="text-lg sm:text-2xl font-bold gradient-text group-hover:scale-110 transition-transform">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-theme-muted">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-theme-muted">{stat.label}</div>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8">
+            {/* CLI Quick Start - NEW prominent section */}
+            <div className="mb-8 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 border border-pink-500/20 backdrop-blur-sm">
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
+                <span className="text-xl sm:text-2xl">🔥</span>
+                <span className="text-pink-400 font-semibold text-sm sm:text-base">Quick Start with Forge CLI</span>
+                <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs bg-pink-500/20 text-pink-400 font-mono">NEW</span>
+              </div>
+              <div className="flex flex-col gap-2">
+                <code className="px-3 sm:px-4 py-2 rounded-lg bg-black/40 font-mono text-xs sm:text-sm text-theme-primary border border-theme-border flex items-center gap-2 overflow-x-auto">
+                  <span className="text-pink-400 flex-shrink-0">$</span>
+                  <span className="whitespace-nowrap">npx create-forge my-app</span>
+                </code>
+                <Link
+                  to="/cli"
+                  className="px-4 py-2 rounded-lg bg-pink-500/20 hover:bg-pink-500/30 text-pink-400 font-medium text-sm transition-colors text-center"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-2 sm:px-0">
               <Link
                 to="/harbor/docs/quick-start"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-mono text-sm font-medium bg-theme-tertiary text-theme-primary border border-theme-border hover:border-forge-500/50 hover:text-forge-400 transition-all text-center"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-mono text-xs sm:text-sm font-medium bg-theme-tertiary text-theme-primary border border-theme-border hover:border-forge-500/50 hover:text-forge-400 transition-all"
               >
-                <span className="text-theme-muted">$</span> Quick Start
+                <span className="text-theme-muted">$</span> Documentation
               </Link>
               <a
                 href="https://github.com/yaghobieh/ForgeStack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="forge-button-outline text-base px-6 sm:px-8 py-3 text-center"
+                className="forge-button-outline text-sm sm:text-base px-4 sm:px-8 py-2 sm:py-3 text-center"
               >
                 View on GitHub
               </a>
@@ -84,10 +134,10 @@ export const Hero: FC = () => {
             </div>
           </div>
 
-          <div className="w-full">
+          <div className="w-full min-w-0 overflow-hidden">
             <CodeCarousel />
             
-            <div className="mt-6 flex items-center gap-4 justify-center lg:justify-start pt-4 border-t border-theme">
+            <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 justify-center lg:justify-start pt-4 border-t border-theme">
               <span className="text-sm text-theme-muted">Created by</span>
               <div className="flex items-center gap-3">
                 <a

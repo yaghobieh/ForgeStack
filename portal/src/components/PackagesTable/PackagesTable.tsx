@@ -32,6 +32,18 @@ interface PackageVersionInfo {
 }
 
 const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
+  cli: {
+    version: '1.0.0-alpha',
+    date: '2026-02-08',
+    highlights: [
+      'npx create-forge my-app',
+      'React + Vite template',
+      'Server (Express) template',
+      'Full-stack monorepo',
+      'Synapse nuclear generator',
+      'Bear UI theme customization',
+    ],
+  },
   harbor: {
     version: '1.5.0',
     date: '2026-01-14',
@@ -47,21 +59,27 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
     ],
   },
   compass: {
-    version: '0.1.0-alpha',
-    date: 'Coming Soon',
+    version: '1.2.1',
+    date: '2026-02-05',
     highlights: [
-      'Type-safe routes',
-      'Route guards',
-      'Param validation',
+      'Route guards (auth, role, permission)',
+      'Navigation blocking',
+      'Route prefetching',
+      'Scroll restoration',
+      'View transitions',
+      'DevTools panel',
+      'Nested routes',
     ],
   },
-  'form-manager': {
-    version: '0.0.1',
-    date: 'Coming Soon',
+  form: {
+    version: '1.0.0',
+    date: '2026-02-02',
     highlights: [
-      'Declarative form state',
-      'Built-in validation',
-      'Nested fields',
+      'Built-in validators',
+      'Async validation',
+      'Form persistence',
+      'API submission',
+      'DevTools panel',
     ],
   },
   synapse: {
@@ -94,15 +112,17 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
     ],
   },
   bear: {
-    version: '1.0.3',
-    date: '2026-01-26',
+    version: '1.0.7',
+    date: '2026-02-06',
     highlights: [
-      'Calendar component',
-      'DatePicker & TimePicker',
-      'OTPInput component',
-      'Sidebar & Columns',
-      '300+ Icons',
-      'Theme hooks',
+      'DataTable component',
+      'Stepper & StepperControls',
+      'Cascader component',
+      'NotificationCenter',
+      'TransferList component',
+      'SpeedDial component',
+      'RichEditor (WYSIWYG)',
+      'Breadcrumbs component',
     ],
     externalUrl: 'https://bearui.com',
   },
@@ -195,7 +215,47 @@ export const PackagesTable: FC<PackagesTableProps> = ({ className = '' }) => {
           </p>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile View - Cards */}
+        <div className="block md:hidden space-y-4">
+          {PACKAGES.map((pkg) => (
+            <div
+              key={pkg.id}
+              className="rounded-xl border border-theme-border p-4"
+              style={{ borderLeftWidth: '4px', borderLeftColor: pkg.color }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">{pkg.icon}</span>
+                <div className="flex-1">
+                  <div className="font-semibold text-theme-primary">{pkg.name}</div>
+                  <div className="text-xs font-mono text-theme-muted">{pkg.npmPackage}</div>
+                </div>
+                <span className={`px-2 py-0.5 text-xs rounded-full border ${STATUS_STYLES[pkg.status]}`}>
+                  {STATUS_LABELS[pkg.status]}
+                </span>
+              </div>
+              <p className="text-sm text-theme-secondary mb-3">{pkg.title}</p>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-sm" style={{ color: pkg.color }}>
+                  v{getVersion(pkg.id)}
+                </span>
+                {pkg.status === 'ready' ? (
+                  <Link
+                    to={`/${pkg.id}/docs/quick-start`}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-white"
+                    style={{ backgroundColor: pkg.color }}
+                  >
+                    Docs →
+                  </Link>
+                ) : (
+                  <span className="text-sm text-theme-muted italic">Soon</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View - Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-theme-border">

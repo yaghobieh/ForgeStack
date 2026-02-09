@@ -77,10 +77,15 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
             const badge = PACKAGE_BADGES[pkg.id];
             const isActive = isPackageActive(pkg.id) || activePackage?.id === pkg.id;
             
+            // CLI links directly to /cli, others use /package/docs/quick-start pattern
+            const linkPath = pkg.status === 'ready' 
+              ? (pkg.id === 'cli' ? pkg.docsPath : `${pkg.docsPath}/docs/quick-start`)
+              : '#';
+            
             return (
               <Link
                 key={pkg.id}
-                to={pkg.status === 'ready' ? `${pkg.docsPath}/docs/quick-start` : '#'}
+                to={linkPath}
                 onClick={() => handlePackageClick(pkg.id)}
                 className={`forge-stack__sidebar-link group flex items-center justify-between px-3 py-2.5 rounded-lg text-base font-semibold transition-all ${
                   isActive
