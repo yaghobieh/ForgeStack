@@ -1,7 +1,9 @@
 import { FC, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PACKAGES } from '@constants';
+import { PACKAGE_BADGES } from '@constants/sidebar.const';
 import { createPortal } from 'react-dom';
+import { Badge } from '../Badge';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -44,9 +46,10 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
       />
 
       <div
-        className={`fixed top-0 left-0 bottom-0 w-72 bg-theme-secondary z-[101] transform transition-transform duration-300 ease-out lg:hidden overflow-y-auto ${
+        className={`fixed top-0 left-0 bottom-0 w-[280px] max-w-[85vw] bg-theme-secondary z-[101] transform transition-transform duration-300 ease-out lg:hidden overflow-y-auto overscroll-contain ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        style={{ WebkitOverflowScrolling: 'touch' }}
       >
         <div className="flex items-center justify-between p-4 border-b border-theme-border">
           <Link to="/" className="flex items-center gap-2" onClick={onClose}>
@@ -67,11 +70,13 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
           <h3 className="text-xs uppercase tracking-wider text-theme-muted font-semibold mb-3 px-2">
             Packages
           </h3>
-          <nav className="space-y-1">
+          <nav className="space-y-0.5">
             {PACKAGES.map((pkg) => {
               const isActive = location.pathname.includes(`/${pkg.id}`);
+              const badge = PACKAGE_BADGES[pkg.id];
+              // CLI links directly to /cli, others use /package/docs/quick-start pattern
               const href = pkg.status === 'ready' 
-                ? (pkg.id === 'harbor' ? '/harbor/docs/quick-start' : `/${pkg.id}`)
+                ? (pkg.id === 'cli' ? pkg.docsPath : `${pkg.docsPath}/docs/quick-start`)
                 : '#';
 
               return (
@@ -79,7 +84,7 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
                   key={pkg.id}
                   to={href}
                   onClick={pkg.status === 'ready' ? onClose : (e) => e.preventDefault()}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-semibold transition-all ${
                     isActive
                       ? 'text-white'
                       : 'text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary'
@@ -89,13 +94,16 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
                     borderLeft: isActive ? `3px solid ${pkg.color}` : '3px solid transparent',
                   }}
                 >
-                  <span
-                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: pkg.color }}
-                  />
-                  <span>{pkg.name}</span>
-                  {pkg.status !== 'ready' && (
-                    <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-theme-tertiary text-theme-muted">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <span
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: pkg.color }}
+                    />
+                    <span className="truncate">{pkg.name}</span>
+                  </div>
+                  {badge && <Badge variant={badge} />}
+                  {pkg.status !== 'ready' && !badge && (
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-theme-tertiary text-theme-muted flex-shrink-0">
                       Soon
                     </span>
                   )}

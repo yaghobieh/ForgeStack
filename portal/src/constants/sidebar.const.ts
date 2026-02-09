@@ -15,14 +15,16 @@ export interface SidebarSection {
 }
 
 export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | undefined> = {
+  cli: 'NEW',
   harbor: undefined,
-  compass: 'SOON',
-  'form-manager': 'SOON',
+  compass: undefined,
+  form: undefined,
   synapse: undefined,
-  query: 'NEW',
+  query: undefined,
   table: undefined,
   anvil: undefined,
   bear: undefined,
+  kiln: undefined,
   mcp: 'SOON',
 };
 
