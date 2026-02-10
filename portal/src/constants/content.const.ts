@@ -33,10 +33,10 @@ export const PACKAGES: ForgePackage[] = [
     description: 'Create and manage ForgeStack projects with npx, pnpm, yarn, or bun. Templates for React, Server, and Full-Stack monorepos.',
     icon: '⚒️',
     status: 'ready',
-    npmPackage: 'create-forge',
+    npmPackage: '@forgedevstack/forge-cli',
     docsPath: '/cli',
     features: [
-      'npx create-forge my-app',
+      'npx @forgedevstack/forge-cli create my-app',
       'React + Vite template',
       'Server (Express) template',
       'Full-stack monorepo template',

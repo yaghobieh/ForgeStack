@@ -1,0 +1,1 @@
+export { StudioNewsPopup } from './StudioNewsPopup';

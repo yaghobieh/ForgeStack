@@ -19,6 +19,7 @@ import { ForgeQueryDocsLayout, ForgeQueryDocContent } from './pages/ForgeQueryDo
 import { CompassDocsLayout, CompassDocContent } from './pages/CompassDocs';
 import { FormDocsLayout, FormDocContent } from './pages/FormDocs';
 import { CliDocs } from './pages/CliDocs';
+import { Studio } from './pages/Studio';
 import { Privacy } from './pages/Privacy';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -226,6 +227,7 @@ function App() {
                 <Route path="/cli" element={<CliDocs />} />
                 <Route path="/cli/docs/quick-start" element={<CliDocs />} />
                 <Route path="/cli/*" element={<Navigate to="/cli" replace />} />
+                <Route path="/studio" element={<Studio />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="/privacy" element={<Privacy />} />

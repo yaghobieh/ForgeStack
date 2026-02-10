@@ -1,7 +1,7 @@
 {
   "name": "@forgestack/portal",
   "private": true,
-  "version": "1.0.4-alpha",
+  "version": "1.0.5",
   "type": "module",
   "packageManager": "npm@10.0.0",
   "scripts": {
