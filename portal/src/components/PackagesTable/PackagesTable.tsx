@@ -36,7 +36,7 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
     version: '1.0.0-alpha',
     date: '2026-02-08',
     highlights: [
-      'npx create-forge my-app',
+      'npx @forgedevstack/forge-cli create my-app',
       'React + Vite template',
       'Server (Express) template',
       'Full-stack monorepo',

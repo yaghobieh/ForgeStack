@@ -101,7 +101,7 @@ export const Hero: FC = () => {
               <div className="flex flex-col gap-2">
                 <code className="px-3 sm:px-4 py-2 rounded-lg bg-black/40 font-mono text-xs sm:text-sm text-theme-primary border border-theme-border flex items-center gap-2 overflow-x-auto">
                   <span className="text-pink-400 flex-shrink-0">$</span>
-                  <span className="whitespace-nowrap">npx create-forge my-app</span>
+                  <span className="whitespace-nowrap">npx @forgedevstack/forge-cli create my-app</span>
                 </code>
                 <Link
                   to="/cli"

@@ -63,6 +63,7 @@ export const SIDEBAR_SECTIONS: SidebarSection[] = [
   {
     id: 'community',
     links: [
+      { id: 'studio', label: 'About Studio', iconName: 'sparkles', badge: 'SOON' },
       { id: 'showcase', label: 'Showcase', iconName: 'sparkles' },
       { id: 'extensions', label: 'Extensions', iconName: 'extension', badge: 'NEW' },
       { id: 'mcp', label: 'MCP', iconName: 'robot', badge: 'SOON' },

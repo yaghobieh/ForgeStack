@@ -12,8 +12,8 @@ export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
   return (
     <nav className="sticky top-0 z-50 bg-theme-secondary/95 backdrop-blur-sm border-b border-theme-border">
       <div className="px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center justify-between relative">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
             <button
               onClick={onMobileMenuToggle}
               className="lg:hidden p-2 -ml-2 rounded-lg text-theme-muted hover:text-theme-primary hover:bg-theme-tertiary transition-colors"
@@ -31,7 +31,26 @@ export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
               </span>
             </Link>
           </div>
-
+          <Link
+            to="/studio"
+            className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-2 px-3 py-1.5 rounded-full font-semibold text-xs text-white shadow-lg pointer-events-auto border border-white/20 overflow-hidden group hover:scale-105 transition-transform"
+            style={{
+              background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(168, 85, 247, 0.9) 50%, rgba(6, 182, 212, 0.85) 100%)',
+              boxShadow: '0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255,255,255,0.2)',
+              animation: 'studio-buzz 3s ease-in-out infinite',
+            }}
+          >
+            <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/25 backdrop-blur-sm" title="AI-powered">
+              <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            </span>
+            <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/25 backdrop-blur-sm" aria-hidden>
+              🚀
+            </span>
+            <span className="relative">Studio</span>
+            <span className="relative px-1.5 py-0.5 rounded bg-white/25 text-[10px] font-bold uppercase tracking-wider">Coming soon</span>
+          </Link>
           <div className="flex items-center gap-1">
             {SOCIAL_LINKS.discord ? (
               <a

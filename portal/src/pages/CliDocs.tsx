@@ -39,19 +39,19 @@ export const CliDocs: FC = () => {
           <div className="grid grid-cols-2 gap-2 sm:gap-4">
             <div className="p-2 sm:p-4 rounded-lg bg-theme-secondary border border-theme-border">
               <div className="text-xs sm:text-sm font-medium text-theme-muted mb-2">npm</div>
-              <CodeBlock language="bash" code="npx create-forge my-app" />
+              <CodeBlock language="bash" code="npx @forgedevstack/forge-cli create my-app" />
             </div>
             <div className="p-2 sm:p-4 rounded-lg bg-theme-secondary border border-theme-border">
               <div className="text-xs sm:text-sm font-medium text-theme-muted mb-2">pnpm</div>
-              <CodeBlock language="bash" code="pnpm create forge my-app" />
+              <CodeBlock language="bash" code="pnpm dlx @forgedevstack/forge-cli create my-app" />
             </div>
             <div className="p-2 sm:p-4 rounded-lg bg-theme-secondary border border-theme-border">
               <div className="text-xs sm:text-sm font-medium text-theme-muted mb-2">yarn</div>
-              <CodeBlock language="bash" code="yarn create forge my-app" />
+              <CodeBlock language="bash" code="yarn dlx @forgedevstack/forge-cli create my-app" />
             </div>
             <div className="p-2 sm:p-4 rounded-lg bg-theme-secondary border border-theme-border">
               <div className="text-xs sm:text-sm font-medium text-theme-muted mb-2">bun</div>
-              <CodeBlock language="bash" code="bunx create-forge my-app" />
+              <CodeBlock language="bash" code="bunx @forgedevstack/forge-cli create my-app" />
             </div>
           </div>
         </section>
@@ -65,7 +65,7 @@ export const CliDocs: FC = () => {
               <p className="text-xs sm:text-sm text-theme-muted mb-2 sm:mb-3">
                 Vite + React 18 + TypeScript with Bear UI, Forge Compass routing, and Synapse state.
               </p>
-              <CodeBlock language="bash" code="npx create-forge my-app --template react" />
+              <CodeBlock language="bash" code="npx @forgedevstack/forge-cli create my-app --template react" />
             </div>
 
             <div className="p-3 sm:p-4 rounded-lg bg-theme-secondary border border-theme-border">
@@ -73,7 +73,7 @@ export const CliDocs: FC = () => {
               <p className="text-xs sm:text-sm text-theme-muted mb-2 sm:mb-3">
                 <strong className="text-pink-400">Harbor</strong> backend framework or Express.js with TypeScript.
               </p>
-              <CodeBlock language="bash" code="npx create-forge my-api --template server" />
+              <CodeBlock language="bash" code="npx @forgedevstack/forge-cli create my-api --template server" />
             </div>
 
             <div className="p-3 sm:p-4 rounded-lg bg-theme-secondary border border-theme-border">
@@ -81,7 +81,7 @@ export const CliDocs: FC = () => {
               <p className="text-xs sm:text-sm text-theme-muted mb-2 sm:mb-3">
                 Workspace-based monorepo with React frontend + <strong className="text-pink-400">Harbor</strong> backend.
               </p>
-              <CodeBlock language="bash" code="npx create-forge my-project --template fullstack" />
+              <CodeBlock language="bash" code="npx @forgedevstack/forge-cli create my-project --template fullstack" />
             </div>
           </div>
         </section>
@@ -120,12 +120,12 @@ export const CliDocs: FC = () => {
           <CodeBlock
             language="bash"
             code={`# Interactive mode
-npx forge add
+npx @forgedevstack/forge-cli add
 
 # Direct add
-npx forge add bear
-npx forge add synapse
-npx forge add forge-compass`}
+npx @forgedevstack/forge-cli add bear
+npx @forgedevstack/forge-cli add synapse
+npx @forgedevstack/forge-cli add forge-compass`}
           />
         </section>
 
@@ -137,7 +137,7 @@ npx forge add forge-compass`}
           </p>
           <CodeBlock
             language="bash"
-            code={`npx forge nuclear user
+            code={`npx @forgedevstack/forge-cli nuclear user
 
 # Creates: src/nuclear/slices/user/
 #   ├── index.ts
@@ -198,7 +198,7 @@ npx forge add forge-compass`}
           </p>
           <CodeBlock
             language="bash"
-            code="npx create-forge my-app --yes"
+            code="npx @forgedevstack/forge-cli create my-app --yes"
           />
           <div className="mt-3 sm:mt-4 p-3 sm:p-4 rounded-lg border border-pink-500/20 bg-pink-500/5">
             <p className="text-xs sm:text-sm text-theme-secondary">

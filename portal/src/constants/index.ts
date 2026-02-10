@@ -6,3 +6,4 @@ export * from './examples.const';
 export * from './ui.const';
 export * from './numbers.const';
 export * from './sidebar.const';
+export * from './studio.const';
