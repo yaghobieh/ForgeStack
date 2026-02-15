@@ -44,6 +44,7 @@ export const ANVIL_NAV: AnvilNavItem[] = [
   { path: 'clone', label: 'Clone Utils' },
   { path: 'react-hooks', label: 'React Hooks' },
   { path: 'vue-composables', label: 'Vue Composables' },
+  { path: 'scope', label: 'Scope (Debugger)' },
   { path: 'types', label: 'Type Utilities' },
   { path: 'api', label: 'API Reference' },
 ];
@@ -1257,6 +1258,272 @@ const { pause, resume, isActive } = useInterval(() => {
   console.log('Tick');
 }, 1000);`,
         filename: 'vue-composables.ts',
+      },
+    ],
+  },
+
+  'scope': {
+    slug: 'scope',
+    title: 'Scope (Debugger)',
+    description: 'Enhanced debugger for JavaScript & React — drop-in replacement for debugger; with superpowers.',
+    sections: [
+      {
+        id: 'intro',
+        title: 'Why Scope?',
+        content: 'The built-in debugger; statement is powerful but limited — no conditions, no context, no logging. Scope wraps debugger; with smart features: conditional breakpoints, styled logging, performance timers, state watching, and snapshots. Works everywhere — functions, classes, async code, React components.',
+      },
+      {
+        id: 'quick-start',
+        title: 'Quick Start',
+        content: 'Import the global scope instance and start debugging:',
+        code: `import { scope } from '@forgedevstack/anvil';
+
+// Like debugger; but smarter
+scope.pause();                              // pauses execution
+scope.pauseIf(count > 100);               // conditional pause
+scope.inspect(user, 'Login payload');      // logs + pauses
+
+// Styled logging with levels
+scope.log('Loading items...');             // DEBUG level
+scope.info('User logged in', user);        // INFO level
+scope.warn('Rate limit approaching');      // WARN level
+scope.error('Payment failed', error);      // ERROR level
+
+// Performance timing
+scope.time('API call');
+await fetchUsers();
+scope.timeEnd('API call');  // → "API call: 123.45ms"
+
+// Watch state changes
+scope.watch('cart', cartItems);  // logs diff on every change
+
+// Global controls
+scope.setLevel('warn');   // only warn+error shown
+scope.disable();          // silence all (production)`,
+        filename: 'scope-basics.ts',
+      },
+      {
+        id: 'scoped-instances',
+        title: 'Scoped Instances',
+        content: 'Create named instances with their own label and config:',
+        code: `import { createScope } from '@forgedevstack/anvil';
+
+const authDebug = createScope('Auth', { labelColor: '#34d399' });
+const cartDebug = createScope('Cart', { labelColor: '#60a5fa' });
+
+authDebug.log('Login attempt', { email });
+// 🔍 10:23:45.123 DEBUG [Auth] Login attempt { email: '...' }
+
+cartDebug.time('loadItems');
+await fetchCartItems();
+cartDebug.timeEnd('loadItems');
+// 🔍 ⏱ loadItems: 87.23ms
+
+// Each instance has independent config
+authDebug.setLevel('error');  // only errors from Auth
+cartDebug.setLevel('debug');  // verbose Cart logging`,
+        filename: 'scoped-instances.ts',
+      },
+      {
+        id: 'breakpoints',
+        title: 'Enhanced Breakpoints',
+        content: 'Scope enhances the native debugger; statement with conditions, context, and assertions:',
+        code: `import { scope } from '@forgedevstack/anvil';
+
+// Basic pause — like debugger;
+// When DevTools is open, execution stops here
+scope.pause();
+
+// Conditional — only pauses when condition is true
+scope.pauseIf(items.length === 0, 'No items loaded!');
+scope.pauseIf(response.status >= 400, { status: response.status });
+
+// Inspect — logs the value then pauses
+scope.inspect(complexObject, 'Before transformation');
+
+// Assert — pauses on failure
+scope.assert(user.id !== null, 'User ID is required');
+scope.assert(items.length > 0, 'Cart must not be empty', { items });
+
+// Watch + break — pauses when a watched value changes
+scope.watchBreak('user.role', user.role);
+
+// Disable breakpoints but keep logging
+scope.configure({ breakpoints: false });`,
+        filename: 'breakpoints.ts',
+      },
+      {
+        id: 'watching',
+        title: 'State Watching',
+        content: 'Track values across calls and see diffs when they change:',
+        code: `import { scope } from '@forgedevstack/anvil';
+
+// Register a watch — call repeatedly with the same label
+scope.watch('user', user);
+// First call: 🔍 👁 Watch registered: "user"
+
+// When value changes:
+scope.watch('user', updatedUser);
+// 🔍 👁 Watch "user" changed (#1) { from: {...}, to: {...} }
+
+// Watch + pause on change
+scope.watchBreak('cart.total', cart.total);
+
+// Clear watches
+scope.unwatch('user');
+scope.unwatchAll();
+
+// Get all current watches
+const watches = scope.getWatches();`,
+        filename: 'watching.ts',
+      },
+      {
+        id: 'performance',
+        title: 'Performance Timers',
+        content: 'High-resolution timers with colored output:',
+        code: `import { scope } from '@forgedevstack/anvil';
+
+// Simple timer
+scope.time('fetchUsers');
+const users = await fetch('/api/users');
+const duration = scope.timeEnd('fetchUsers');
+// 🔍 ⏱ fetchUsers: 142.38ms (green if fast, yellow if medium, red if slow)
+// duration === 142.38
+
+// Nested timers
+scope.time('page-load');
+  scope.time('data-fetch');
+  await loadData();
+  scope.timeEnd('data-fetch');
+
+  scope.time('render');
+  renderPage();
+  scope.timeEnd('render');
+scope.timeEnd('page-load');
+
+// Count calls
+scope.count('render');  // → render: 1
+scope.count('render');  // → render: 2
+scope.countReset('render');`,
+        filename: 'performance.ts',
+      },
+      {
+        id: 'snapshots',
+        title: 'Snapshots',
+        content: 'Capture data at specific points for comparison:',
+        code: `import { scope } from '@forgedevstack/anvil';
+
+// Take snapshots before and after
+scope.snapshot('before-update', { user, cart, total });
+
+await updateCart(newItem);
+
+scope.snapshot('after-update', { user, cart, total });
+
+// Retrieve all snapshots
+const snapshots = scope.getSnapshots();
+// [{ id: 1, timestamp, label: 'before-update', data: {...} },
+//  { id: 2, timestamp, label: 'after-update', data: {...} }]
+
+// Clear snapshots
+scope.clearSnapshots();`,
+        filename: 'snapshots.ts',
+      },
+      {
+        id: 'react-hook',
+        title: 'useScope React Hook',
+        content: 'The useScope hook provides a scoped debugger tied to a component lifecycle with automatic render tracking:',
+        code: `import { useScope } from '@forgedevstack/anvil';
+
+function CartPage() {
+  const debug = useScope('CartPage');
+  // On mount: 🔍 [CartPage] INFO Mounted
+  // On render: 🔍 [CartPage] TRACE Render #2
+
+  const [items, setItems] = useState([]);
+
+  // Watch state
+  debug.watch('items', items);
+
+  // Performance
+  useEffect(() => {
+    debug.time('loadItems');
+    fetchItems().then((data) => {
+      debug.timeEnd('loadItems');
+      setItems(data);
+    });
+  }, []);
+
+  // Conditional breakpoint
+  debug.pauseIf(items.length === 0, 'Empty cart!');
+
+  // Assert
+  debug.assert(items.length <= 100, 'Too many items');
+
+  // Access render count
+  console.log(debug.renderCount); // 2
+
+  return <div>{/* ... */}</div>;
+  // On unmount: 🔍 [CartPage] INFO Unmounted (after 5 renders)
+}
+
+// With options
+function Dashboard() {
+  const debug = useScope({
+    name: 'Dashboard',
+    config: { level: 'info', labelColor: '#60a5fa' },
+    trackRenders: true,
+    trackLifecycle: true,
+  });
+
+  debug.group('Dashboard Data');
+  debug.table(metrics);
+  debug.groupEnd();
+}`,
+        filename: 'use-scope.tsx',
+      },
+      {
+        id: 'config',
+        title: 'Configuration',
+        content: 'Customize Scope behavior globally or per-instance:',
+        code: `import { scope, createScope } from '@forgedevstack/anvil';
+
+// Global configuration
+scope.configure({
+  enabled: true,          // Toggle all debugging
+  level: 'debug',         // Minimum level: trace|debug|info|warn|error|silent
+  timestamps: true,       // Show timestamps
+  showLabel: true,        // Show [Label] prefix
+  labelColor: '#ec4899',  // CSS color for label
+  groupCollapsed: true,   // Collapse log groups by default
+  breakpoints: true,      // Enable debugger; triggers
+  maxDepth: 4,            // Max depth for object inspection
+  performance: true,      // Enable timing features
+  handler: null,          // Custom log handler
+});
+
+// Quick toggles
+scope.enable();           // Enable all
+scope.disable();          // Disable all (production)
+scope.setLevel('warn');   // Only warnings and errors
+
+// Production setup
+if (process.env.NODE_ENV === 'production') {
+  scope.disable();
+}
+
+// Custom handler (send to logging service)
+scope.setHandler((level, label, message, data) => {
+  myLoggingService.send({ level, label, message, data });
+});
+
+// Per-instance config
+const debug = createScope('Payment', {
+  labelColor: '#fbbf24',
+  level: 'info',
+  breakpoints: false,  // no pausing in this scope
+});`,
+        filename: 'config.ts',
       },
     ],
   },

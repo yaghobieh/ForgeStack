@@ -121,6 +121,7 @@ export const AnvilDocs: FC = () => {
         <Route path="clone" element={<AnvilDocContent page="clone" />} />
         <Route path="react-hooks" element={<AnvilDocContent page="react-hooks" />} />
         <Route path="vue-composables" element={<AnvilDocContent page="vue-composables" />} />
+        <Route path="scope" element={<AnvilDocContent page="scope" />} />
         <Route path="types" element={<AnvilDocContent page="types" />} />
         <Route path="api" element={<AnvilDocContent page="api" />} />
         

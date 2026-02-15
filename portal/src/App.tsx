@@ -19,7 +19,8 @@ import { ForgeQueryDocsLayout, ForgeQueryDocContent } from './pages/ForgeQueryDo
 import { CompassDocsLayout, CompassDocContent } from './pages/CompassDocs';
 import { FormDocsLayout, FormDocContent } from './pages/FormDocs';
 import { CliDocs } from './pages/CliDocs';
-import { Studio } from './pages/Studio';
+import { AuthDocs } from './pages/AuthDocs';
+import RelayDocs from './pages/RelayDocs';
 import { Privacy } from './pages/Privacy';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -104,6 +105,7 @@ function App() {
                 <Route path="/anvil/clone" element={<AnvilDocsLayout><AnvilDocContent page="clone" /></AnvilDocsLayout>} />
                 <Route path="/anvil/react-hooks" element={<AnvilDocsLayout><AnvilDocContent page="react-hooks" /></AnvilDocsLayout>} />
                 <Route path="/anvil/vue-composables" element={<AnvilDocsLayout><AnvilDocContent page="vue-composables" /></AnvilDocsLayout>} />
+                <Route path="/anvil/scope" element={<AnvilDocsLayout><AnvilDocContent page="scope" /></AnvilDocsLayout>} />
                 <Route path="/anvil/types" element={<AnvilDocsLayout><AnvilDocContent page="types" /></AnvilDocsLayout>} />
                 <Route path="/anvil/api" element={<AnvilDocsLayout><AnvilDocContent page="api" /></AnvilDocsLayout>} />
                 <Route path="/anvil/cn" element={<Navigate to="/anvil/style-forge" replace />} />
@@ -227,7 +229,11 @@ function App() {
                 <Route path="/cli" element={<CliDocs />} />
                 <Route path="/cli/docs/quick-start" element={<CliDocs />} />
                 <Route path="/cli/*" element={<Navigate to="/cli" replace />} />
-                <Route path="/studio" element={<Studio />} />
+                <Route path="/auth" element={<AuthDocs />} />
+                <Route path="/auth/docs/quick-start" element={<AuthDocs />} />
+                <Route path="/auth/*" element={<Navigate to="/auth" replace />} />
+                <Route path="/relay" element={<RelayDocs />} />
+                <Route path="/relay/*" element={<Navigate to="/relay" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="/privacy" element={<Privacy />} />

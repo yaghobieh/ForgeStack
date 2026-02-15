@@ -199,16 +199,6 @@
     50% { background-position: 100% 50%; }
   }
 
-  /* Studio badge buzz - subtle glow pulse */
-  @keyframes studio-buzz {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(236, 72, 153, 0.35), 0 0 40px rgba(168, 85, 247, 0.15), inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-    50% {
-      box-shadow: 0 0 28px rgba(236, 72, 153, 0.5), 0 0 56px rgba(168, 85, 247, 0.25), inset 0 1px 0 rgba(255,255,255,0.25);
-    }
-  }
-
   /* Glow effects */
   .glow-pink {
     box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(236, 72, 153, 0.1);
