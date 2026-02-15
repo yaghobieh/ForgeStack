@@ -121,16 +121,6 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
           </h3>
           <nav className="space-y-1">
             <Link
-              to="/studio"
-              onClick={onClose}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                location.pathname === '/studio' ? 'text-white bg-forge-500/20' : 'text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary'
-              }`}
-            >
-              <span className="text-lg">🐻</span>
-              About Studio
-            </Link>
-            <Link
               to="/showcase"
               onClick={onClose}
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-theme-secondary hover:text-theme-primary hover:bg-theme-tertiary transition-colors"

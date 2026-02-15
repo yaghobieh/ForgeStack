@@ -16,6 +16,8 @@ export interface SidebarSection {
 
 export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | undefined> = {
   cli: 'NEW',
+  auth: 'NEW',
+  relay: 'NEW',
   harbor: undefined,
   compass: undefined,
   form: undefined,
@@ -63,7 +65,6 @@ export const SIDEBAR_SECTIONS: SidebarSection[] = [
   {
     id: 'community',
     links: [
-      { id: 'studio', label: 'About Studio', iconName: 'sparkles', badge: 'SOON' },
       { id: 'showcase', label: 'Showcase', iconName: 'sparkles' },
       { id: 'extensions', label: 'Extensions', iconName: 'extension', badge: 'NEW' },
       { id: 'mcp', label: 'MCP', iconName: 'robot', badge: 'SOON' },

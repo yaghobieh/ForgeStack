@@ -1,5 +1,4 @@
 export { Home } from './Home';
-export { Studio } from './Studio';
 export { HarborDocsNav, HarborDocsLayout } from './HarborDocs';
 export { TableDocsNav, TableDocsLayout } from './TableDocs';
 export { SynapseDocsNav, SynapseDocsLayout } from './SynapseDocs';
