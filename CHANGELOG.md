@@ -2,6 +2,25 @@
 
 All notable changes to ForgeStack will be documented in this file.
 
+## [2026-02-07] - Portal: Templates, Brand Guide, About & Careers
+
+### Added
+
+#### ForgeStack Portal (forgestack.dev)
+- **Templates** – New section and page for project templates (e.g. `npx create-forge my-app --template react`) to start fast.
+- **Brand Guide** – Dedicated page for ForgeStack branding and usage.
+- **Extensions** – **LintForge** added to extensions list ([Open VSX](https://open-vsx.org/extension/Yaghobieh/lintforge)).
+- **About Us** – New page with mission, why we built ForgeStack, and team (John Yaghobieh – main developer, with LinkedIn and GitHub links).
+- **Careers** – New page (coming soon).
+- **Footer** – John Yaghobieh with link to [LinkedIn](https://www.linkedin.com/in/john-yaghobieh-4baa93107/).
+
+### Changed
+
+#### ForgeStack Portal
+- Hero CLI callout updated to emphasize using templates to start fast.
+
+---
+
 ## [2026-01-28] - Portal Improvements
 
 ### Added

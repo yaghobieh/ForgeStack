@@ -355,6 +355,17 @@ export const EXTENSIONS: ForgeExtension[] = [
     color: '#cb3837',
     status: 'ready',
   },
+  {
+    id: 'lintforge',
+    name: 'LintForge',
+    platform: 'vscode',
+    description: 'ESLint and style enforcement for ForgeStack and Bear UI projects. Keep code consistent across the ecosystem.',
+    link: 'https://open-vsx.org/extension/Yaghobieh/lintforge',
+    openVsxLink: 'https://open-vsx.org/extension/Yaghobieh/lintforge',
+    icon: '✨',
+    color: '#ec4899',
+    status: 'ready',
+  },
 ];
 
 export const GITHUB_URL = 'https://github.com/yaghobieh/ForgeStack';

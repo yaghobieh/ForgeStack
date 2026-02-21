@@ -22,6 +22,10 @@ import { CliDocs } from './pages/CliDocs';
 import { AuthDocs } from './pages/AuthDocs';
 import RelayDocs from './pages/RelayDocs';
 import { Privacy } from './pages/Privacy';
+import { BrandGuide } from './pages/BrandGuide';
+import { Templates } from './pages/Templates';
+import { AboutUs } from './pages/AboutUs';
+import { Careers } from './pages/Careers';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -236,6 +240,10 @@ function App() {
                 <Route path="/relay/*" element={<Navigate to="/relay" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
+                <Route path="/templates" element={<Templates />} />
+                <Route path="/brand" element={<BrandGuide />} />
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/careers" element={<Careers />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/privacy/forge-query-devtools" element={<Privacy />} />
                 <Route path="/privacy/synapse-devtools" element={<Privacy />} />

@@ -43,7 +43,7 @@ export const CompassDocsNav: FC = () => {
           className="text-xs px-2 py-0.5 rounded"
           style={{ backgroundColor: `${COMPASS_COLOR}20`, color: COMPASS_COLOR }}
         >
-          v1.1.0
+          v1.0.2
         </span>
       </div>
 
@@ -300,6 +300,9 @@ export const CompassDocContent: FC<{ page: string }> = ({ page }) => {
           </h1>
           <p className="text-lg text-theme-secondary mb-6">
             Type-safe routing with guards, permissions, and declarative configuration.
+          </p>
+          <p className="text-sm text-theme-secondary mb-6 rounded-lg p-3 bg-theme-card border border-theme">
+            <strong>v1.0.2:</strong> Routes now render on first load without a refresh when using <code className="px-1 py-0.5 rounded bg-theme">CompassProvider</code> with a <code className="px-1 py-0.5 rounded bg-theme">routes</code> prop (e.g. grid-table portal).
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

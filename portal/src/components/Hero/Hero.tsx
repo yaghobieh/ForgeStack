@@ -91,23 +91,25 @@ export const Hero: FC = () => {
               ))}
             </div>
 
-            {/* CLI Quick Start - NEW prominent section */}
+            {/* CLI — Use templates to start fast */}
             <div className="mb-8 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 border border-pink-500/20 backdrop-blur-sm">
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <span className="text-xl sm:text-2xl">🔥</span>
-                <span className="text-pink-400 font-semibold text-sm sm:text-base">Quick Start with Forge CLI</span>
-                <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs bg-pink-500/20 text-pink-400 font-mono">NEW</span>
+                <span className="text-xl sm:text-2xl">🚀</span>
+                <span className="text-pink-400 font-semibold text-sm sm:text-base">New ForgeStack CLI — Use templates to start fast</span>
               </div>
+              <p className="text-xs sm:text-sm text-theme-secondary mb-3">
+                Create React projects with Bear, Compass, Synapse & more in seconds. Pick a template and go.
+              </p>
               <div className="flex flex-col gap-2">
                 <code className="px-3 sm:px-4 py-2 rounded-lg bg-black/40 font-mono text-xs sm:text-sm text-theme-primary border border-theme-border flex items-center gap-2 overflow-x-auto">
                   <span className="text-pink-400 flex-shrink-0">$</span>
-                  <span className="whitespace-nowrap">npx @forgedevstack/forge-cli create my-app</span>
+                  <span className="whitespace-nowrap">npx create-forge my-app --template react</span>
                 </code>
                 <Link
                   to="/cli"
                   className="px-4 py-2 rounded-lg bg-pink-500/20 hover:bg-pink-500/30 text-pink-400 font-medium text-sm transition-colors text-center"
                 >
-                  Learn More →
+                  Try templates →
                 </Link>
               </div>
             </div>

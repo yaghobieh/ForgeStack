@@ -1,8 +1,12 @@
 // Author information
 
+/** Profile image: put your photo at public/team/john-yaghobieh.jpg, or set to a full URL (e.g. LinkedIn CDN) */
 export const AUTHOR = {
   name: 'John Yaghobieh',
-  linkedin: 'https://www.linkedin.com/in/johnyaghobieh',
+  role: 'Main developer',
+  bio: 'Building ForgeStack, Bear UI, and the ecosystem. Focus on developer experience and type safety across the stack.',
+  imageUrl: '/team/john-yaghobieh.jpg',
+  linkedin: 'https://www.linkedin.com/in/john-yaghobieh-4baa93107/',
   github: 'https://github.com/yaghobieh',
 } as const;
 

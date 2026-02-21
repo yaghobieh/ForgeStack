@@ -8,18 +8,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ForgeStack brand colors
+        // ForgeStack brand — pink/rose accent (matches Bear UI & portal)
         forge: {
-          50: '#e6f7ff',
-          100: '#bae7ff',
-          200: '#91d5ff',
-          300: '#69c0ff',
-          400: '#40a9ff',
-          500: '#1890ff',
-          600: '#096dd9',
-          700: '#0050b3',
-          800: '#003a8c',
-          900: '#002766',
+          50: '#fdf2f8',
+          100: '#fce7f3',
+          200: '#fbcfe8',
+          300: '#f9a8d4',
+          400: '#f472b6',
+          500: '#ec4899',
+          600: '#db2777',
+          700: '#be185d',
+          800: '#9d174d',
+          900: '#831843',
+          950: '#500724',
         },
         harbor: {
           50: '#e6f4ff',
@@ -56,8 +57,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"IBM Plex Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['"Fira Code"', '"IBM Plex Mono"', 'monospace'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
         '2xs': ['0.65rem', { lineHeight: '0.9rem' }],
