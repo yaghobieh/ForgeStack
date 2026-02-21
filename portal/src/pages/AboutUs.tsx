@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AUTHOR } from '@/constants';
+// Use AUTHOR.linkedin and AUTHOR.github for profile links (no separate URL constants).
 
-const LINKEDIN_URL = AUTHOR.linkedin;
-const GITHUB_URL = AUTHOR.github;
 const BEAR_UI_URL = 'https://bearui.com';
 const FORGESTACK_GITHUB_URL = 'https://github.com/yaghobieh/ForgeStack';
 const CLI_NPM_URL = 'https://www.npmjs.com/package/@forgedevstack/cli';
@@ -112,7 +112,7 @@ export const AboutUs: FC = () => (
           <p className="text-theme-muted text-sm mb-2">
             Create React projects with Bear, Compass, Synapse and more in seconds. Use templates to start fast: <code className="bg-theme-bg px-1 rounded">npx create-forge my-app --template react</code>. We built it so you don’t waste time on initial setup.
           </p>
-          <a href={TEMPLATES_PATH} className="text-forge-400 hover:text-forge-300 text-sm font-medium">Templates on this site →</a>
+          <Link to={TEMPLATES_PATH} className="text-forge-400 hover:text-forge-300 text-sm font-medium">Templates on this site →</Link>
           {' · '}
           <a href={CLI_NPM_URL} target="_blank" rel="noopener noreferrer" className="text-forge-400 hover:text-forge-300 text-sm font-medium">npm</a>
         </li>
