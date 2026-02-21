@@ -15,3 +15,4 @@ export { Sidebar } from './Sidebar';
 export { TerminalCode } from './TerminalCode';
 export { ThemeToggle } from './ThemeToggle';
 export { VersionDropdown } from './VersionDropdown';
+export { WhatWeCanDo } from './WhatWeCanDo';

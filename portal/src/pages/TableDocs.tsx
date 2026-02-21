@@ -16,7 +16,7 @@ export const TableDocsNav: FC = () => {
           className="text-xs px-2 py-0.5 rounded"
           style={{ backgroundColor: `${TABLE_COLOR}20`, color: TABLE_COLOR }}
         >
-          v0.1.0
+          v1.0.6
         </span>
       </div>
 

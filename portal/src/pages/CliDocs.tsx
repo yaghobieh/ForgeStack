@@ -14,7 +14,7 @@ export const CliDocs: FC = () => {
           <h1 className="text-xl sm:text-3xl font-bold truncate" style={{ color: CLI_COLOR }}>
             Forge CLI
           </h1>
-          <p className="text-theme-muted text-xs sm:text-sm">v1.0.0-rc.1</p>
+          <p className="text-theme-muted text-xs sm:text-sm">v1.0.3</p>
         </div>
         <span 
           className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full font-semibold animate-pulse"
@@ -163,7 +163,7 @@ npx forge add forge-compass`}
                 <tr className="border-b border-theme-border">
                   <td className="py-2 px-2 sm:px-3 font-mono">create</td>
                   <td className="py-2 px-2 sm:px-3 font-mono text-[10px] sm:text-xs">-t, --template</td>
-                  <td className="py-2 px-2 sm:px-3">react, server, fullstack</td>
+                  <td className="py-2 px-2 sm:px-3">react, portal, server, fullstack</td>
                 </tr>
                 <tr className="border-b border-theme-border">
                   <td className="py-2 px-2 sm:px-3 font-mono"></td>

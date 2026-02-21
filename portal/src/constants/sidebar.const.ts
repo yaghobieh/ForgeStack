@@ -76,9 +76,18 @@ export const SIDEBAR_SECTIONS: SidebarSection[] = [
     id: 'resources',
     title: 'Resources',
     links: [
+      { id: 'templates', label: 'Templates', iconName: 'package' },
       { id: 'github-org', label: 'GitHub', iconName: 'github', href: 'https://github.com/yaghobieh', external: true },
       { id: 'npm', label: 'npm', iconName: 'npm', href: 'https://www.npmjs.com/org/forgestack', external: true },
       { id: 'brand', label: 'Brand Guide', iconName: 'palette' },
+    ],
+  },
+  {
+    id: 'company',
+    title: 'Company',
+    links: [
+      { id: 'about', label: 'About Us', iconName: 'book' },
+      { id: 'careers', label: 'Careers', iconName: 'sparkles', badge: 'SOON' },
     ],
   },
 ];

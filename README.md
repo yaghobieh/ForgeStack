@@ -9,6 +9,7 @@
 <p align="center">
   <a href="https://forgestack.dev">Website</a> •
   <a href="https://forgestack.dev/docs">Documentation</a> •
+  <a href="https://forgestack.dev/about">About</a> •
   <a href="https://github.com/yaghobieh/ForgeStack">GitHub</a>
 </p>
 
@@ -69,6 +70,14 @@ npm install @forgestack/compass
 # State management (coming soon)
 npm install @forgestack/synapse
 ```
+
+---
+
+## 🌐 Ecosystem
+
+- **[Bear UI](https://bearui.com)** – React UI component library (Tailwind, 50+ components). Use templates to start fast: `npx create-forge my-app --template react`.
+- **[ForgeStack CLI](https://www.npmjs.com/package/@forgedevstack/cli)** – Create React projects with Bear, Compass, Synapse & more in seconds.
+- **[LintForge](https://open-vsx.org/extension/Yaghobieh/lintforge)** – VS Code / Open VSX extension for ForgeStack projects.
 
 ---
 

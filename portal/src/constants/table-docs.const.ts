@@ -51,8 +51,13 @@ export const TABLE_DOCS: Record<string, TableDocPage> = {
   'overview': {
     slug: 'overview',
     title: 'Grid Table',
-    description: 'A powerful, headless React data table component with Tailwind CSS styling, designed for flexibility and performance.',
+    description: 'A powerful, headless React data table component with SCSS styling, designed for flexibility and performance. Live demos and full docs: grid-table.com.',
     sections: [
+      {
+        id: 'live-docs',
+        title: 'Live Documentation',
+        content: 'Full documentation, demos (Basic, Finance, HR, Theme Builder, Playground), and API reference are available at grid-table.com. The portal is built with Bear UI and Compass routing.',
+      },
       {
         id: 'intro',
         title: 'Basic Table',
@@ -76,10 +81,12 @@ const columns = [
       { icon: '🔍', title: 'Filtering', desc: 'Text, number, select filters' },
       { icon: '📄', title: 'Pagination', desc: 'Built-in pagination controls' },
       { icon: '✅', title: 'Selection', desc: 'Row & multi-select support' },
+      { icon: '✏️', title: 'Cell Editing', desc: 'Inline editable cells with callbacks' },
+      { icon: '📤', title: 'Export', desc: 'CSV and JSON export helpers' },
       { icon: '📌', title: 'Sticky Columns', desc: 'Pin columns left or right' },
       { icon: '🎨', title: 'Custom Cells', desc: 'Render any React component' },
       { icon: '🔀', title: 'Drag & Drop', desc: 'Reorder columns by dragging' },
-      { icon: '🌓', title: 'Theming', desc: 'Dark/light mode support' },
+      { icon: '🌓', title: 'Theming', desc: 'Dark/light mode and theme builder' },
       { icon: '📱', title: 'Mobile', desc: 'Responsive mobile layout' },
     ],
   },
