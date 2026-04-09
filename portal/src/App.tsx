@@ -21,6 +21,8 @@ import { FormDocsLayout, FormDocContent } from './pages/FormDocs';
 import { CliDocs } from './pages/CliDocs';
 import { AuthDocs } from './pages/AuthDocs';
 import RelayDocs from './pages/RelayDocs';
+import RailDocs from './pages/RailDocs';
+import LingoDocs from './pages/LingoDocs';
 import { Privacy } from './pages/Privacy';
 import { BrandGuide } from './pages/BrandGuide';
 import { Templates } from './pages/Templates';
@@ -238,6 +240,10 @@ function App() {
                 <Route path="/auth/*" element={<Navigate to="/auth" replace />} />
                 <Route path="/relay" element={<RelayDocs />} />
                 <Route path="/relay/*" element={<Navigate to="/relay" replace />} />
+                <Route path="/rail" element={<RailDocs />} />
+                <Route path="/rail/*" element={<Navigate to="/rail" replace />} />
+                <Route path="/lingo" element={<LingoDocs />} />
+                <Route path="/lingo/*" element={<Navigate to="/lingo" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="/templates" element={<Templates />} />
