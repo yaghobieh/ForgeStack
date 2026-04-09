@@ -98,7 +98,7 @@ export const Hero: FC = () => {
                 <span className="text-pink-400 font-semibold text-sm sm:text-base">New ForgeStack CLI — Use templates to start fast</span>
               </div>
               <p className="text-xs sm:text-sm text-theme-secondary mb-3">
-                Create React projects with Bear, Compass, Synapse & more in seconds. Pick a template and go.
+                Create React projects with Bear, Compass, Synapse, Rail, Lingo & more in seconds. Pick a template and go.
               </p>
               <div className="flex flex-col gap-2">
                 <code className="px-3 sm:px-4 py-2 rounded-lg bg-black/40 font-mono text-xs sm:text-sm text-theme-primary border border-theme-border flex items-center gap-2 overflow-x-auto">

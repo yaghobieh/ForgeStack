@@ -145,6 +145,28 @@ const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
       'Story file format',
     ],
   },
+  rail: {
+    version: '1.0.0',
+    date: '2026',
+    highlights: [
+      'Touch, snap, loop, breakpoints',
+      '25+ modules (nav, pagination, autoplay, …)',
+      'Effects: fade, cube, StoryMode, …',
+      'Rail Studio on the portal',
+    ],
+    externalUrl: 'https://railjs.com',
+  },
+  lingo: {
+    version: '1.0.1',
+    date: '2026',
+    highlights: [
+      'Nested keys, interpolation, plurals',
+      'RTL and locale switching',
+      'Optional React bindings',
+      'Lingo Portal for remote keys + AI',
+    ],
+    externalUrl: 'https://www.npmjs.com/package/@forgedevstack/lingo',
+  },
 };
 
 interface VersionDropdownContentProps {
