@@ -1,6 +1,6 @@
 {
   "name": "forgestack",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "private": true,
   "description": "ForgeStack - Modern Developer Tools for Building Better Applications",
   "workspaces": [
@@ -14,7 +14,11 @@
     "build:portal": "cd portal && npm run build",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
-    "clean": "rm -rf node_modules packages/*/node_modules portal/node_modules"
+    "clean": "rm -rf node_modules packages/*/node_modules portal/node_modules",
+    "slack:channels:dry-run": "node scripts/slack/create-channels.mjs --dry-run",
+    "slack:channels:create": "node scripts/slack/create-channels.mjs",
+    "slack:channels:bear": "node scripts/slack/create-channels.mjs --project=bear",
+    "slack:approve:post": "node scripts/slack/post-git-approval.mjs"
   },
   "repository": {
     "type": "git",
@@ -33,4 +37,3 @@
   "author": "",
   "license": "MIT"
 }
-

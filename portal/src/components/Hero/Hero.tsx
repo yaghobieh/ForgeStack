@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo, LogoText, LogoExpanded } from '../Logo';
 import { CodeCarousel } from '../CodeCarousel';
-import { TAGLINE, DESCRIPTION, STATS, AUTHOR } from '@constants';
+import { TAGLINE, DESCRIPTION, STATS, AUTHOR, HERO_INSTALL_COMMAND } from '@constants';
 
 const LIBRARY_ROUTES: Record<string, string> = {
   harbor: '/harbor/docs/quick-start',
@@ -31,27 +31,23 @@ export const Hero: FC = () => {
     <section className="forge-stack__hero relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Enhanced animated background with more flare */}
       <div className="forge-stack__hero-bg absolute inset-0 z-0 overflow-hidden">
-        {/* Main gradient orbs - smaller on mobile */}
-        <div className="absolute top-1/4 left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-pink-500/15 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-pink-600/10 rounded-full blur-3xl" />
-        
-        {/* Additional flare elements - hidden on mobile */}
-        <div className="hidden sm:block absolute top-20 right-20 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
-        <div className="hidden sm:block absolute bottom-20 left-20 w-64 h-64 bg-violet-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
-        
-        {/* Gradient lines - hidden on mobile */}
+        <div className="absolute top-1/4 left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-blue-600/25 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-blue-700/20 rounded-full blur-3xl" />
+
+        <div className="hidden sm:block absolute top-20 right-20 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="hidden sm:block absolute bottom-20 left-20 w-64 h-64 bg-sky-500/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+
         <div className="hidden sm:block absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-pink-500/20 to-transparent" />
-          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent" />
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500/25 to-transparent" />
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent" />
         </div>
-        
-        {/* Grid pattern overlay */}
+
         <div 
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: `linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(236, 72, 153, 0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(168, 85, 247, 0.12) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(168, 85, 247, 0.12) 1px, transparent 1px)`,
             backgroundSize: '40px 40px'
           }}
         />
@@ -91,36 +87,35 @@ export const Hero: FC = () => {
               ))}
             </div>
 
-            {/* CLI — Use templates to start fast */}
-            <div className="mb-8 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 border border-pink-500/20 backdrop-blur-sm">
+            <div className="mb-8 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-pink-500/10 via-blue-500/10 to-pink-500/10 border border-pink-500/20 backdrop-blur-sm">
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <span className="text-xl sm:text-2xl">🚀</span>
-                <span className="text-pink-400 font-semibold text-sm sm:text-base">New ForgeStack CLI — Use templates to start fast</span>
+                <span className="text-xl sm:text-2xl">🐻</span>
+                <span className="text-pink-400 font-semibold text-sm sm:text-base">Start with Bear — the flagship UI library</span>
               </div>
               <p className="text-xs sm:text-sm text-theme-secondary mb-3">
-                Create React projects with Bear, Compass, Synapse, Rail, Lingo & more in seconds. Pick a template and go.
+                60+ React components with light and dark mode. Then add state, routing, forms, and data from the same ecosystem.
               </p>
               <div className="flex flex-col gap-2">
                 <code className="px-3 sm:px-4 py-2 rounded-lg bg-black/40 font-mono text-xs sm:text-sm text-theme-primary border border-theme-border flex items-center gap-2 overflow-x-auto">
                   <span className="text-pink-400 flex-shrink-0">$</span>
-                  <span className="whitespace-nowrap">npx create-forge my-app --template react</span>
+                  <span className="whitespace-nowrap">{HERO_INSTALL_COMMAND}</span>
                 </code>
                 <Link
-                  to="/cli"
+                  to="/bear"
                   className="px-4 py-2 rounded-lg bg-pink-500/20 hover:bg-pink-500/30 text-pink-400 font-medium text-sm transition-colors text-center"
                 >
-                  Try templates →
+                  Bear docs →
                 </Link>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-2 sm:px-0">
-              <Link
-                to="/harbor/docs/quick-start"
+              <a
+                href="#packages"
                 className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-mono text-xs sm:text-sm font-medium bg-theme-tertiary text-theme-primary border border-theme-border hover:border-forge-500/50 hover:text-forge-400 transition-all"
               >
-                <span className="text-theme-muted">$</span> Documentation
-              </Link>
+                <span className="text-theme-muted">$</span> Browse all libraries
+              </a>
               <a
                 href="https://github.com/yaghobieh/ForgeStack"
                 target="_blank"

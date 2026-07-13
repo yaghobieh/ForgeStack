@@ -14,12 +14,12 @@ export interface CodeExample {
 export const CODE_EXAMPLES: CodeExample[] = [
   {
     id: 'harbor-server',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'Zero-Config Server',
     description: 'Create a production-ready server in seconds',
     filename: 'server.ts',
-    code: `import { createServer, router, route } from '@forgestack/harbor';
+    code: `import { createServer, router, route } from '@forgedevstack/harbor';
 
 const server = createServer({ port: 3000 });
 
@@ -35,12 +35,12 @@ server.listen(3000, () => console.log('Server running!'));`,
   },
   {
     id: 'harbor-odm',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'MongoDB ODM',
     description: 'Mongoose replacement with full type safety',
     filename: 'models/user.ts',
-    code: `import { Schema, model, connect } from '@forgestack/harbor/database';
+    code: `import { Schema, model, connect } from '@forgedevstack/harbor/database';
 
 await connect('mongodb://localhost:27017/myapp');
 
@@ -56,12 +56,12 @@ const admins = await User.find({ role: 'admin' });`,
   },
   {
     id: 'harbor-auth',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'JWT Authentication',
     description: 'Built-in JWT auth with RBAC',
     filename: 'auth/middleware.ts',
-    code: `import { JWT, jwtAuth, requireRole } from '@forgestack/harbor';
+    code: `import { JWT, jwtAuth, requireRole } from '@forgedevstack/harbor';
 
 const jwt = new JWT({ secret: process.env.JWT_SECRET! });
 
@@ -75,12 +75,12 @@ app.get('/api/admin', requireRole('admin'), adminHandler);`,
   },
   {
     id: 'harbor-ratelimit',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'Rate Limiting',
     description: 'Protect APIs with rate limiting',
     filename: 'middleware/rateLimit.ts',
-    code: `import { rateLimit } from '@forgestack/harbor';
+    code: `import { rateLimit } from '@forgedevstack/harbor';
 
 // 100 requests per 15 minutes
 app.use(rateLimit({ max: 100, windowMs: 15 * 60 * 1000 }));
@@ -91,12 +91,12 @@ app.post('/login', rateLimit({ max: 5, windowMs: 60000 }), login);`,
   },
   {
     id: 'harbor-websocket',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'WebSocket',
     description: 'Real-time with rooms and broadcasting',
     filename: 'ws/chat.ts',
-    code: `import { createWebSocketServer } from '@forgestack/harbor';
+    code: `import { createWebSocketServer } from '@forgedevstack/harbor';
 
 const wss = createWebSocketServer({
   onConnection: (client) => wss.join(client, 'lobby'),
@@ -110,12 +110,12 @@ wss.attach(server.server);`,
   },
   {
     id: 'harbor-scheduler',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'Job Scheduler',
     description: 'Cron-like task scheduling',
     filename: 'jobs/cleanup.ts',
-    code: `import { createScheduler } from '@forgestack/harbor';
+    code: `import { createScheduler } from '@forgedevstack/harbor';
 
 const scheduler = createScheduler();
 
@@ -134,12 +134,12 @@ scheduler.start();`,
   },
   {
     id: 'harbor-cache',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'Caching',
     description: 'Memory & Redis caching layer',
     filename: 'cache/products.ts',
-    code: `import { cache, cacheResponse } from '@forgestack/harbor';
+    code: `import { cache, cacheResponse } from '@forgedevstack/harbor';
 
 // Manual caching
 const products = await cache.getOrSet('products', async () => {
@@ -152,12 +152,12 @@ app.get('/api/products', cacheResponse({ ttl: 60000 }), handler);`,
   },
   {
     id: 'harbor-metrics',
-    package: '@forgestack/harbor',
+    package: '@forgedevstack/harbor',
     packageName: 'Harbor',
     title: 'Prometheus Metrics',
     description: 'Built-in metrics endpoint',
     filename: 'metrics/setup.ts',
-    code: `import { metricsMiddleware, metricsEndpoint, healthCheck } from '@forgestack/harbor';
+    code: `import { metricsMiddleware, metricsEndpoint, healthCheck } from '@forgedevstack/harbor';
 
 // Collect HTTP metrics automatically
 app.use(metricsMiddleware());
@@ -171,12 +171,12 @@ app.get('/health', healthCheck({ checks: [mongoHealthCheck(db)] }));`,
   },
   {
     id: 'compass-routes',
-    package: '@forgestack/compass',
+    package: '@forgedevstack/forge-compass',
     packageName: 'Compass',
     title: 'Type-Safe Routes',
     description: 'React router with guards and validation',
     filename: 'routes.tsx',
-    code: `import { createRouter, route } from '@forgestack/compass';
+    code: `import { createRouter, route } from '@forgedevstack/forge-compass';
 
 const router = createRouter([
   route('/', HomePage),
@@ -196,12 +196,12 @@ const router = createRouter([
   },
   {
     id: 'synapse-store',
-    package: '@forgestack/synapse',
+    package: '@forgedevstack/synapse',
     packageName: 'Synapse',
     title: 'State Management',
     description: 'Redux-like state with zero boilerplate',
     filename: 'store/counter.ts',
-    code: `import { createStore, action } from '@forgestack/synapse';
+    code: `import { createStore, action } from '@forgedevstack/synapse';
 
 const counterStore = createStore({
   count: 0,

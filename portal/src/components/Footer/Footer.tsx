@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
-import { PACKAGES } from '@/constants';
+import { PACKAGES, packageDocsHref } from '@/constants';
 
 export const Footer: FC = () => {
   return (
-    <footer className="bg-theme-secondary border-t border-theme-border py-16">
+    <footer className="fs-glass-strong border-t border-theme-border py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12">
 
@@ -15,7 +15,7 @@ export const Footer: FC = () => {
               <span className="text-xl font-bold text-theme-primary">ForgeStack</span>
             </Link>
             <p className="text-theme-muted text-sm">
-              Modern Developer Tools for Building Better Applications
+              An open-source ecosystem of React and Node.js libraries under @forgedevstack.
             </p>
           </div>
 
@@ -26,7 +26,7 @@ export const Footer: FC = () => {
               {PACKAGES.map((pkg) => (
                 <li key={pkg.id}>
                   <Link
-                    to={pkg.status === 'ready' ? `/${pkg.id}/docs/quick-start` : '#'}
+                    to={packageDocsHref(pkg)}
                     className={`text-sm transition-colors ${
                       pkg.status === 'ready'
                         ? 'text-theme-muted hover:text-theme-primary'
@@ -61,7 +61,7 @@ export const Footer: FC = () => {
               </li>
               <li>
                 <a
-                  href="https://www.npmjs.com/org/forgestack"
+                  href="https://www.npmjs.com/org/forgedevstack"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-theme-muted hover:text-theme-primary transition-colors"

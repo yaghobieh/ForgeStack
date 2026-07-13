@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, FC, ReactNode } from 'react';
+import { createContext, useContext, useEffect, FC, ReactNode } from 'react';
 
 export type Theme = 'light' | 'dark' | 'system';
 
@@ -10,59 +10,17 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-const THEME_STORAGE_KEY = 'harbor-theme';
-
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme;
-      if (stored && ['light', 'dark', 'system'].includes(stored)) {
-        return stored;
-      }
-    }
-    return 'dark'; // Default to dark
-  });
-
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('dark');
-
-  // Resolve system theme
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    const updateResolvedTheme = () => {
-      if (theme === 'system') {
-        setResolvedTheme(mediaQuery.matches ? 'dark' : 'light');
-      } else {
-        setResolvedTheme(theme);
-      }
-    };
-
-    updateResolvedTheme();
-    mediaQuery.addEventListener('change', updateResolvedTheme);
-
-    return () => mediaQuery.removeEventListener('change', updateResolvedTheme);
-  }, [theme]);
-
-  // Apply theme to document
   useEffect(() => {
     const root = document.documentElement;
-    
-    if (resolvedTheme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    }
-  }, [resolvedTheme]);
+    root.classList.add('dark');
+    root.classList.remove('light');
+  }, []);
 
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-  };
+  const setTheme = () => undefined;
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme: 'dark', resolvedTheme: 'dark', setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -75,4 +33,3 @@ export const useTheme = (): ThemeContextValue => {
   }
   return context;
 };
-

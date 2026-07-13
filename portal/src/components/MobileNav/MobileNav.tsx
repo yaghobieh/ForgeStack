@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PACKAGES } from '@constants';
+import { PACKAGES, packageDocsHref } from '@constants';
 import { PACKAGE_BADGES } from '@constants/sidebar.const';
 import { createPortal } from 'react-dom';
 import { Badge } from '../Badge';
@@ -74,10 +74,7 @@ export const MobileNav: FC<MobileNavProps> = ({ isOpen, onClose }) => {
             {PACKAGES.map((pkg) => {
               const isActive = location.pathname.includes(`/${pkg.id}`);
               const badge = PACKAGE_BADGES[pkg.id];
-              // CLI links directly to /cli, others use /package/docs/quick-start pattern
-              const href = pkg.status === 'ready' 
-                ? (pkg.id === 'cli' ? pkg.docsPath : `${pkg.docsPath}/docs/quick-start`)
-                : '#';
+              const href = packageDocsHref(pkg);
 
               return (
                 <Link

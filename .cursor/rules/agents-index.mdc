@@ -30,6 +30,12 @@ Use these agents to keep work consistent across libs. **You do not need to “be
 - **When:** Articles for dev.to, Medium; threads or posts for X (Twitter); Reddit-friendly versions. Always include repo link; focus on technical/frontend context where relevant.
 - **References:** docs/articles/, reddit-posting-guide.md, bear-1-0-9-whats-new.md.
 
+## 4. Publishing & CI/CD
+
+- **Rule:** `forge-publishing.mdc` (always applied)
+- **Covers:** npm package scope (`@forgedevstack/*`), GitHub Actions publish workflow, version policy, portal builds, Kiln integration.
+- All publishable packages follow the same CI pattern documented there.
+
 ## How to Invoke
 
 - **Always applied:** This index (agents-index.mdc) is always applied so the model knows the roles.

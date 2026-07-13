@@ -110,7 +110,7 @@ export const AboutUs: FC = () => (
             <a href={CLI_NPM_URL} target="_blank" rel="noopener noreferrer" className="text-forge-400 hover:text-forge-300 underline">ForgeStack CLI</a>
           </h3>
           <p className="text-theme-muted text-sm mb-2">
-            Create React projects with Bear, Compass, Synapse and more in seconds. Use templates to start fast: <code className="bg-theme-bg px-1 rounded">npx create-forge my-app --template react</code>. We built it so you don’t waste time on initial setup.
+            Create React projects with Bear, Compass, Synapse and more in seconds. Use templates to start fast: <code className="bg-theme-bg px-1 rounded">npx @forgedevstack/forge-cli my-app --template react</code>. We built it so you don’t waste time on initial setup.
           </p>
           <Link to={TEMPLATES_PATH} className="text-forge-400 hover:text-forge-300 text-sm font-medium">Templates on this site →</Link>
           {' · '}

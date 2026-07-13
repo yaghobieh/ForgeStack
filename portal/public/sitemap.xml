@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://forgedevstack.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://forgedevstack.com/ecosystem</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://forgedevstack.com/blog</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://forgedevstack.com/blog/forgestack-release-wave-2026-07</loc><lastmod>2026-07-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://forgedevstack.com/blog/release-wave-developer-guide</loc><lastmod>2026-07-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://forgedevstack.com/blog/release-wave-in-brief</loc><lastmod>2026-07-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/blog/rail-open-source-launch</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/blog/why-harbor</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/ai</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://forgedevstack.com/bear</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://forgedevstack.com/harbor/docs/quick-start</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://forgedevstack.com/table</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://forgedevstack.com/synapse</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/query</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/form</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/compass</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/anvil</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/kiln</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/lingo</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/rail</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/aerocraft</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/torch</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://forgedevstack.com/cli</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://forgedevstack.com/auth</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://forgedevstack.com/showcase</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://forgedevstack.com/templates</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://forgedevstack.com/extensions</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+</urlset>

@@ -23,7 +23,7 @@ const VERSIONS: VersionInfo[] = [
       'route.get(), route.post() syntax',
       'Express-like convenience methods',
       'ForgeStack branding',
-      'Package renamed to @forgestack/harbor',
+      'Package renamed to @forgedevstack/harbor',
     ],
   },
   {
