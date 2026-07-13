@@ -7,7 +7,7 @@ export const PLAYGROUND_EXAMPLES: PlaygroundExample[] = [
     description: 'Create a simple HTTP server with routes',
     entryPoint: 'server.ts',
     files: {
-      'server.ts': `import { createServer, router, GET, POST } from '@forgestack/harbor';
+      'server.ts': `import { createServer, router, GET, POST } from '@forgedevstack/harbor';
 
 // Create server with minimal config
 const server = createServer({ port: 3000, autoStart: false });
@@ -52,7 +52,7 @@ server.listen(3000, () => {
     "start": "tsx server.ts"
   },
   "dependencies": {
-    "@forgestack/harbor": "latest",
+    "@forgedevstack/harbor": "latest",
     "tsx": "latest"
   }
 }
@@ -75,7 +75,7 @@ server.listen(3000, () => {
     description: 'Validate request body, params, and query',
     entryPoint: 'server.ts',
     files: {
-      'server.ts': `import { createServer, router, GET, POST } from '@forgestack/harbor';
+      'server.ts': `import { createServer, router, GET, POST } from '@forgedevstack/harbor';
 
 const server = createServer({ port: 3000, autoStart: false });
 
@@ -139,7 +139,7 @@ server.listen(3000, () => {
     "start": "tsx server.ts"
   },
   "dependencies": {
-    "@forgestack/harbor": "latest",
+    "@forgedevstack/harbor": "latest",
     "tsx": "latest"
   }
 }
@@ -162,7 +162,7 @@ server.listen(3000, () => {
     description: 'Add middleware before and after route handlers',
     entryPoint: 'server.ts',
     files: {
-      'server.ts': `import { createServer, router, GET, POST } from '@forgestack/harbor';
+      'server.ts': `import { createServer, router, GET, POST } from '@forgedevstack/harbor';
 
 const server = createServer({ port: 3000, autoStart: false });
 
@@ -235,7 +235,7 @@ server.listen(3000, () => {
     "start": "tsx server.ts"
   },
   "dependencies": {
-    "@forgestack/harbor": "latest",
+    "@forgedevstack/harbor": "latest",
     "tsx": "latest"
   }
 }

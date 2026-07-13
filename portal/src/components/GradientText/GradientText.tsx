@@ -8,7 +8,7 @@ interface GradientTextProps {
 export const GradientText: FC<GradientTextProps> = ({ children, className = '' }) => {
   return (
     <span
-      className={`bg-gradient-to-r from-harbor-400 via-harbor-600 to-purple-600 bg-clip-text text-transparent ${className}`}
+      className={`bg-gradient-to-r from-harbor-400 via-harbor-600 to-forge-600 bg-clip-text text-transparent ${className}`}
     >
       {children}
     </span>

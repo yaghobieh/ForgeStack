@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PACKAGES } from '@constants';
+import { PACKAGES, packageDocsHref } from '@constants';
 import { SIDEBAR_SECTIONS, PACKAGE_BADGES, SHOWCASE_REPOS, SidebarLink } from '@constants/sidebar.const';
 import { usePackageTheme } from '../../context/ThemeContext';
 import { Badge } from '../Badge';
@@ -57,7 +57,7 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
 
   return (
     <aside 
-      className={`forge-stack__sidebar w-56 h-[calc(100vh-4rem)] bg-theme-secondary border-r border-theme-border flex flex-col min-h-0 transition-transform duration-300 ${className} ${
+      className={`forge-stack__sidebar fs-glass-strong w-56 h-[calc(100vh-4rem)] border-r border-theme-border flex flex-col min-h-0 transition-transform duration-300 ${className} ${
         isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}
     >
@@ -77,10 +77,7 @@ export const Sidebar: FC<SidebarProps> = ({ className = '', isOpen = true, onClo
             const badge = PACKAGE_BADGES[pkg.id];
             const isActive = isPackageActive(pkg.id) || activePackage?.id === pkg.id;
             
-            // CLI links directly to /cli, others use /package/docs/quick-start pattern
-            const linkPath = pkg.status === 'ready' 
-              ? (pkg.id === 'cli' ? pkg.docsPath : `${pkg.docsPath}/docs/quick-start`)
-              : '#';
+            const linkPath = packageDocsHref(pkg);
             
             return (
               <Link

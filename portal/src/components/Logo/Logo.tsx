@@ -28,20 +28,14 @@ export const Logo: FC<LogoProps> = ({ size = 'md', className = '', animated = tr
       >
         <defs>
           <linearGradient id="forgeFlame" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#fa8c16">
-              <animate attributeName="stop-color" values="#fa8c16;#eb2f96;#722ed1;#1890ff;#fa8c16" dur="8s" repeatCount="indefinite"/>
-            </stop>
-            <stop offset="50%" stopColor="#eb2f96">
-              <animate attributeName="stop-color" values="#eb2f96;#722ed1;#1890ff;#13c2c2;#eb2f96" dur="8s" repeatCount="indefinite"/>
-            </stop>
-            <stop offset="100%" stopColor="#722ed1">
-              <animate attributeName="stop-color" values="#722ed1;#1890ff;#13c2c2;#52c41a;#722ed1" dur="8s" repeatCount="indefinite"/>
-            </stop>
+            <stop offset="0%" stopColor="#7c3aed"/>
+            <stop offset="50%" stopColor="#a855f7"/>
+            <stop offset="100%" stopColor="#d946ef"/>
           </linearGradient>
           
           <linearGradient id="forgeBase" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2d2d2d"/>
-            <stop offset="100%" stopColor="#1a1a1a"/>
+            <stop offset="0%" stopColor="#171128"/>
+            <stop offset="100%" stopColor="#0e0a1a"/>
           </linearGradient>
           
           <filter id="forgeGlow" x="-50%" y="-50%" width="200%" height="200%">
@@ -73,8 +67,8 @@ export const Logo: FC<LogoProps> = ({ size = 'md', className = '', animated = tr
         </g>
         
         <rect x="35" y="62" width="30" height="8" rx="2" fill="url(#forgeFlame)" opacity="0.9"/>
-        <rect x="30" y="70" width="40" height="10" rx="3" fill="#3d3d3d"/>
-        <rect x="32" y="72" width="36" height="6" rx="2" fill="#2a2a2a"/>
+        <rect x="30" y="70" width="40" height="10" rx="3" fill="#2c2344"/>
+        <rect x="32" y="72" width="36" height="6" rx="2" fill="#1d1733"/>
         
         {!isSmall && (
           <g className="forge-logo__orbs">

@@ -10,9 +10,12 @@ export const AUTHOR = {
   github: 'https://github.com/yaghobieh',
 } as const;
 
+export const CREATOR_TITLE = 'Creator of ForgeStack';
+export const CREATOR_LINK_LABEL = 'Connect on LinkedIn';
+
 export const SOCIAL_LINKS = {
   github: 'https://github.com/yaghobieh/ForgeStack',
-  npm: 'https://www.npmjs.com/org/forgestack',
+  npm: 'https://www.npmjs.com/org/forgedevstack',
   /** Add your Discord invite URL here to enable the link */
   discord: '',
 } as const;

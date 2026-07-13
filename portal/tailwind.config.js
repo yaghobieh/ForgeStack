@@ -8,19 +8,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ForgeStack brand — pink/rose accent (matches Bear UI & portal)
+        // ForgeStack brand — midnight/electric-blue glow palette
         forge: {
-          50: '#fdf2f8',
-          100: '#fce7f3',
-          200: '#fbcfe8',
-          300: '#f9a8d4',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
-          700: '#be185d',
-          800: '#9d174d',
-          900: '#831843',
-          950: '#500724',
+          50: '#eef7ff',
+          100: '#d9edff',
+          200: '#bce0ff',
+          300: '#8ecbff',
+          400: '#59adff',
+          500: '#338fff',
+          600: '#1c70f5',
+          700: '#155be2',
+          800: '#184ab7',
+          900: '#1a4190',
+          950: '#152a58',
+        },
+        // Cyan accent family (was pink/magenta) — keeps existing `pink-*` usages on-palette
+        pink: {
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4',
+          600: '#0891b2',
+          700: '#0e7490',
+          800: '#155e75',
+          900: '#164e63',
+          950: '#083344',
         },
         harbor: {
           50: '#e6f4ff',
@@ -57,7 +71,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {

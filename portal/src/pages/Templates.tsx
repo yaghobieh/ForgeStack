@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 const TEMPLATES = [
-  { id: 'react', name: 'React', description: 'Vite + React 18 + Bear UI, Compass, Synapse. Optional Grid Table & Forge Query.', command: 'npx create-forge my-app --template react' },
-  { id: 'portal', name: 'Portal', description: 'Docs/demos UI — Bear + Compass, Navbar & Footer, theme builder, changelog.', command: 'npx create-forge my-portal --template portal' },
-  { id: 'server', name: 'Server', description: 'Node.js API — Harbor or Express, REST or WebSockets.', command: 'npx create-forge my-api --template server' },
-  { id: 'fullstack', name: 'Full-Stack', description: 'Monorepo with React frontend and Node server.', command: 'npx create-forge my-project --template fullstack' },
+  { id: 'react', name: 'React', description: 'Vite + React 18 + Bear UI, Compass, Synapse. Optional Grid Table & Forge Query.', command: 'npx @forgedevstack/forge-cli my-app --template react' },
+  { id: 'portal', name: 'Portal', description: 'Docs/demos UI — Bear + Compass, Navbar & Footer, theme builder, changelog.', command: 'npx @forgedevstack/forge-cli my-portal --template portal' },
+  { id: 'server', name: 'Server', description: 'Node.js API — Harbor or Express, REST or WebSockets.', command: 'npx @forgedevstack/forge-cli my-api --template server' },
+  { id: 'fullstack', name: 'Full-Stack', description: 'Monorepo with React frontend and Node server.', command: 'npx @forgedevstack/forge-cli my-project --template fullstack' },
 ];
 
 export const Templates: FC = () => (

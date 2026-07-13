@@ -1,9 +1,10 @@
-import { useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { Sidebar } from './components/Sidebar';
-import { MobileNav } from './components/MobileNav';
+import { AppFrame } from './components/AppFrame';
 import { Home } from './pages/Home';
+import { Ecosystem } from './pages/Ecosystem';
+import { AiTooling } from './pages/AiTooling';
+import { Blog } from './pages/Blog';
+import { BlogPost } from './pages/BlogPost';
 import { HarborDocsLayout, DocContent } from './pages/HarborDocs';
 import { TableDocsLayout, TableDocContent } from './pages/TableDocs';
 import { SynapseDocsLayout, SynapseDocContent } from './pages/SynapseDocs';
@@ -23,35 +24,29 @@ import { AuthDocs } from './pages/AuthDocs';
 import RelayDocs from './pages/RelayDocs';
 import RailDocs from './pages/RailDocs';
 import LingoDocs from './pages/LingoDocs';
+import AeroCraftDocs from './pages/AeroCraftDocs';
+import TorchDocs from './pages/TorchDocs';
 import { Privacy } from './pages/Privacy';
 import { BrandGuide } from './pages/BrandGuide';
 import { Templates } from './pages/Templates';
 import { AboutUs } from './pages/AboutUs';
 import { Careers } from './pages/Careers';
+import { BearProvider } from '@forgedevstack/bear';
 import { ThemeProvider } from './context/ThemeContext';
+import { BEAR_THEME_PRIMARY, BEAR_THEME_MODE } from './constants/theme.const';
 
 function App() {
-  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-
-  const handleMobileNavToggle = useCallback(() => {
-    setMobileNavOpen((prev) => !prev);
-  }, []);
-
-  const handleMobileNavClose = useCallback(() => {
-    setMobileNavOpen(false);
-  }, []);
-
   return (
     <BrowserRouter>
+      <BearProvider mode={BEAR_THEME_MODE} theme={{ colors: { primary: BEAR_THEME_PRIMARY } }}>
       <ThemeProvider>
-        <div className="min-h-screen bg-theme-primary text-theme-primary transition-colors duration-200 overflow-x-hidden">
-          <Navbar onMobileMenuToggle={handleMobileNavToggle} />
-          <MobileNav isOpen={isMobileNavOpen} onClose={handleMobileNavClose} />
-          <div className="flex">
-            <Sidebar className="fixed left-0 top-16 bottom-0 z-40 hidden lg:flex" />
-            <main className="flex-1 lg:ml-56 min-w-0">
+        <AppFrame>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/ecosystem" element={<Ecosystem />} />
+                <Route path="/ai" element={<AiTooling />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/harbor" element={<Navigate to="/harbor/docs/quick-start" replace />} />
                 <Route path="/harbor/docs/quick-start" element={<HarborDocsLayout><DocContent page="quick-start" /></HarborDocsLayout>} />
                 <Route path="/harbor/docs/installation" element={<HarborDocsLayout><DocContent page="installation" /></HarborDocsLayout>} />
@@ -244,6 +239,10 @@ function App() {
                 <Route path="/rail/*" element={<Navigate to="/rail" replace />} />
                 <Route path="/lingo" element={<LingoDocs />} />
                 <Route path="/lingo/*" element={<Navigate to="/lingo" replace />} />
+                <Route path="/aerocraft" element={<AeroCraftDocs />} />
+                <Route path="/aerocraft/*" element={<Navigate to="/aerocraft" replace />} />
+                <Route path="/torch" element={<TorchDocs />} />
+                <Route path="/torch/*" element={<Navigate to="/torch" replace />} />
                 <Route path="/showcase" element={<Showcase />} />
                 <Route path="/extensions" element={<Extensions />} />
                 <Route path="/templates" element={<Templates />} />
@@ -255,10 +254,9 @@ function App() {
                 <Route path="/privacy/synapse-devtools" element={<Privacy />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-            </main>
-          </div>
-        </div>
+        </AppFrame>
       </ThemeProvider>
+      </BearProvider>
     </BrowserRouter>
   );
 }

@@ -1,13 +1,17 @@
-export const HARBOR_VERSION = '1.5.0';
-export const VERSION = '1.0.0'; // ForgeStack version
+export const HARBOR_VERSION = '1.6.2';
+export const VERSION = '1.0.6';
 
 export const TITLE = 'ForgeStack';
-export const TAGLINE = 'Modern Developer Tools';
-export const DESCRIPTION = 'A collection of powerful, type-safe developer tools for building better applications. From backend to frontend, ForgeStack has you covered.';
+export const TAGLINE = 'One ecosystem. Every layer of your app.';
+export const DESCRIPTION = 'ForgeStack is an open-source ecosystem of React and Node.js libraries published under @forgedevstack — UI components, data grid, forms, data fetching, state, routing, i18n, and a backend framework, designed to work together or standalone.';
+
+export const NPM_SCOPE = '@forgedevstack';
+export const NPM_ORG_URL = 'https://www.npmjs.com/org/forgedevstack';
+export const HERO_INSTALL_COMMAND = 'npm install @forgedevstack/bear';
 
 export const STATS = [
+  { value: '15+', label: 'Published Packages' },
   { value: 'TypeScript', label: 'First Class Support' },
-  { value: 'Minimal', label: 'Dependencies' },
   { value: 'MIT', label: 'License' },
 ];
 
@@ -33,10 +37,10 @@ export const PACKAGES: ForgePackage[] = [
     description: 'Create and manage ForgeStack projects with npx, pnpm, yarn, or bun. Templates for React, Server, and Full-Stack monorepos.',
     icon: '⚒️',
     status: 'ready',
-    npmPackage: 'create-forge',
+    npmPackage: '@forgedevstack/forge-cli',
     docsPath: '/cli',
     features: [
-      'npx create-forge my-app',
+      'React, Server, and Full-Stack templates',
       'React + Vite template',
       'Server (Express) template',
       'Full-stack monorepo template',
@@ -46,7 +50,7 @@ export const PACKAGES: ForgePackage[] = [
       'npm, pnpm, yarn, bun support',
     ],
     color: '#ec4899',
-    version: '1.0.0-alpha',
+    version: '1.0.5',
   },
   {
     id: 'harbor',
@@ -55,7 +59,7 @@ export const PACKAGES: ForgePackage[] = [
     description: 'Complete backend framework with MongoDB ODM, WebSocket, scheduling, caching, authentication, and more.',
     icon: '⚓',
     status: 'ready',
-    npmPackage: '@forgestack/harbor',
+    npmPackage: '@forgedevstack/harbor',
     docsPath: '/harbor',
     features: [
       'Zero-config server creation',
@@ -70,8 +74,8 @@ export const PACKAGES: ForgePackage[] = [
       'File uploads',
       'i18n support',
     ],
-    version: '1.5.0',
-    color: '#0066cc', // Harbor blue
+    version: '1.6.2',
+    color: '#0066cc',
   },
   {
     id: 'compass',
@@ -93,7 +97,7 @@ export const PACKAGES: ForgePackage[] = [
       'DevTools panel',
     ],
     color: '#3b82f6',
-    version: '1.2.1',
+    version: '1.0.2',
   },
   {
     id: 'form',
@@ -136,7 +140,7 @@ export const PACKAGES: ForgePackage[] = [
       '< 2KB gzipped',
     ],
     color: '#a855f7',
-    version: '1.0.0',
+    version: '1.2.0',
   },
   {
     id: 'query',
@@ -166,12 +170,15 @@ export const PACKAGES: ForgePackage[] = [
     id: 'table',
     name: 'Grid Table',
     title: 'React Data Grid',
-    description: 'Powerful headless data table with sorting, filtering, pagination, sticky columns, and mobile-first responsive design. Built with SCSS for maximum customization.',
+    description: 'Enterprise-grade React data grid with range selection, infinite scroll, row grouping, sorting, filtering, pagination, and sticky columns. Mobile-first, dark/light themes, SCSS styling.',
     icon: '📊',
     status: 'ready',
     npmPackage: '@forgedevstack/grid-table',
     docsPath: '/table',
     features: [
+      'Range selection (Excel-like)',
+      'Infinite scroll',
+      'Row grouping',
       'Sorting & multi-sort',
       'Filtering with operators',
       'Pagination',
@@ -180,14 +187,11 @@ export const PACKAGES: ForgePackage[] = [
       'Drag & drop column reordering',
       'Column resize',
       'Custom cell rendering',
-      'Cell click events',
       'Mobile responsive',
       'Dark/Light theme',
-      'Skeleton loading',
-      'SCSS styling',
     ],
     color: '#52c41a',
-    version: '0.2.0',
+    version: '1.1.1',
   },
   {
     id: 'anvil',
@@ -213,13 +217,13 @@ export const PACKAGES: ForgePackage[] = [
       'Tree-shakeable',
     ],
     color: '#EC4899',
-    version: '1.0.0',
+    version: '1.0.6',
   },
   {
     id: 'bear',
     name: 'Bear',
     title: 'UI Component Library',
-    description: 'Strong, reliable React UI components. Tailwind-powered, zero config required. Theme provider with hooks for full customization.',
+    description: 'The flagship ForgeStack library: 60+ strong, reliable React UI components with light and dark mode. Tailwind-powered, zero config required. Theme provider with hooks for full customization.',
     icon: '🐻',
     status: 'ready',
     npmPackage: '@forgedevstack/bear',
@@ -240,14 +244,14 @@ export const PACKAGES: ForgePackage[] = [
       'Tree-shakeable',
     ],
     color: '#d97706',
-    version: '1.0.7',
+    version: '1.2.4',
   },
   {
     id: 'rail',
     name: 'Rail',
     title: 'React Carousel Engine',
     description:
-      'Modular carousel for React: touch, snap, loop, breakpoints, CSS scroll-snap, 25+ modules, and 7 effects. Use the Rail Portal for docs, demos, API reference, and the interactive Studio.',
+      'Modular carousel for React: touch, snap, loop, breakpoints, CSS scroll-snap, modules, and effects. Documentation, demos, API reference, and Rail Studio live at railjs.com.',
     icon: '🚃',
     status: 'ready',
     npmPackage: '@forgedevstack/rail',
@@ -288,7 +292,7 @@ export const PACKAGES: ForgePackage[] = [
       'Story groups',
     ],
     color: '#b45309',
-    version: '0.1.0',
+    version: '1.0.5',
   },
   {
     id: 'lingo',
@@ -314,6 +318,44 @@ export const PACKAGES: ForgePackage[] = [
     version: '1.0.1',
   },
   {
+    id: 'aerocraft',
+    name: 'AeroCraft',
+    title: 'CSS shortcut utilities',
+    description:
+      'Shortcut-first utilities compiled to plain CSS with PostCSS. Official docs, Studio, Playground, and v1.0.1 component presets at aerocraftjs.com.',
+    icon: '✈️',
+    status: 'ready',
+    npmPackage: '@forgedevstack/aerocraft',
+    docsPath: '/aerocraft',
+    features: [
+      'Layout, spacing, typography, and motion shortcuts',
+      'Design tokens via theme (colors, spacing, radii)',
+      'componentRecipes (circle-button, input-rounded) + customShortcuts',
+      'utilityRecipe metadata for docs and tooling',
+      'Responsive breakpoint prefixes, CLI, React helpers, pre-built CSS',
+    ],
+    color: '#6366f1',
+    version: '1.0.5',
+  },
+  {
+    id: 'torch',
+    name: 'Torch',
+    title: 'Media & ad players',
+    description:
+      'Video, audio, reels, and ad players with React hooks and theming. Documentation and examples on torchjs.com.',
+    icon: '🔦',
+    status: 'ready',
+    npmPackage: '@forgedevstack/torch',
+    docsPath: '/torch',
+    features: [
+      'Configurable players for product surfaces',
+      'React hooks and context',
+      'Stylesheet export from the package',
+    ],
+    color: '#f97316',
+    version: '1.0.0',
+  },
+  {
     id: 'auth',
     name: 'AuthMaster',
     title: 'OAuth Authentication',
@@ -335,7 +377,7 @@ export const PACKAGES: ForgePackage[] = [
       '~5KB gzipped',
     ],
     color: '#8b5cf6',
-    version: '1.0.0-alpha',
+    version: '1.0.0',
   },
   {
     id: 'relay',
@@ -343,7 +385,7 @@ export const PACKAGES: ForgePackage[] = [
     title: 'HTTP Client',
     description: 'Zero-dependency HTTP client built on native fetch. Axios alternative with interceptors, retry, WebSocket, and React hooks.',
     icon: '📡',
-    status: 'ready',
+    status: 'coming-soon',
     npmPackage: '@forgedevstack/relay',
     docsPath: '/relay',
     features: [
@@ -361,6 +403,74 @@ export const PACKAGES: ForgePackage[] = [
     ],
     color: '#6366f1',
     version: '1.0.0',
+  },
+  {
+    id: 'lintforge',
+    name: 'LintForge',
+    title: 'Lint Rules',
+    description: 'ESLint rules and style enforcement for ForgeStack and Bear UI projects. Keep types in type files, constants in const files, and code consistent across the ecosystem.',
+    icon: '✨',
+    status: 'coming-soon',
+    npmPackage: '@forgedevstack/lintforge',
+    docsPath: '/lintforge',
+    features: [
+      'ForgeStack code style rules',
+      'Bear UI conventions',
+      'Types and constants file enforcement',
+      'VS Code extension available today',
+    ],
+    color: '#ec4899',
+  },
+  {
+    id: 'socket',
+    name: 'Forge Socket',
+    title: 'WebSocket Client',
+    description: 'Type-safe WebSocket client with auto-reconnect, rooms, and React hooks. Pairs with Harbor WebSocket on the server.',
+    icon: '🔌',
+    status: 'coming-soon',
+    npmPackage: '@forgedevstack/forge-socket',
+    docsPath: '/socket',
+    features: [
+      'Auto-reconnect with backoff',
+      'Rooms and channels',
+      'React hooks (useSocket)',
+      'Works with Harbor WebSocket',
+    ],
+    color: '#14b8a6',
+  },
+  {
+    id: 'ai',
+    name: 'Forge AI',
+    title: 'RAG Toolkit',
+    description: 'Retrieval-augmented generation toolkit: embeddings, vector search, and prompt pipelines for Node.js apps.',
+    icon: '🤖',
+    status: 'coming-soon',
+    npmPackage: '@forgedevstack/forge-ai',
+    docsPath: '/ai',
+    features: [
+      'Embeddings and vector search',
+      'Prompt pipelines',
+      'Streaming responses',
+      'Harbor integration',
+    ],
+    color: '#22d3ee',
+  },
+  {
+    id: 'mcp',
+    name: 'Forge MCP',
+    title: 'MCP Server Helper',
+    description: 'Build Model Context Protocol servers with typed tools, resources, and prompts in a few lines of TypeScript.',
+    icon: '🛠️',
+    status: 'coming-soon',
+    npmPackage: '@forgedevstack/forge-mcp',
+    docsPath: '/mcp',
+    features: [
+      'Typed tool definitions',
+      'Resources and prompts',
+      'stdio and HTTP transports',
+      'Zero-config setup',
+    ],
+    color: '#f59e0b',
   },
 ];
 
@@ -415,9 +525,9 @@ export const EXTENSIONS: ForgeExtension[] = [
 
 export const GITHUB_URL = 'https://github.com/yaghobieh/ForgeStack';
 
-export const QUICK_START_CODE = `import { createServer, connect, router, route } from '@forgestack/harbor';
-import { Schema, model } from '@forgestack/harbor/database';
-import { JWT, jwtAuth } from '@forgestack/harbor/auth';
+export const QUICK_START_CODE = `import { createServer, connect, router, route } from '@forgedevstack/harbor';
+import { Schema, model } from '@forgedevstack/harbor/database';
+import { JWT, jwtAuth } from '@forgedevstack/harbor/auth';
 
 // Connect to MongoDB
 await connect('mongodb://localhost:27017/myapp');

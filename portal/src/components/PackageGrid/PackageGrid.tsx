@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { PACKAGES } from '@/constants/content.const';
+import { packageDocsHref } from '@/constants';
 import type { PackageCardProps } from './types';
 
 const StatusBadge: FC<{ status: PackageCardProps['status'] }> = ({ status }) => {
@@ -32,6 +33,7 @@ const PackageCard: FC<PackageCardProps> = ({
   status,
   features,
   color,
+  docsPath,
 }) => {
   const isReady = status === 'ready';
 
@@ -68,7 +70,7 @@ const PackageCard: FC<PackageCardProps> = ({
 
       {isReady ? (
         <Link
-          to={`/${id}/docs/quick-start`}
+          to={packageDocsHref({ id, docsPath, status })}
           className="inline-flex items-center gap-2 text-sm font-medium transition-colors"
           style={{ color }}
         >

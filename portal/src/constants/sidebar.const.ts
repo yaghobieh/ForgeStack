@@ -20,6 +20,8 @@ export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | 
   relay: 'NEW',
   rail: 'NEW',
   lingo: 'NEW',
+  aerocraft: 'NEW',
+  torch: 'NEW',
   harbor: undefined,
   compass: undefined,
   form: undefined,
@@ -108,7 +110,7 @@ export const SIDEBAR_SECTIONS: SidebarSection[] = [
     links: [
       { id: 'templates', label: 'Templates', iconName: 'package' },
       { id: 'github-org', label: 'GitHub', iconName: 'github', href: 'https://github.com/yaghobieh', external: true },
-      { id: 'npm', label: 'npm', iconName: 'npm', href: 'https://www.npmjs.com/org/forgestack', external: true },
+      { id: 'npm', label: 'npm', iconName: 'npm', href: 'https://www.npmjs.com/org/forgedevstack', external: true },
       { id: 'brand', label: 'Brand Guide', iconName: 'palette' },
     ],
   },

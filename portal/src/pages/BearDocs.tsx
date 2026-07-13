@@ -51,7 +51,7 @@ export const BearIcon: FC<{ size?: number }> = ({ size = 24 }) => (
 export const BearDocsNav: FC = () => {
   const location = useLocation();
   const { bear } = useNpmVersions();
-  const version = bear ?? '1.0.6';
+  const version = bear ?? '1.2.4';
 
   return (
     <nav className="fixed top-20 w-56 shrink-0 hidden xl:block" style={{ height: 'calc(100vh - 5rem)' }}>
@@ -119,7 +119,7 @@ export const BearDocsNav: FC = () => {
 // Layout wrapper
 export const BearDocsLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   const { bear } = useNpmVersions();
-  const version = bear ?? '1.0.6';
+  const version = bear ?? '1.2.4';
 
   return (
     <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 px-4 sm:px-6 py-4 sm:py-8 max-w-7xl mx-auto">

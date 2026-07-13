@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      // Anvil (a Bear dependency) statically imports 'vue' for its Vue
+      // composables entry; the portal is React-only, so stub it out.
+      vue: resolve(__dirname, 'src/shims/vue-stub.ts'),
       '@': resolve(__dirname, 'src'),
       '@components': resolve(__dirname, 'src/components'),
       '@constants': resolve(__dirname, 'src/constants'),

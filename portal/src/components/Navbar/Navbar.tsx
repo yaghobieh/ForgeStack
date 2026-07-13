@@ -1,26 +1,40 @@
-import { FC } from 'react';
+import { FC, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo, LogoText } from '../Logo';
-import { ThemeToggle } from '../ThemeToggle';
+import { AppMenuDrawer } from '../AppMenuDrawer';
+import { CodeExamplesDrawer } from '../CodeExamplesDrawer';
 import { SOCIAL_LINKS } from '@/constants/author.const';
+import {
+  MENU_ARIA_LABEL,
+  CODE_BUTTON_LABEL,
+  CODE_BUTTON_ARIA_LABEL,
+} from '@/constants/menu.const';
 
 interface NavbarProps {
   onMobileMenuToggle?: () => void;
 }
 
 export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isCodeOpen, setCodeOpen] = useState(false);
+
+  const handleMenuOpen = useCallback(() => setMenuOpen(true), []);
+  const handleMenuClose = useCallback(() => setMenuOpen(false), []);
+  const handleCodeOpen = useCallback(() => setCodeOpen(true), []);
+  const handleCodeClose = useCallback(() => setCodeOpen(false), []);
+
   return (
-    <nav className="sticky top-0 z-50 bg-theme-secondary/95 backdrop-blur-sm border-b border-theme-border">
+    <nav className="fs-glass-strong sticky top-0 z-50 border-b border-theme-border">
       <div className="px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={onMobileMenuToggle}
               className="lg:hidden p-2 -ml-2 rounded-lg text-theme-muted hover:text-theme-primary hover:bg-theme-tertiary transition-colors"
-              aria-label="Open menu"
+              aria-label="Open libraries navigation"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h10M4 18h10" />
               </svg>
             </button>
 
@@ -30,6 +44,30 @@ export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
                 <LogoText />
               </span>
             </Link>
+
+            <button
+              onClick={handleMenuOpen}
+              className="p-2 rounded-lg text-theme-muted hover:text-theme-primary hover:bg-theme-tertiary transition-colors"
+              aria-label={MENU_ARIA_LABEL}
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+
+            <button
+              onClick={handleCodeOpen}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-theme-muted hover:text-theme-primary hover:bg-theme-tertiary transition-colors text-sm font-semibold"
+              aria-label={CODE_BUTTON_ARIA_LABEL}
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+              </svg>
+              <span className="hidden sm:inline">{CODE_BUTTON_LABEL}</span>
+            </button>
+
+            <AppMenuDrawer isOpen={isMenuOpen} onClose={handleMenuClose} />
+            <CodeExamplesDrawer isOpen={isCodeOpen} onClose={handleCodeClose} />
           </div>
 
           <div className="flex items-center gap-1">
@@ -81,15 +119,11 @@ export const Navbar: FC<NavbarProps> = ({ onMobileMenuToggle }) => {
               </svg>
             </a>
             
-            <div className="hidden sm:block w-px h-5 bg-theme-border mx-1" />
-            
-            <ThemeToggle />
-            
             <Link
-              to="/harbor/docs/quick-start"
+              to="/bear"
               className="hidden md:inline-flex ml-2 px-4 py-2 rounded-lg font-mono text-xs font-medium bg-theme-tertiary text-theme-primary border border-theme-border hover:border-forge-500/50 hover:text-forge-400 transition-all"
             >
-              $ npm run dev
+              $ Get started
             </Link>
           </div>
         </div>

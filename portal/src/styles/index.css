@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,11 +11,16 @@
   }
 
   body {
-    font-family: 'IBM Plex Sans', ui-monospace, 'JetBrains Mono', 'SF Mono', Monaco, Consolas, monospace;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.01em;
-    font-weight: 450;
+    font-weight: 400;
+    background-color: var(--fs-bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, var(--fs-glow-violet), transparent),
+      radial-gradient(ellipse 50% 40% at 95% 25%, var(--fs-glow-magenta), transparent);
+    background-attachment: fixed;
   }
 
   code, pre, .font-mono {
@@ -23,54 +28,51 @@
     font-weight: 500;
   }
 
-  /* Dark mode (default) — warm neutral base, pink accent */
-  html.dark {
-    --bg-primary: #0c0a0d;
-    --bg-secondary: #141117;
-    --bg-tertiary: #1c1820;
-    --bg-card: #16131a;
-    --text-primary: #faf5f8;
-    --text-secondary: #c4b5c4;
-    --text-muted: #7d6b7d;
-    --border-color: rgba(255, 255, 255, 0.07);
-    --code-bg: #0f0d11;
-    --accent-primary: #ec4899;
-    --accent-secondary: #c026d3;
-    --accent-blue: #3b82f6;
+  /* ForgeStack design tokens — dark glass, midnight/electric-blue glow.
+     Legacy variable names (--fs-accent-purple etc.) are kept so existing
+     rules keep working; their values now map into the blue family. */
+  :root,
+  html.dark,
+  html.light {
+    --fs-bg: #050914;
+    --fs-bg-elevated: #091124;
+    --fs-bg-raised: #101c38;
+    --fs-glass: rgba(255, 255, 255, 0.04);
+    --fs-glass-strong: rgba(8, 15, 32, 0.72);
+    --fs-glass-border: rgba(255, 255, 255, 0.09);
+    --fs-glass-highlight: rgba(255, 255, 255, 0.07);
+    --fs-accent-purple: #338fff;
+    --fs-accent-magenta: #22d3ee;
+    --fs-accent-violet: #4f6bf5;
+    --fs-accent-blue: #3b82f6;
+    --fs-accent-red: #ef4444;
+    --fs-glow-purple: rgba(51, 143, 255, 0.28);
+    --fs-glow-magenta: rgba(34, 211, 238, 0.2);
+    --fs-glow-violet: rgba(79, 107, 245, 0.22);
+    --fs-glow-blue: rgba(59, 130, 246, 0.18);
+    --fs-glow-red: rgba(239, 68, 68, 0.16);
+
+    --bg-primary: var(--fs-bg);
+    --bg-secondary: var(--fs-bg-elevated);
+    --bg-tertiary: var(--fs-bg-raised);
+    --bg-card: var(--fs-glass);
+    --text-primary: #f2f5fa;
+    --text-secondary: #c4cede;
+    --text-muted: #8a97b3;
+    --border-color: var(--fs-glass-border);
+    --code-bg: #070d1c;
+    --accent-primary: var(--fs-accent-purple);
+    --accent-secondary: var(--fs-accent-magenta);
+    --accent-blue: var(--fs-accent-blue);
     --accent-cyan: #06b6d4;
     --accent-green: #22c55e;
     --accent-orange: #f97316;
     --accent-yellow: #eab308;
-    --scrollbar-track: #141117;
-    --scrollbar-thumb: #2d2633;
-    --scrollbar-thumb-hover: #3f3647;
-    --glow-primary: rgba(236, 72, 153, 0.18);
-    --glow-secondary: rgba(192, 38, 211, 0.12);
-  }
-
-  /* Light mode — clean, warm white */
-  html.light {
-    --bg-primary: #fefbfc;
-    --bg-secondary: #faf5f8;
-    --bg-tertiary: #f3eef2;
-    --bg-card: #ffffff;
-    --text-primary: #1a1218;
-    --text-secondary: #4a3d47;
-    --text-muted: #8b7a85;
-    --border-color: rgba(0, 0, 0, 0.06);
-    --code-bg: #f8f4f7;
-    --accent-primary: #c026d3;
-    --accent-secondary: #db2777;
-    --accent-blue: #2563eb;
-    --accent-cyan: #0891b2;
-    --accent-green: #16a34a;
-    --accent-orange: #ea580c;
-    --accent-yellow: #ca8a04;
-    --scrollbar-track: #f3eef2;
-    --scrollbar-thumb: #d4c9d1;
-    --scrollbar-thumb-hover: #8b7a85;
-    --glow-primary: rgba(219, 39, 119, 0.12);
-    --glow-secondary: rgba(192, 38, 211, 0.08);
+    --scrollbar-track: #091124;
+    --scrollbar-thumb: #22314f;
+    --scrollbar-thumb-hover: #31456e;
+    --glow-primary: var(--fs-glow-purple);
+    --glow-secondary: var(--fs-glow-magenta);
   }
 
   /* Theme classes */
@@ -115,15 +117,15 @@
   }
 
   /* Enhanced syntax colors */
-  .syntax-keyword { color: #f472b6; }
+  .syntax-keyword { color: #7dd3fc; }
   .syntax-string { color: #4ade80; }
   .syntax-number { color: #60a5fa; }
   .syntax-function { color: #fbbf24; }
   .syntax-comment { color: #6b7280; font-style: italic; }
   .syntax-type { color: #22d3ee; }
   .syntax-variable { color: var(--text-primary); }
-  .syntax-operator { color: #f472b6; }
-  .syntax-property { color: #a78bfa; }
+  .syntax-operator { color: #7dd3fc; }
+  .syntax-property { color: #93b4fd; }
 
   /* Selection styling */
   ::selection {
@@ -139,12 +141,74 @@
 }
 
 @layer components {
+  /* Glass surfaces */
+  .fs-glass {
+    background: var(--fs-glass);
+    border: 1px solid var(--fs-glass-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 1px 0 var(--fs-glass-highlight),
+      0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .fs-glass-strong {
+    background: var(--fs-glass-strong);
+    border: 1px solid var(--fs-glass-border);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: inset 0 1px 0 var(--fs-glass-highlight);
+  }
+
+  .fs-tile {
+    position: relative;
+    background: var(--fs-glass);
+    border: 1px solid var(--fs-glass-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 1rem;
+    box-shadow:
+      inset 0 1px 0 var(--fs-glass-highlight),
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 0 32px -12px var(--tile-glow, var(--fs-glow-purple));
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .fs-tile:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--tile-color, var(--fs-accent-purple)) 45%, transparent);
+    box-shadow:
+      inset 0 1px 0 var(--fs-glass-highlight),
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      0 0 48px -8px var(--tile-glow, var(--fs-glow-purple));
+  }
+
+  .fs-tile-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.85rem;
+    font-size: 1.5rem;
+    background: color-mix(in srgb, var(--tile-color, var(--fs-accent-purple)) 16%, rgba(255, 255, 255, 0.03));
+    border: 1px solid color-mix(in srgb, var(--tile-color, var(--fs-accent-purple)) 35%, transparent);
+    box-shadow: 0 0 20px -4px var(--tile-glow, var(--fs-glow-purple));
+  }
+
+  .fs-glow-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
   /* Buttons */
   .forge-button {
     @apply px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200;
-    @apply bg-gradient-to-r from-forge-600 to-pink-600 text-white;
-    @apply hover:from-forge-500 hover:to-pink-500;
-    @apply shadow-lg shadow-forge-600/25 hover:shadow-xl hover:shadow-forge-500/30;
+    @apply bg-gradient-to-r from-blue-600 to-cyan-600 text-white;
+    @apply hover:from-blue-500 hover:to-cyan-500;
+    @apply shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-500/30;
     @apply active:scale-[0.98];
   }
 
@@ -163,9 +227,13 @@
 
   /* Cards */
   .forge-card {
-    @apply bg-theme-card border border-theme rounded-xl p-5;
+    @apply border border-theme rounded-xl p-5;
     @apply transition-all duration-300;
     @apply hover:border-forge-500/30 hover:shadow-lg hover:shadow-forge-500/5;
+    background: var(--fs-glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: inset 0 1px 0 var(--fs-glass-highlight);
   }
 
   .forge-card-interactive {
@@ -188,7 +256,7 @@
 
   /* Gradient text utility */
   .gradient-text {
-    @apply bg-gradient-to-r from-forge-500 via-pink-500 to-purple-500;
+    @apply bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400;
     @apply bg-clip-text text-transparent;
     background-size: 200% 200%;
     animation: gradientFlow 8s ease infinite;
@@ -288,6 +356,367 @@
     font-weight: 450;
     letter-spacing: -0.01em;
   }
+
+  /* ── Full-viewport webOS launcher ─────────────────────
+     Base launcher/ribbon shell classes now live in aerocraft.config.js
+     (custom shortcuts, emitted via src/styles/aerocraft.css).
+     Only state-dependent rules and media queries remain here. */
+  @media (min-width: 640px) {
+    .fs-launcher {
+      --fs-navbar-h: 4rem;
+    }
+  }
+
+  .fs-ribbon .rail-wrapper {
+    align-items: stretch;
+  }
+
+  .fs-ribbon .rail-slide {
+    width: auto;
+    height: var(--fs-slice-h);
+  }
+
+  .fs-ribbon .rail-nav-prev,
+  .fs-ribbon .rail-nav-next {
+    background: rgba(14, 10, 26, 0.65);
+    border: 1px solid var(--fs-glass-border);
+    box-shadow: 0 0 24px -6px var(--fs-glow-purple);
+  }
+
+  .fs-ribbon .rail-nav-prev:hover,
+  .fs-ribbon .rail-nav-next:hover {
+    background: rgba(30, 20, 52, 0.85);
+  }
+
+  .fs-slice {
+    position: relative;
+    width: var(--fs-slice-w);
+    height: 100%;
+    border-radius: 1.1rem;
+    overflow: hidden;
+    transform: skewX(var(--fs-slice-skew));
+    background:
+      linear-gradient(165deg, var(--slice-from) 0%, var(--slice-to) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -18px 40px rgba(0, 0, 0, 0.35),
+      0 10px 30px rgba(0, 0, 0, 0.45);
+    transition:
+      width 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+    will-change: width;
+  }
+
+  .fs-slice:hover,
+  .fs-slice:focus-within {
+    width: var(--fs-slice-w-open);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -18px 40px rgba(0, 0, 0, 0.3),
+      0 18px 50px rgba(0, 0, 0, 0.55),
+      0 0 56px -6px var(--slice-glow);
+    z-index: 5;
+  }
+
+  .fs-slice__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: skewX(calc(var(--fs-slice-skew) * -1));
+  }
+
+  /* Liquid-glass sheen */
+  .fs-slice__sheen {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(120% 65% at 15% -10%, rgba(255, 255, 255, 0.34) 0%, transparent 55%),
+      radial-gradient(90% 50% at 90% 115%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, transparent 30%);
+    mix-blend-mode: soft-light;
+  }
+
+  .fs-slice__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .fs-slice__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  }
+
+  .fs-slice__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    min-height: 1.4rem;
+  }
+
+  .fs-slice__badge {
+    background: rgba(8, 6, 15, 0.45) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(6px);
+    white-space: nowrap;
+  }
+
+  .fs-slice__downloads {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(8, 6, 15, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 9999px;
+    padding: 0.1rem 0.5rem;
+    backdrop-filter: blur(6px);
+    white-space: nowrap;
+  }
+
+  .fs-slice__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  .fs-slice__name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+    white-space: nowrap;
+  }
+
+  .fs-slice__pkg {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fs-slice__tagline {
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.92);
+    width: calc(var(--fs-slice-w-open) - 2.6rem);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.28s ease 0.08s, transform 0.28s ease 0.08s;
+    pointer-events: none;
+  }
+
+  .fs-slice__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.28s ease 0.14s, transform 0.28s ease 0.14s;
+    pointer-events: none;
+  }
+
+  .fs-slice:hover .fs-slice__tagline,
+  .fs-slice:focus-within .fs-slice__tagline,
+  .fs-slice:hover .fs-slice__actions,
+  .fs-slice:focus-within .fs-slice__actions {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .fs-slice__btn {
+    background: rgba(8, 6, 15, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+    backdrop-filter: blur(8px);
+  }
+
+  .fs-slice__btn:hover {
+    background: rgba(8, 6, 15, 0.75) !important;
+  }
+
+  .fs-slice__link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .fs-slice__link:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+    @media (max-width: 640px) {
+    .fs-ribbon {
+      --fs-slice-w: 168px;
+      --fs-slice-w-open: 300px;
+      --fs-slice-h: min(280px, 38dvh);
+    }
+  }
+
+  /* ── Hamburger menu drawer ──────────────────────────── */
+  .fs-menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+
+  .fs-menu__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.65rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-align: left;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .fs-menu__item:hover {
+    background: var(--fs-glass);
+    color: var(--text-primary);
+  }
+
+  .fs-menu__item--disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .fs-menu__item--disabled:hover {
+    background: transparent;
+    color: var(--text-secondary);
+  }
+
+  .fs-menu__hint {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  .fs-menu__footer {
+    margin-top: 1rem;
+    padding: 0.9rem 0.9rem 0.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* Code examples inside the top-bar drawer — tighten the section paddings */
+  .fs-code-drawer section {
+    padding: 0.5rem 0 1.5rem;
+  }
+
+  /* ── Blog article markdown ───────────────────────────── */
+  .fs-md {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .fs-md__h2 {
+    margin: 2.25rem 0 0.9rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .fs-md__h3 {
+    margin: 1.75rem 0 0.7rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .fs-md__h4 {
+    margin: 1.4rem 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .fs-md__p {
+    margin-bottom: 1rem;
+  }
+
+  .fs-md__list {
+    margin: 0 0 1rem 1.4rem;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .fs-md__list--ordered {
+    list-style: decimal;
+  }
+
+  .fs-md__quote {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1.1rem;
+    border-left: 3px solid var(--accent-primary);
+    background: var(--fs-glass);
+    border-radius: 0 0.75rem 0.75rem 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .fs-md__hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .fs-md__code {
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.375rem;
+    background: var(--fs-glass);
+    border: 1px solid var(--border-color);
+    color: var(--accent-secondary);
+    font-size: 0.86em;
+  }
+
+  .fs-md__codeblock {
+    margin: 1.25rem 0;
+  }
+
+  .fs-md__link {
+    color: var(--fs-accent-purple);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--fs-glow-purple);
+  }
+
+  .fs-md__link:hover {
+    color: var(--fs-accent-magenta);
+  }
 }
 
 @layer utilities {
@@ -318,4 +747,11 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Bear's compiled CSS is missing the arbitrary z-[11000] utility used by
+   Drawer's overlay root — without it the drawer paints under the sticky
+   navbar and launcher. Kept outside @layer so Tailwind doesn't purge it. */
+.bear-fixed.bear-z-\[11000\] {
+  z-index: 11000;
 }

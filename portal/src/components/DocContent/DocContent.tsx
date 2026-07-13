@@ -15,9 +15,9 @@ interface DocPage {
 const DOCS: Record<string, DocPage> = {
   'quick-start': {
     title: 'Quick Start',
-    content: `Get up and running with @forgestack/harbor in minutes.`,
-    code: `import { createServer, router, GET, POST } from '@forgestack/harbor';
-import { connect, Schema, model } from '@forgestack/harbor/database';
+    content: `Get up and running with @forgedevstack/harbor in minutes.`,
+    code: `import { createServer, router, GET, POST } from '@forgedevstack/harbor';
+import { connect, Schema, model } from '@forgedevstack/harbor/database';
 
 // Connect to MongoDB
 await connect('mongodb://localhost:27017/myapp');
@@ -62,15 +62,15 @@ console.log('Server running at http://localhost:3000');`,
 
   'installation': {
     title: 'Installation',
-    content: `Install @forgestack/harbor using your preferred package manager.`,
+    content: `Install @forgedevstack/harbor using your preferred package manager.`,
     code: `# npm
-npm install @forgestack/harbor
+npm install @forgedevstack/harbor
 
 # pnpm
-pnpm add @forgestack/harbor
+pnpm add @forgedevstack/harbor
 
 # yarn
-yarn add @forgestack/harbor`,
+yarn add @forgedevstack/harbor`,
     language: 'bash',
   },
 
@@ -78,13 +78,13 @@ yarn add @forgestack/harbor`,
     title: 'Project Templates',
     content: `Use the Harbor CLI to scaffold a complete project with best practices.`,
     code: `# Create a new project
-npx @forgestack/harbor create my-app
+npx @forgedevstack/harbor create my-app
 
 # Initialize in existing project
-npx @forgestack/harbor init
+npx @forgedevstack/harbor init
 
 # Initialize with template
-npx @forgestack/harbor init --template
+npx @forgedevstack/harbor init --template
 
 # Project structure created:
 #
@@ -114,7 +114,7 @@ npx @forgestack/harbor init --template
   'server': {
     title: 'Creating a Server',
     content: `The createServer function creates a configured Express server with sensible defaults. It supports CORS, body parsing, error handling, and more out of the box.`,
-    code: `import { createServer } from '@forgestack/harbor';
+    code: `import { createServer } from '@forgedevstack/harbor';
 
 // Basic server
 const server = createServer({ port: 3000 });
@@ -155,7 +155,7 @@ await server.restart();`,
   'routes': {
     title: 'Routes',
     content: `Define routes without importing Express directly. Harbor provides helper functions for all HTTP methods with built-in validation, pre/post hooks, and error handling.`,
-    code: `import { router, GET, POST, PUT, PATCH, DELETE } from '@forgestack/harbor';
+    code: `import { router, GET, POST, PUT, PATCH, DELETE } from '@forgedevstack/harbor';
 
 // Create a route group
 const userRoutes = router('/api/users', [
@@ -254,7 +254,7 @@ server.use(userRoutes);`,
   'database': {
     title: 'Database (MongoDB ODM)',
     content: `Harbor includes a full MongoDB ODM as a complete Mongoose replacement. It provides Schema, Model, Query with all methods, connection management, hooks, and more.`,
-    code: `import { connect, Schema, model, Types } from '@forgestack/harbor/database';
+    code: `import { connect, Schema, model, Types } from '@forgedevstack/harbor/database';
 
 // Connect to MongoDB
 await connect('mongodb://localhost:27017/myapp', {
@@ -323,7 +323,7 @@ const stats = await User.aggregate([
   'validation': {
     title: 'Request Validation',
     content: `Built-in validation for request params, query, body, and headers. Validation errors are automatically handled and returned as JSON.`,
-    code: `import { router, POST, GET } from '@forgestack/harbor';
+    code: `import { router, POST, GET } from '@forgedevstack/harbor';
 
 const routes = router('/api', [
   // Body validation
@@ -387,8 +387,8 @@ const routes = router('/api', [
   'websocket': {
     title: 'WebSocket',
     content: `Real-time communication with WebSocket support. Includes rooms, broadcasting, heartbeat, and client tracking.`,
-    code: `import { createServer } from '@forgestack/harbor';
-import { createWebSocketServer } from '@forgestack/harbor/websocket';
+    code: `import { createServer } from '@forgedevstack/harbor';
+import { createWebSocketServer } from '@forgedevstack/harbor/websocket';
 
 const server = createServer({ port: 3000 });
 
@@ -441,7 +441,7 @@ const roomClients = wss.getRoomClients('chat:general');`,
   'scheduler': {
     title: 'Job Scheduler',
     content: `Cron-like job scheduling for background tasks. Supports cron expressions, intervals, and one-time schedules.`,
-    code: `import { createScheduler } from '@forgestack/harbor/scheduler';
+    code: `import { createScheduler } from '@forgedevstack/harbor/scheduler';
 
 const scheduler = createScheduler();
 
@@ -492,8 +492,8 @@ const jobs = scheduler.listJobs();`,
   'rate-limit': {
     title: 'Rate Limiting',
     content: `Protect your API with rate limiting. Supports memory and Redis stores for distributed systems.`,
-    code: `import { createServer, router, GET } from '@forgestack/harbor';
-import { rateLimit } from '@forgestack/harbor/middleware';
+    code: `import { createServer, router, GET } from '@forgedevstack/harbor';
+import { rateLimit } from '@forgedevstack/harbor/middleware';
 
 const server = createServer({ port: 3000 });
 
@@ -523,7 +523,7 @@ const authRoutes = router('/api/auth', [
 });
 
 // Redis store for distributed rate limiting
-import { RedisRateLimitStore } from '@forgestack/harbor/middleware';
+import { RedisRateLimitStore } from '@forgedevstack/harbor/middleware';
 
 server.use(rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -538,8 +538,8 @@ server.use(rateLimit({
   'health': {
     title: 'Health Checks',
     content: `Built-in health check endpoint with database, Redis, memory, and disk checks. Perfect for Kubernetes and load balancers.`,
-    code: `import { createServer } from '@forgestack/harbor';
-import { healthCheck } from '@forgestack/harbor/middleware';
+    code: `import { createServer } from '@forgedevstack/harbor';
+import { healthCheck } from '@forgedevstack/harbor/middleware';
 
 const server = createServer({ port: 3000 });
 
@@ -616,8 +616,8 @@ server.use(healthCheck({
   'metrics': {
     title: 'Prometheus Metrics',
     content: `Prometheus-compatible metrics endpoint for monitoring. Automatically tracks request duration, count, and size.`,
-    code: `import { createServer } from '@forgestack/harbor';
-import { metrics } from '@forgestack/harbor/middleware';
+    code: `import { createServer } from '@forgedevstack/harbor';
+import { metrics } from '@forgedevstack/harbor/middleware';
 
 const server = createServer({ port: 3000 });
 
@@ -639,7 +639,7 @@ server.use(metrics({
 // - harbor_active_connections (gauge)
 
 // Custom metrics
-import { Counter, Gauge, Histogram } from '@forgestack/harbor/middleware';
+import { Counter, Gauge, Histogram } from '@forgedevstack/harbor/middleware';
 
 const ordersCounter = new Counter({
   name: 'orders_total',
@@ -667,8 +667,8 @@ responseTime.observe(0.25);`,
   'upload': {
     title: 'File Uploads',
     content: `Handle file uploads with disk or memory storage. Supports file type validation, size limits, and custom filenames.`,
-    code: `import { createServer, router, POST } from '@forgestack/harbor';
-import { upload } from '@forgestack/harbor/middleware';
+    code: `import { createServer, router, POST } from '@forgedevstack/harbor';
+import { upload } from '@forgedevstack/harbor/middleware';
 
 const server = createServer({ port: 3000 });
 
@@ -742,8 +742,8 @@ const fieldsRoutes = router('/api', [
   'cache': {
     title: 'Caching',
     content: `Memory and Redis caching for improved performance. Includes middleware for response caching and a CacheManager for custom caching.`,
-    code: `import { createServer, router, GET } from '@forgestack/harbor';
-import { cache, createCacheManager, MemoryCacheStore, RedisCacheStore } from '@forgestack/harbor/cache';
+    code: `import { createServer, router, GET } from '@forgedevstack/harbor';
+import { cache, createCacheManager, MemoryCacheStore, RedisCacheStore } from '@forgedevstack/harbor/cache';
 
 // Memory cache (default)
 const memoryCache = createCacheManager();
@@ -802,12 +802,12 @@ await memoryCache.invalidateTag('products'); // Invalidate all products`,
   'auth': {
     title: 'Authentication',
     content: `Complete authentication system with JWT, API Keys, RBAC, and request signing.`,
-    code: `import { createServer, router, GET, POST } from '@forgestack/harbor';
+    code: `import { createServer, router, GET, POST } from '@forgedevstack/harbor';
 import { 
   jwtAuth, createJWT, verifyJWT,
   apiKeyAuth, hasRole, hasPermission,
   requestSignatureAuth, hashPassword, comparePassword
-} from '@forgestack/harbor/auth';
+} from '@forgedevstack/harbor/auth';
 
 const server = createServer({ port: 3000 });
 
@@ -888,7 +888,7 @@ const signedRoutes = router('/api/webhooks', [
   'logger': {
     title: 'HTTP Logger',
     content: `Morgan-like HTTP request logger with customizable formats and colors.`,
-    code: `import { createServer, httpLogger } from '@forgestack/harbor';
+    code: `import { createServer, httpLogger } from '@forgedevstack/harbor';
 
 const server = createServer({ port: 3000 });
 
@@ -928,7 +928,7 @@ server.use(httpLogger({
   'docker': {
     title: 'Docker Management',
     content: `Programmatic Docker container and compose management.`,
-    code: `import { DockerManager, createDockerManager } from '@forgestack/harbor';
+    code: `import { DockerManager, createDockerManager } from '@forgedevstack/harbor';
 
 const docker = createDockerManager();
 
@@ -973,7 +973,7 @@ await docker.compose.logs({
   'i18n': {
     title: 'Internationalization',
     content: `Built-in i18n support for multi-language applications with interpolation and pluralization.`,
-    code: `import { t, setLocale, getLocale, registerLocale, addTranslations } from '@forgestack/harbor';
+    code: `import { t, setLocale, getLocale, registerLocale, addTranslations } from '@forgedevstack/harbor';
 
 // Register a locale with translations
 registerLocale('es', {

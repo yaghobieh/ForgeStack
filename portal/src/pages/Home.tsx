@@ -1,19 +1,18 @@
 import { FC } from 'react';
-import { Hero } from '../components/Hero';
-import { WhatWeCanDo } from '../components/WhatWeCanDo';
-import { PackagesTable } from '../components/PackagesTable';
-import { Playground } from '../components/Playground';
-import { Footer } from '../components/Footer';
+import { Launcher } from '../components/Launcher';
+import { ClassicHome } from '../components/ClassicHome';
+import { useViewMode, useHashScroll, usePageMeta } from '../hooks';
+import { VIEW_MODE_CLASSIC } from '@constants/viewMode.const';
+import { HOME_PATH } from '@constants/menu.const';
 
 export const Home: FC = () => {
-  return (
-    <>
-      <Hero />
-      <WhatWeCanDo />
-      <PackagesTable />
-      <Playground />
-      <Footer />
-    </>
-  );
-};
+  const viewMode = useViewMode();
+  useHashScroll();
+  usePageMeta({ path: HOME_PATH });
 
+  if (viewMode === VIEW_MODE_CLASSIC) {
+    return <ClassicHome />;
+  }
+
+  return <Launcher />;
+};

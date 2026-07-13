@@ -1,16 +1,12 @@
-import { FC, useState } from 'react';
+import { FC, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { PACKAGES } from '@/constants/content.const';
+import { packageDocsHref } from '@/constants';
 import { usePackageTheme } from '../../context/ThemeContext';
 import { useNpmVersions } from '../../hooks';
 import type { PackagesTableProps } from './types';
 
-const NPM_ID_TO_PACKAGE: Record<string, string> = {
-  'grid-table': 'table',
-  'anvil': 'anvil',
-  'bear': 'bear',
-  'synapse': 'synapse',
-};
+const NPM_PACKAGE_URL = 'https://www.npmjs.com/package';
 
 const STATUS_LABELS = {
   'ready': 'Ready',
@@ -19,396 +15,103 @@ const STATUS_LABELS = {
 } as const;
 
 const STATUS_STYLES = {
-  'ready': 'bg-green-500/20 text-green-400 border-green-500/30',
-  'coming-soon': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-  'planned': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+  'ready': 'bg-green-500/15 text-green-400 border-green-500/25',
+  'coming-soon': 'bg-yellow-500/15 text-yellow-400 border-yellow-500/25',
+  'planned': 'bg-gray-500/15 text-gray-400 border-gray-500/25',
 } as const;
 
-interface PackageVersionInfo {
-  version: string;
-  date: string;
-  highlights: string[];
-  externalUrl?: string;
-}
-
-const PACKAGE_VERSIONS: Record<string, PackageVersionInfo> = {
-  cli: {
-    version: '1.0.0-alpha',
-    date: '2026-02-08',
-    highlights: [
-      'npx create-forge my-app',
-      'React + Vite template',
-      'Server (Express) template',
-      'Full-stack monorepo',
-      'Synapse nuclear generator',
-      'Bear UI theme customization',
-    ],
-  },
-  harbor: {
-    version: '1.5.0',
-    date: '2026-01-14',
-    highlights: [
-      'WebSocket support with rooms',
-      'Job scheduler (cron)',
-      'JWT & API Key auth',
-      'Rate limiting',
-      'Prometheus metrics',
-      'File uploads',
-      'Redis caching',
-      'Health checks',
-    ],
-  },
-  compass: {
-    version: '1.2.1',
-    date: '2026-02-05',
-    highlights: [
-      'Route guards (auth, role, permission)',
-      'Navigation blocking',
-      'Route prefetching',
-      'Scroll restoration',
-      'View transitions',
-      'DevTools panel',
-      'Nested routes',
-    ],
-  },
-  form: {
-    version: '1.0.0',
-    date: '2026-02-02',
-    highlights: [
-      'Built-in validators',
-      'Async validation',
-      'Form persistence',
-      'API submission',
-      'DevTools panel',
-    ],
-  },
-  synapse: {
-    version: '0.1.0-alpha',
-    date: 'Coming Soon',
-    highlights: [
-      'Simple store creation',
-      'Computed values',
-      'Async actions',
-    ],
-  },
-  query: {
-    version: '1.0.0',
-    date: '2026-02-01',
-    highlights: [
-      'Smart caching (LRU)',
-      'Background refetching',
-      'Automatic retries',
-      'Chrome/Safari DevTools',
-      'TypeScript first',
-      '< 3KB gzipped',
-    ],
-  },
-  table: {
-    version: 'Planned',
-    date: 'TBD',
-    highlights: [
-      'Sorting & filtering',
-      'Pagination',
-    ],
-  },
-  bear: {
-    version: '1.0.7',
-    date: '2026-02-06',
-    highlights: [
-      'DataTable component',
-      'Stepper & StepperControls',
-      'Cascader component',
-      'NotificationCenter',
-      'TransferList component',
-      'SpeedDial component',
-      'RichEditor (WYSIWYG)',
-      'Breadcrumbs component',
-    ],
-    externalUrl: 'https://bearui.com',
-  },
-  anvil: {
-    version: '1.0.3',
-    date: '2026-01-26',
-    highlights: [
-      '100+ utility functions',
-      'React hooks',
-      'Vue composables',
-      'Type guards',
-    ],
-  },
-  kiln: {
-    version: '1.0.3',
-    date: '2026-01-26',
-    highlights: [
-      'Zero-config setup',
-      'Live preview canvas',
-      'Story file format',
-    ],
-  },
-  rail: {
-    version: '1.0.0',
-    date: '2026',
-    highlights: [
-      'Touch, snap, loop, breakpoints',
-      '25+ modules (nav, pagination, autoplay, …)',
-      'Effects: fade, cube, StoryMode, …',
-      'Rail Studio on the portal',
-    ],
-    externalUrl: 'https://railjs.com',
-  },
-  lingo: {
-    version: '1.0.1',
-    date: '2026',
-    highlights: [
-      'Nested keys, interpolation, plurals',
-      'RTL and locale switching',
-      'Optional React bindings',
-      'Lingo Portal for remote keys + AI',
-    ],
-    externalUrl: 'https://www.npmjs.com/package/@forgedevstack/lingo',
-  },
-};
-
-interface VersionDropdownContentProps {
-  packageId: string;
-  color: string;
-  version?: string;
-}
-
-const VersionDropdownContent: FC<VersionDropdownContentProps> = ({ packageId, color, version }) => {
-  const versionInfo = PACKAGE_VERSIONS[packageId];
-  if (!versionInfo) return null;
-  const displayVersion = version || versionInfo.version;
-
-  return (
-    <div className="absolute top-full left-0 mt-2 w-72 bg-theme-secondary border border-theme-border rounded-lg shadow-xl z-50 overflow-hidden">
-      <div className="p-3 border-b border-theme-border" style={{ backgroundColor: `${color}10` }}>
-        <div className="flex items-center justify-between">
-          <span className="font-mono font-semibold text-theme-primary">v{displayVersion}</span>
-          <span className="text-xs text-theme-muted">{versionInfo.date}</span>
-        </div>
-      </div>
-      <div className="p-3">
-        <div className="text-xs text-theme-muted uppercase tracking-wider mb-2">What's New</div>
-        <ul className="text-sm space-y-1.5">
-          {versionInfo.highlights.map((highlight, i) => (
-            <li key={i} className="flex items-start gap-2 text-theme-secondary">
-              <span style={{ color }} className="mt-0.5">•</span>
-              {highlight}
-            </li>
-          ))}
-        </ul>
-      </div>
-      {(packageId === 'harbor' || versionInfo.externalUrl) && (
-        <a
-          href={versionInfo.externalUrl || "https://github.com/yaghobieh/ForgeStack/blob/main/packages/harbor/CHANGELOG.md"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block p-2 text-center text-xs border-t border-theme-border transition-colors hover:bg-theme-tertiary"
-          style={{ color }}
-        >
-          {versionInfo.externalUrl ? 'View full docs →' : 'View full changelog →'}
-        </a>
-      )}
-    </div>
-  );
+const hexToRgba = (hex: string, alpha: number): string => {
+  const value = hex.replace('#', '');
+  const r = parseInt(value.substring(0, 2), 16);
+  const g = parseInt(value.substring(2, 4), 16);
+  const b = parseInt(value.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 export const PackagesTable: FC<PackagesTableProps> = ({ className = '' }) => {
-  const [expandedPackage, setExpandedPackage] = useState<string | null>(null);
-  const [hoveredPackage, setHoveredPackage] = useState<string | null>(null);
   const { setActivePackageId } = usePackageTheme();
   const npmVersions = useNpmVersions();
 
-  const getVersion = (pkgId: string): string => {
-    const npmId = Object.entries(NPM_ID_TO_PACKAGE).find(([, id]) => id === pkgId)?.[0];
-    const fromNpm = npmId && npmVersions[npmId as keyof typeof npmVersions];
-    if (fromNpm) return fromNpm;
-    return PACKAGE_VERSIONS[pkgId]?.version ?? '-';
+  const getVersion = (pkgId: string): string | undefined => {
+    const pkg = PACKAGES.find((p) => p.id === pkgId);
+    return npmVersions[pkgId] ?? pkg?.version;
   };
 
   return (
-    <section id="packages" className={`py-24 bg-theme-primary ${className}`}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="packages" className={`relative py-24 overflow-hidden ${className}`}>
+      <div className="fs-glow-orb w-[500px] h-[400px] top-0 left-[-150px]" style={{ background: 'var(--fs-glow-violet)' }} />
+      <div className="fs-glow-orb w-[500px] h-[400px] bottom-0 right-[-150px]" style={{ background: 'var(--fs-glow-magenta)' }} />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-theme-primary mb-4">Packages</h2>
+          <h2 className="text-4xl font-bold text-theme-primary mb-4">All Libraries</h2>
           <p className="text-lg text-theme-muted max-w-2xl mx-auto">
-            Powerful, type-safe tools for modern development. Use them individually or together.
+            Every ForgeStack package at a glance — what it does, its live npm version, and where the docs live. Use them individually or together.
           </p>
         </div>
 
-        {/* Mobile View - Cards */}
-        <div className="block md:hidden space-y-4">
-          {PACKAGES.map((pkg) => (
-            <div
-              key={pkg.id}
-              className="rounded-xl border border-theme-border p-4"
-              style={{ borderLeftWidth: '4px', borderLeftColor: pkg.color }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">{pkg.icon}</span>
-                <div className="flex-1">
-                  <div className="font-semibold text-theme-primary">{pkg.name}</div>
-                  <div className="text-xs font-mono text-theme-muted">{pkg.npmPackage}</div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {PACKAGES.map((pkg) => {
+            const version = getVersion(pkg.id);
+            const tileStyle = {
+              '--tile-color': pkg.color,
+              '--tile-glow': hexToRgba(pkg.color, 0.28),
+            } as CSSProperties;
+
+            return (
+              <div
+                key={pkg.id}
+                className="fs-tile p-5 flex flex-col"
+                style={tileStyle}
+                onMouseEnter={() => setActivePackageId(pkg.id)}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <span className="fs-tile-icon">{pkg.icon}</span>
+                  <span className={`px-2.5 py-1 text-xs rounded-full border ${STATUS_STYLES[pkg.status]}`}>
+                    {STATUS_LABELS[pkg.status]}
+                  </span>
                 </div>
-                <span className={`px-2 py-0.5 text-xs rounded-full border ${STATUS_STYLES[pkg.status]}`}>
-                  {STATUS_LABELS[pkg.status]}
-                </span>
-              </div>
-              <p className="text-sm text-theme-secondary mb-3">{pkg.title}</p>
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-sm" style={{ color: pkg.color }}>
-                  v{getVersion(pkg.id)}
-                </span>
+
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-lg font-semibold text-theme-primary">{pkg.name}</h3>
+                  <span className="font-mono text-xs px-2 py-0.5 rounded-md" style={{ color: pkg.color, backgroundColor: hexToRgba(pkg.color, 0.12) }}>
+                    {version ? `v${version}` : 'soon'}
+                  </span>
+                </div>
+                <div className="text-xs font-mono text-theme-muted mb-3 truncate">{pkg.npmPackage}</div>
+
+                <p className="text-sm text-theme-secondary leading-relaxed mb-5 line-clamp-3 flex-1">
+                  {pkg.description}
+                </p>
+
                 {pkg.status === 'ready' ? (
-                  <Link
-                    to={`/${pkg.id}/docs/quick-start`}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-white"
-                    style={{ backgroundColor: pkg.color }}
-                  >
-                    Docs →
-                  </Link>
+                  <div className="flex items-center gap-2">
+                    <Link
+                      to={packageDocsHref(pkg)}
+                      className="flex-1 text-center px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:brightness-110"
+                      style={{ backgroundColor: pkg.color, boxShadow: `0 0 20px -6px ${hexToRgba(pkg.color, 0.6)}` }}
+                    >
+                      Docs →
+                    </Link>
+                    <a
+                      href={`${NPM_PACKAGE_URL}/${pkg.npmPackage}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 rounded-lg text-sm font-medium border border-theme-border text-theme-secondary transition-colors hover:text-theme-primary hover:bg-theme-tertiary"
+                    >
+                      npm
+                    </a>
+                  </div>
                 ) : (
-                  <span className="text-sm text-theme-muted italic">Soon</span>
+                  <div className="text-center px-4 py-2 rounded-lg text-sm font-medium border border-dashed border-theme-border text-theme-muted italic">
+                    On the roadmap
+                  </div>
                 )}
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop View - Table */}
-        <div className="hidden md:block overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b border-theme-border">
-                <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-wider text-theme-muted">
-                  Package
-                </th>
-                <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-wider text-theme-muted">
-                  Description
-                </th>
-                <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-wider text-theme-muted">
-                  Version
-                </th>
-                <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-wider text-theme-muted">
-                  Status
-                </th>
-                <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-wider text-theme-muted">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {PACKAGES.map((pkg) => {
-                const isExpanded = expandedPackage === pkg.id;
-                const isHovered = hoveredPackage === pkg.id;
-
-                return (
-                  <tr
-                    key={pkg.id}
-                    className="border-b border-theme-border transition-all group relative"
-                    style={{
-                      backgroundColor: isHovered ? `${pkg.color}08` : undefined,
-                      borderLeftWidth: isHovered ? '3px' : '0px',
-                      borderLeftColor: isHovered ? pkg.color : 'transparent',
-                    }}
-                    onMouseEnter={() => {
-                      setHoveredPackage(pkg.id);
-                      setActivePackageId(pkg.id);
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredPackage(null);
-                    }}
-                  >
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{pkg.icon}</span>
-                        <div>
-                          <div className="font-semibold text-theme-primary">{pkg.name}</div>
-                          <div className="text-xs font-mono text-theme-muted">{pkg.npmPackage}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-theme-secondary max-w-xs">
-                      <div className="relative group/desc inline-block">
-                        <span className="cursor-help border-b border-dashed border-theme-muted">{pkg.title}</span>
-                        <div className="absolute left-0 top-full mt-2 z-[9999] opacity-0 invisible group-hover/desc:opacity-100 group-hover/desc:visible transition-all duration-200 pointer-events-none">
-                          <div 
-                            className="bg-theme-secondary border border-theme-border rounded-lg shadow-2xl p-5 w-80"
-                            style={{ borderTopColor: pkg.color, borderTopWidth: '3px' }}
-                          >
-                            <div className="flex items-center gap-3 mb-3">
-                              <span className="text-3xl">{pkg.icon}</span>
-                              <div>
-                                <span className="font-bold text-lg" style={{ color: pkg.color }}>{pkg.name}</span>
-                                <div className="text-xs text-theme-muted font-mono">{pkg.npmPackage}</div>
-                              </div>
-                            </div>
-                            <p className="text-sm text-theme-secondary mb-4">{pkg.description}</p>
-                            <div className="text-xs text-theme-muted">
-                              <span className="font-semibold uppercase tracking-wider">Features</span>
-                              <ul className="mt-2 space-y-1">
-                                {pkg.features.slice(0, 5).map((feature, i) => (
-                                  <li key={i} className="flex items-center gap-2 text-theme-secondary">
-                                    <span style={{ color: pkg.color }}>•</span> {feature}
-                                  </li>
-                                ))}
-                                {pkg.features.length > 5 && (
-                                  <li className="text-theme-muted italic mt-2">+{pkg.features.length - 5} more...</li>
-                                )}
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 relative">
-                      <button
-                        onClick={() => setExpandedPackage(isExpanded ? null : pkg.id)}
-                        className="flex items-center gap-1.5 px-2 py-1 rounded-md font-mono text-sm transition-colors hover:bg-theme-tertiary"
-                        style={{ color: pkg.color }}
-                      >
-                        <span className="font-semibold">v{getVersion(pkg.id)}</span>
-                        <svg
-                          className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      {isExpanded && <VersionDropdownContent packageId={pkg.id} color={pkg.color} version={getVersion(pkg.id)} />}
-                    </td>
-                    <td className="py-4 px-4">
-                      <span className={`px-2.5 py-1 text-xs rounded-full border ${STATUS_STYLES[pkg.status]}`}>
-                        {STATUS_LABELS[pkg.status]}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4">
-                      {pkg.status === 'ready' ? (
-                        <Link
-                          to={`/${pkg.id}/docs/quick-start`}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:brightness-110"
-                          style={{ backgroundColor: pkg.color }}
-                        >
-                          <span>Docs</span>
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </Link>
-                      ) : (
-                        <span className="text-sm text-theme-muted italic">Coming soon</span>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
-

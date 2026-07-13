@@ -1,22 +1,13 @@
 import { useState, useEffect } from 'react';
+import { PACKAGES } from '@/constants/content.const';
 
-const NPM_PACKAGES = [
-  '@forgedevstack/grid-table',
-  '@forgedevstack/anvil',
-  '@forgedevstack/bear',
-  '@forgedevstack/synapse',
-] as const;
+const NPM_REGISTRY_URL = 'https://registry.npmjs.org';
 
-export type NpmPackageId = 'grid-table' | 'anvil' | 'bear' | 'synapse';
+const PUBLISHED_PACKAGES = PACKAGES.filter(
+  (pkg) => pkg.status === 'ready' && pkg.npmPackage.startsWith('@forgedevstack/')
+);
 
-const PKG_TO_ID: Record<string, NpmPackageId> = {
-  '@forgedevstack/grid-table': 'grid-table',
-  '@forgedevstack/anvil': 'anvil',
-  '@forgedevstack/bear': 'bear',
-  '@forgedevstack/synapse': 'synapse',
-};
-
-export type NpmVersions = Partial<Record<NpmPackageId, string>>;
+export type NpmVersions = Partial<Record<string, string>>;
 
 export function useNpmVersions(): NpmVersions {
   const [versions, setVersions] = useState<NpmVersions>({});
@@ -24,18 +15,17 @@ export function useNpmVersions(): NpmVersions {
   useEffect(() => {
     const fetchAll = async () => {
       const results = await Promise.allSettled(
-        NPM_PACKAGES.map(async (pkg) => {
-          const res = await fetch(`https://registry.npmjs.org/${pkg}/latest`);
+        PUBLISHED_PACKAGES.map(async (pkg) => {
+          const res = await fetch(`${NPM_REGISTRY_URL}/${pkg.npmPackage}/latest`);
           const data = await res.json();
-          return { pkg, version: data?.version };
+          return { id: pkg.id, version: data?.version as string | undefined };
         })
       );
 
       const map: NpmVersions = {};
       results.forEach((r) => {
         if (r.status === 'fulfilled' && r.value.version) {
-          const id = PKG_TO_ID[r.value.pkg];
-          if (id) map[id] = r.value.version;
+          map[r.value.id] = r.value.version;
         }
       });
       setVersions(map);

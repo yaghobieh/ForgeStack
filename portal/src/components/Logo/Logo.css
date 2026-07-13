@@ -56,7 +56,7 @@
 }
 
 .forge-logo-text__forge {
-  background: linear-gradient(135deg, #fa8c16 0%, #eb2f96 50%, #722ed1 100%);
+  background: linear-gradient(135deg, #155be2 0%, #338fff 45%, #22d3ee 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

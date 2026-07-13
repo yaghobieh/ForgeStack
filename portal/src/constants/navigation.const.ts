@@ -10,7 +10,7 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const FOOTER_LINKS = [
   { label: 'GitHub', href: 'https://github.com/yaghobieh/Harbor' },
-  { label: 'npm', href: 'https://www.npmjs.com/package/harbor' },
+  { label: 'npm', href: 'https://www.npmjs.com/package/@forgedevstack/harbor' },
   { label: 'Discord', href: '#' },
   { label: 'Twitter', href: '#' },
 ];
