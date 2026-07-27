@@ -1,4 +1,4 @@
-export const HARBOR_VERSION = '1.6.2';
+export const HARBOR_VERSION = '1.6.4';
 export const VERSION = '1.0.6';
 
 export const TITLE = 'ForgeStack';
@@ -75,7 +75,7 @@ export const PACKAGES: ForgePackage[] = [
       'File uploads',
       'i18n support',
     ],
-    version: '1.6.2',
+    version: '1.6.4',
     color: '#0066cc',
   },
   {
@@ -358,27 +358,27 @@ export const PACKAGES: ForgePackage[] = [
   },
   {
     id: 'auth',
-    name: 'AuthMaster',
-    title: 'OAuth Authentication',
-    description: 'Simple OAuth authentication for React with Google, Facebook, and GitHub. Built-in UI components and configurable log levels.',
+    name: 'Forge Auth',
+    title: 'Node Auth Toolkit',
+    description: 'Node.js auth toolkit (v2.0.1): HMAC sessions, refresh/rotation, Harbor middleware, cookies, API keys, scrypt, OIDC+PKCE. Not AuthMaster (React) — that product should ship as @forgedevstack/auth-master.',
     icon: '🔐',
     status: 'ready',
     npmPackage: '@forgedevstack/forge-auth',
     docsPath: '/auth',
     features: [
-      'Google OAuth',
-      'Facebook Login',
-      'GitHub OAuth',
-      'Type-safe TypeScript',
-      'Session persistence',
-      'Configurable log levels',
-      'AuthGuard component',
-      'UserAvatar, UserInfo',
-      'Zero config defaults',
-      '~5KB gzipped',
+      'HMAC session tokens',
+      'Refresh + rotation',
+      'Harbor middleware',
+      'Cookie session helpers',
+      'API keys',
+      'scrypt passwords',
+      'OIDC + PKCE',
+      'Zero runtime deps',
+      'Framework-agnostic guards',
+      'Node-only (not React AuthMaster)',
     ],
     color: '#8b5cf6',
-    version: '1.0.0',
+    version: '2.0.1',
   },
   {
     id: 'relay',
