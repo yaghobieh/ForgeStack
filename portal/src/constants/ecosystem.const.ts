@@ -47,7 +47,7 @@ export const ECOSYSTEM_LAYERS: EcosystemLayer[] = [
     color: '#0066cc',
     packages: [
       { packageId: 'harbor', name: 'Harbor', role: 'Backend framework' },
-      { packageId: 'auth', name: 'AuthMaster', role: 'OAuth authentication' },
+      { packageId: 'auth', name: 'Forge Auth', role: 'Node auth toolkit (not AuthMaster React)' },
     ],
   },
   {
