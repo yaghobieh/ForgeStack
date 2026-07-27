@@ -14,7 +14,7 @@ export const CliDocs: FC = () => {
           <h1 className="text-xl sm:text-3xl font-bold truncate" style={{ color: CLI_COLOR }}>
             Forge CLI
           </h1>
-          <p className="text-theme-muted text-xs sm:text-sm">v1.0.3</p>
+          <p className="text-theme-muted text-xs sm:text-sm">v1.0.6</p>
         </div>
         <span 
           className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full font-semibold animate-pulse"
@@ -125,7 +125,14 @@ npx forge add
 # Direct add
 npx forge add bear
 npx forge add synapse
-npx forge add forge-compass`}
+npx forge add forge-compass
+npx forge add forge-socket
+npx forge add forge-ai
+npx forge add forge-mcp
+npx forge add depwarden
+
+# Supply-chain scan
+npx forge check`}
           />
         </section>
 
@@ -179,6 +186,11 @@ npx forge add forge-compass`}
                   <td className="py-2 px-2 sm:px-3 font-mono">add</td>
                   <td className="py-2 px-2 sm:px-3 font-mono text-[10px] sm:text-xs">-c, --color</td>
                   <td className="py-2 px-2 sm:px-3">Bear primary color</td>
+                </tr>
+                <tr className="border-b border-theme-border">
+                  <td className="py-2 px-2 sm:px-3 font-mono">check</td>
+                  <td className="py-2 px-2 sm:px-3 font-mono text-[10px] sm:text-xs">—</td>
+                  <td className="py-2 px-2 sm:px-3">Run depwarden supply-chain scan</td>
                 </tr>
                 <tr className="border-b border-theme-border">
                   <td className="py-2 px-2 sm:px-3 font-mono">nuclear</td>

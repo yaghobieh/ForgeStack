@@ -46,11 +46,12 @@ export const PACKAGES: ForgePackage[] = [
       'Full-stack monorepo template',
       'Bear UI integration',
       'Synapse nuclear generator',
+      'forge-socket / forge-ai / forge-mcp / depwarden',
       'Custom theme colors',
       'npm, pnpm, yarn, bun support',
     ],
     color: '#ec4899',
-    version: '1.0.5',
+    version: '1.0.6',
   },
   {
     id: 'harbor',
