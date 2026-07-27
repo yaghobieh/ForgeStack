@@ -195,7 +195,7 @@ export const RIBBON_LIBRARIES: RibbonLibrary[] = [
     id: 'forge-auth',
     name: 'Forge Auth',
     icon: '🔐',
-    tagline: 'OAuth for React: Google, Facebook, GitHub, built-in UI.',
+    tagline: 'Node auth toolkit 2.0.1: sessions, Harbor middleware, OIDC.',
     npmPackage: '@forgedevstack/forge-auth',
     docsRoute: '/auth',
     githubUrl: `${GITHUB_BASE}/forge-auth`,
