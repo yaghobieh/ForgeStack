@@ -200,6 +200,7 @@ function App() {
                 <Route path="/query/installation" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="installation" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/quick-start" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="quick-start" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/queries" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="queries" /></ForgeQueryDocsLayout>} />
+                <Route path="/query/infinite" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="infinite" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/mutations" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="mutations" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/caching" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="caching" /></ForgeQueryDocsLayout>} />
                 <Route path="/query/devtools" element={<ForgeQueryDocsLayout><ForgeQueryDocContent page="devtools" /></ForgeQueryDocsLayout>} />

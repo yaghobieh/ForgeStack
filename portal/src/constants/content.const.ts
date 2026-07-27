@@ -1,4 +1,4 @@
-export const HARBOR_VERSION = '1.6.2';
+export const HARBOR_VERSION = '1.6.4';
 export const VERSION = '1.0.6';
 
 export const TITLE = 'ForgeStack';
@@ -75,7 +75,7 @@ export const PACKAGES: ForgePackage[] = [
       'File uploads',
       'i18n support',
     ],
-    version: '1.6.2',
+    version: '1.6.4',
     color: '#0066cc',
   },
   {
@@ -154,18 +154,20 @@ export const PACKAGES: ForgePackage[] = [
     docsPath: '/query',
     features: [
       'Smart caching (LRU)',
+      'Infinite queries',
+      'Prefetch & ensureQueryData',
+      'Cache persistence MVP',
       'Background refetching',
       'Automatic retries with backoff',
       'Request deduplication',
-      'useMutation hook',
-      'Chrome/Safari DevTools',
+      'useMutation + optimistic updates',
+      'Chrome DevTools (optional Bear)',
       'TypeScript first',
       'Works with React 16.8+',
-      'Offline support',
-      '< 3KB gzipped',
+      'Core has zero UI kit deps',
     ],
     color: '#eb2f96',
-    version: '1.0.0',
+    version: '1.0.2',
   },
   {
     id: 'table',

@@ -11,6 +11,7 @@ export const FORGE_QUERY_NAV_ITEMS = [
   { path: 'installation', label: 'Installation' },
   { path: 'quick-start', label: 'Quick Start' },
   { path: 'queries', label: 'Queries' },
+  { path: 'infinite', label: 'Infinite Queries' },
   { path: 'mutations', label: 'Mutations' },
   { path: 'caching', label: 'Caching' },
   { path: 'devtools', label: 'DevTools' },
@@ -53,7 +54,7 @@ export const ForgeQueryDocsNav: FC = () => {
           className="text-xs px-2 py-0.5 rounded"
           style={{ backgroundColor: `${FORGE_QUERY_COLOR}20`, color: FORGE_QUERY_COLOR }}
         >
-          v1.0.0
+          v1.0.2
         </span>
       </div>
 
@@ -113,7 +114,63 @@ npm install @forgedevstack/forge-query
 yarn add @forgedevstack/forge-query
 
 # pnpm
-pnpm add @forgedevstack/forge-query`;
+pnpm add @forgedevstack/forge-query
+
+# Optional — only needed for in-app DevTools
+npm install @forgedevstack/bear`;
+
+const INFINITE_QUERY_CODE = `import { useInfiniteQuery } from '@forgedevstack/forge-query';
+
+function ProjectList() {
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['projects'],
+    initialPageParam: 0,
+    queryFn: ({ pageParam }) =>
+      fetch(\`/api/projects?cursor=\${pageParam}\`).then((r) => r.json()),
+    getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+  });
+
+  return (
+    <div>
+      {data?.pages.map((page, i) => (
+        <div key={i}>
+          {page.items.map((item) => (
+            <div key={item.id}>{item.name}</div>
+          ))}
+        </div>
+      ))}
+      <button
+        disabled={!hasNextPage || isFetchingNextPage}
+        onClick={() => fetchNextPage()}
+      >
+        {isFetchingNextPage ? 'Loading…' : 'Load more'}
+      </button>
+    </div>
+  );
+}`;
+
+const PERSIST_CODE = `import {
+  QueryClient,
+  persistQueryClient,
+  createLocalStoragePersister,
+} from '@forgedevstack/forge-query';
+
+const queryClient = new QueryClient();
+
+const persistence = persistQueryClient(queryClient, {
+  storage: createLocalStoragePersister(),
+  persistKey: 'my-app-query-cache',
+  buster: 'v1',
+  maxAge: 24 * 60 * 60 * 1000,
+});
+
+await persistence.restore();
+// Limits: JSON-serializable data only; no encryption; not an offline mutation queue.`;
 
 const QUICK_START_CODE = `import { useQuery, QueryClient, QueryClientProvider } from '@forgedevstack/forge-query';
 
@@ -216,31 +273,46 @@ function App() {
   );
 }`;
 
-const CACHE_CODE = `import { QueryClient } from '@forgedevstack/forge-query';
+const CACHE_CODE = `import {
+  QueryClient,
+  persistQueryClient,
+  createLocalStoragePersister,
+} from '@forgedevstack/forge-query';
 
-// Configure cache
 const queryClient = new QueryClient({
   defaultOptions: {
-    staleTime: 0,              // Data is stale immediately
-    cacheTime: 5 * 60 * 1000,  // Keep in cache for 5 minutes
-    retry: 3,                  // Retry failed requests 3 times
+    staleTime: 0,
+    cacheTime: 5 * 60 * 1000,
+    retry: 3,
   },
   cache: {
-    maxEntries: 1000,          // Max cache entries
-    persist: true,             // Persist to localStorage
+    maxEntries: 1000,
+    persist: true,
     persistKey: 'my-app-cache',
   },
   devtools: {
-    enabled: true,             // Enable DevTools
-    maxLogs: 100,              // Max log entries
+    enabled: true,
+    maxLogs: 100,
   },
 });
 
-// Manual cache operations
 queryClient.setQueryData(['user', 1], { id: 1, name: 'John' });
-queryClient.getQueryData(['user', 1]); // { id: 1, name: 'John' }
+queryClient.getQueryData(['user', 1]);
+await queryClient.ensureQueryData({
+  queryKey: ['user', 1],
+  queryFn: () => fetch('/api/users/1').then((r) => r.json()),
+});
+await queryClient.prefetchQuery({
+  queryKey: ['users'],
+  queryFn: () => fetch('/api/users').then((r) => r.json()),
+});
 queryClient.invalidateQueries({ queryKey: ['users'] });
-queryClient.removeQueries({ queryKey: ['users'] });`;
+
+const persistence = persistQueryClient(queryClient, {
+  storage: createLocalStoragePersister(),
+  buster: 'v1',
+});
+await persistence.restore();`;
 
 const API_HOOKS_CODE = `// useQuery - Fetch and cache data
 const { data, isLoading, error, refetch, isFetching } = useQuery({
@@ -249,6 +321,19 @@ const { data, isLoading, error, refetch, isFetching } = useQuery({
   enabled: true,
   staleTime: 0,
   cacheTime: 5 * 60 * 1000,
+});
+
+// useInfiniteQuery - Paginated / infinite scroll
+const {
+  data,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
+} = useInfiniteQuery({
+  queryKey: ['feed'],
+  initialPageParam: 0,
+  queryFn: ({ pageParam }) => fetchPage(pageParam),
+  getNextPageParam: (last) => last.nextCursor ?? undefined,
 });
 
 // useMutation - Modify data
@@ -264,6 +349,8 @@ const { mutate, mutateAsync, isLoading, error, reset } = useMutation({
 const queryClient = useQueryClient();
 queryClient.invalidateQueries(['users']);
 queryClient.setQueryData(['user', 1], newData);
+await queryClient.ensureQueryData({ queryKey: ['users'], queryFn: fetchUsers });
+await queryClient.prefetchQuery({ queryKey: ['users'], queryFn: fetchUsers });
 
 // useIsFetching - Check if any queries are fetching
 const isFetching = useIsFetching();
@@ -301,11 +388,13 @@ export const ForgeQueryDocContent: FC<{ page: string }> = ({ page }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {[
               { title: 'Automatic Caching', desc: 'Smart LRU caching with configurable eviction policies' },
+              { title: 'Infinite Queries', desc: 'useInfiniteQuery with page accumulation and fetchNextPage' },
+              { title: 'Prefetch & Ensure', desc: 'prefetchQuery, ensureQueryData, and batch prefetchQueries' },
+              { title: 'Cache Persistence', desc: 'Optional localStorage restore MVP (JSON-serializable only)' },
               { title: 'Background Refetching', desc: 'Keep data fresh without blocking the UI' },
               { title: 'Optimistic Updates', desc: 'Update the UI before server response' },
-              { title: 'DevTools Extension', desc: 'Inspect queries, cache, and logs in Chrome/Safari' },
+              { title: 'DevTools Extension', desc: 'Inspect queries, cache, and logs — Bear is optional peer' },
               { title: 'TypeScript First', desc: 'Full type inference for data, errors, and variables' },
-              { title: 'Tiny Bundle', desc: 'Less than 3KB gzipped, tree-shakeable' },
             ].map((feature) => (
               <div key={feature.title} className="p-4 rounded-lg bg-theme-card border border-theme">
                 <div className="font-semibold text-theme-primary">{feature.title}</div>
@@ -347,6 +436,17 @@ export const ForgeQueryDocContent: FC<{ page: string }> = ({ page }) => {
         </section>
       )}
 
+      {page === 'infinite' && (
+        <section>
+          <h1 className="text-3xl font-bold text-theme-primary mb-4">Infinite Queries</h1>
+          <p className="text-theme-secondary mb-6">
+            Use <code className="text-pink-500 dark:text-pink-400">useInfiniteQuery</code> for cursor/page-based lists.
+            Pages accumulate as <code className="text-pink-500 dark:text-pink-400">{`{ pages, pageParams }`}</code>.
+          </p>
+          <CodeBlock code={INFINITE_QUERY_CODE} language="tsx" />
+        </section>
+      )}
+
       {page === 'mutations' && (
         <section>
           <h1 className="text-3xl font-bold text-theme-primary mb-4">Mutations</h1>
@@ -361,9 +461,11 @@ export const ForgeQueryDocContent: FC<{ page: string }> = ({ page }) => {
         <section>
           <h1 className="text-3xl font-bold text-theme-primary mb-4">Caching</h1>
           <p className="text-theme-secondary mb-6">
-            Configure cache behavior globally or per-query. Supports LRU eviction, persistence, and manual cache operations.
+            Configure cache behavior globally or per-query. Supports LRU eviction, persistence MVP, prefetch, and manual cache operations.
           </p>
           <CodeBlock code={CACHE_CODE} language="tsx" />
+          <h2 className="text-2xl font-bold text-theme-primary mt-8 mb-4">Persistence limits</h2>
+          <CodeBlock code={PERSIST_CODE} language="tsx" />
         </section>
       )}
 
