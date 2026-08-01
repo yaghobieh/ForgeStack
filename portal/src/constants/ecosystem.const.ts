@@ -25,6 +25,7 @@ export const ECOSYSTEM_LAYERS: EcosystemLayer[] = [
       { packageId: 'bear', name: 'Bear', role: '60+ React UI components, light + dark mode' },
       { packageId: 'table', name: 'Grid Table', role: 'Enterprise data grid' },
       { packageId: 'rail', name: 'Rail', role: 'Carousels and sliders' },
+      { packageId: 'ink', name: 'Ink', role: 'Rich text editor (WYSIWYG)' },
       { packageId: 'torch', name: 'Torch', role: 'Video, audio, and ad players' },
     ],
   },

@@ -270,6 +270,28 @@ export const PACKAGES: ForgePackage[] = [
     version: '1.0.0',
   },
   {
+    id: 'ink',
+    name: 'Ink',
+    title: 'React Rich Text Editor',
+    description:
+      'ForgeStack WYSIWYG editor for React: formatting toolbar, headings, colors, lists, links, image paste, typo auto-fix MVP, AI plugin stub, Angular entry, and WordPress stub. Docs at inkforgejs.com (register domain).',
+    icon: '🖋️',
+    status: 'ready',
+    npmPackage: '@forgedevstack/ink',
+    docsPath: 'https://inkforgejs.com',
+    features: [
+      'Controlled HTML value / onChange',
+      'Toolbar: bold, italic, underline, headings, colors, lists, links',
+      'Image paste and insert',
+      'Typo auto-fix MVP (dictionary heuristics)',
+      'AI agent plugin stub (full agents in 1.x)',
+      'Angular adapter entry + WordPress plugin stub',
+      'Import CSS from @forgedevstack/ink/styles.css',
+    ],
+    color: '#0f766e',
+    version: '1.0.0',
+  },
+  {
     id: 'kiln',
     name: 'Kiln',
     title: 'Component Documentation Tool',
