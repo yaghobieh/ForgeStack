@@ -14,7 +14,7 @@ const LingoDocs: FC = () => {
           </span>
         </div>
         <p className="text-lg text-gray-500 dark:text-gray-400">
-          Translation and localization for ForgeStack — library + Lingo Portal for managed keys
+          Translation and localization for ForgeStack — nested keys, plurals, RTL, and React bindings
         </p>
       </div>
 
@@ -85,16 +85,6 @@ const LingoDocs: FC = () => {
       >
         <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Next steps</h2>
         <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-          <li>
-            <a
-              href="https://github.com/yaghobieh/lingo-portal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-600 dark:text-teal-400 hover:underline"
-            >
-              Lingo Portal repository (UI + API)
-            </a>
-          </li>
           <li>
             <a
               href="https://github.com/yaghobieh/lingo"

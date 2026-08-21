@@ -36,11 +36,18 @@ export const PACKAGE_BADGES: Record<string, 'NEW' | 'BETA' | 'ALPHA' | 'SOON' | 
 
 export const SHOWCASE_REPOS = [
   {
-    id: 'synapse',
-    name: 'Synapse',
-    description: 'State management library for React with saga-like effects',
-    url: 'https://github.com/yaghobieh/Synapse',
-    stars: 3,
+    id: 'bear',
+    name: 'Bear',
+    description: 'React UI component library with light and dark mode',
+    url: 'https://github.com/yaghobieh/bear',
+    stars: 0,
+  },
+  {
+    id: 'grid-table',
+    name: 'Grid Table',
+    description: 'Enterprise React data grid',
+    url: 'https://github.com/yaghobieh/grid-table',
+    stars: 0,
   },
   {
     id: 'harbor',
@@ -50,31 +57,17 @@ export const SHOWCASE_REPOS = [
     stars: 0,
   },
   {
-    id: 'npm-runner',
-    name: 'npm-runner',
-    description: 'CLI tool for running npm scripts',
-    url: 'https://github.com/yaghobieh/npm-runner',
-    stars: 0,
-  },
-  {
-    id: 'gitforge',
-    name: 'GitForge',
-    description: 'Git workflow automation tool',
-    url: 'https://github.com/yaghobieh/gitforge',
-    stars: 0,
+    id: 'synapse',
+    name: 'Synapse',
+    description: 'State management library for React with saga-like effects',
+    url: 'https://github.com/yaghobieh/Synapse',
+    stars: 3,
   },
   {
     id: 'rail',
     name: 'Rail',
     description: 'Modular React carousel engine',
     url: 'https://github.com/yaghobieh/rail',
-    stars: 0,
-  },
-  {
-    id: 'rail-portal',
-    name: 'Rail Portal',
-    description: 'Docs, demos, API reference, and Rail Studio',
-    url: 'https://github.com/yaghobieh/rail-portal',
     stars: 0,
   },
   {
@@ -85,10 +78,17 @@ export const SHOWCASE_REPOS = [
     stars: 0,
   },
   {
-    id: 'lingo-portal',
-    name: 'Lingo Portal',
-    description: 'Translation management app (Bear, Compass, API server)',
-    url: 'https://github.com/yaghobieh/lingo-portal',
+    id: 'torch',
+    name: 'Torch',
+    description: 'Video, audio, reels, and ad players',
+    url: 'https://github.com/yaghobieh/torch',
+    stars: 0,
+  },
+  {
+    id: 'gitforge',
+    name: 'GitForge',
+    description: 'Git workflow automation tool',
+    url: 'https://github.com/yaghobieh/gitforge',
     stars: 0,
   },
 ];

@@ -39,11 +39,11 @@ export const FOCUS_SECTIONS: FocusSection[] = [
     icon: '🤖',
     title: 'AI',
     description:
-      'Forge AI is a retrieval-augmented generation toolkit for Node.js: embeddings, vector search, and prompt pipelines. Lingo Portal already uses AI to translate every key to all languages in one click.',
+      'Forge AI is a retrieval-augmented generation toolkit for Node.js: embeddings, vector search, and prompt pipelines. Lingo can load keys from a remote HTTP source so copy can update without a full redeploy.',
     points: [
       'Embeddings and vector search for Node.js',
       'Composable prompt pipelines',
-      'AI-assisted translation in Lingo Portal',
+      'AI-assisted translation over a remote Lingo source',
     ],
     linkLabel: 'forge-ai on GitHub',
     linkUrl: 'https://github.com/yaghobieh/forge-ai',

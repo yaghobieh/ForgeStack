@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { GitHubIcon, ExternalLinkIcon } from '../components/Icons';
+import { SHOWCASE_REPOS } from '@constants/sidebar.const';
 
 interface GitHubRepo {
   id: string;
@@ -14,12 +15,9 @@ interface GitHubRepo {
   updated_at: string;
 }
 
-const SHOWCASE_REPOS = [
-  'yaghobieh/Synapse',
-  'yaghobieh/Harbor',
-  'yaghobieh/npm-runner',
-  'yaghobieh/gitforge',
-];
+const SHOWCASE_REPO_PATHS = SHOWCASE_REPOS.map((repo) =>
+  repo.url.replace('https://github.com/', '')
+);
 
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: '#3178c6',
@@ -38,7 +36,7 @@ export const Showcase: FC = () => {
     const fetchRepos = async () => {
       try {
         const repoData = await Promise.all(
-          SHOWCASE_REPOS.map(async (repoPath) => {
+          SHOWCASE_REPO_PATHS.map(async (repoPath) => {
             const response = await fetch(`https://api.github.com/repos/${repoPath}`);
             if (!response.ok) {
               throw new Error(`Failed to fetch ${repoPath}`);

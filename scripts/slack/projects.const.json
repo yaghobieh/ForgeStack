@@ -44,16 +44,8 @@
     { "id": "crucible", "name": "Crucible", "npm": "@forgedevstack/crucible", "category": "tooling" },
     { "id": "forge-studio", "name": "Forge Studio", "category": "tooling" },
     { "id": "gitforge", "name": "GitForge", "category": "extension" },
-    { "id": "npm-runner", "name": "npm Runner", "category": "extension" },
     { "id": "aero-craft-plugin", "name": "AeroCraft VS Code Plugin", "category": "extension" },
-    { "id": "bcms", "name": "BCMS", "category": "app" },
-    { "id": "torch-crm", "name": "Torch CRM", "category": "app" },
     { "id": "formaforms", "name": "FormaForms", "category": "app" },
-    { "id": "auth-master", "name": "AuthMaster", "npm": "@forgedevstack/forge-auth", "category": "app" },
-    { "id": "lingo-portal", "name": "Lingo Portal", "category": "portal" },
-    { "id": "rail-portal", "name": "Rail Portal", "category": "portal" },
-    { "id": "anvil-portal", "name": "Anvil Portal", "category": "portal" },
-    { "id": "aerocraft-portal", "name": "AeroCraft Portal", "category": "portal" },
-    { "id": "torch-portal", "name": "Torch Portal", "category": "portal" }
+    { "id": "auth-master", "name": "AuthMaster", "npm": "@forgedevstack/forge-auth", "category": "app" }
   ]
 }

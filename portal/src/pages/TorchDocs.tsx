@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { CodeBlock } from '@/components';
-import { TORCH_DOCS, TORCH_PORTAL_URL, TORCH_VERSION } from '@/constants/torch-docs.const';
+import { TORCH_DOCS, TORCH_GITHUB_URL, TORCH_NPM, TORCH_VERSION } from '@/constants/torch-docs.const';
 
 const TorchDocs: FC = () => {
   return (
@@ -14,7 +14,9 @@ const TorchDocs: FC = () => {
           </span>
         </div>
         <p className="text-lg text-gray-500 dark:text-gray-400">
-          Media and ad players for ForgeStack apps — portal at {TORCH_PORTAL_URL.replace('https://', '')}
+          Video, audio, reels, and ads. Import{' '}
+          <code className="text-sm font-mono">{TORCH_NPM}/styles.css</code>
+          {' '}and wrap players in TorchProvider.
         </p>
       </div>
 
@@ -76,20 +78,16 @@ const TorchDocs: FC = () => {
         <ul className="space-y-2 text-gray-600 dark:text-gray-300">
           <li>
             <a
-              href={TORCH_PORTAL_URL}
+              href={TORCH_GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-orange-600 dark:text-orange-400 hover:underline"
             >
-              Torch Portal
+              Torch on GitHub
             </a>
           </li>
           <li>
             ✈️ Layout utilities: <a href="/aerocraft" className="text-orange-600 dark:text-orange-400 hover:underline">AeroCraft</a>
-            {' '}
-            (
-            <a href="https://aerocraftjs.com" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 hover:underline">aerocraftjs.com</a>
-            )
           </li>
           <li>
             🐻 UI kit: <a href="/bear" className="text-orange-600 dark:text-orange-400 hover:underline">Bear</a>
