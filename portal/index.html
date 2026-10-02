@@ -3,6 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      try {
+        var choice = localStorage.getItem('fs-theme') || 'dark';
+        var theme = choice;
+        if (choice === 'system') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        if (theme !== 'light' && theme !== 'dark') theme = 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-theme-choice', choice);
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.classList.toggle('light', theme === 'light');
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="ForgeStack is an open-source ecosystem of React and Node.js libraries under @forgedevstack: Bear UI components, Grid Table data grid, forms, data fetching, state, routing, i18n, and the Harbor backend framework." />
     <meta name="keywords" content="forgestack, forgedevstack, bear ui, react components, data grid, harbor, nodejs, react, router, state management, forms, typescript" />

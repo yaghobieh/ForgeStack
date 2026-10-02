@@ -1,6 +1,6 @@
 {
   "name": "forgestack",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "ForgeStack - Modern Developer Tools for Building Better Applications",
   "workspaces": [

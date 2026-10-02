@@ -75,6 +75,45 @@
     --glow-secondary: var(--fs-glow-magenta);
   }
 
+  html[data-theme="light"] {
+    --fs-bg: #f5f6f2;
+    --fs-bg-elevated: #ffffff;
+    --fs-bg-raised: #e7ebe4;
+    --fs-glass: rgba(30, 37, 35, 0.04);
+    --fs-glass-strong: rgba(255, 255, 255, 0.92);
+    --fs-glass-border: rgba(30, 37, 35, 0.12);
+    --fs-glass-highlight: rgba(30, 37, 35, 0.04);
+    --bg-primary: #f5f6f2;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e7ebe4;
+    --bg-card: #ffffff;
+    --text-primary: #1c2421;
+    --text-secondary: #3d4a45;
+    --text-muted: #5e6864;
+    --border-color: #d5dbd6;
+    --code-bg: #1c2421;
+    --scrollbar-track: #e7ebe4;
+    --scrollbar-thumb: #b7c0ba;
+  }
+
+  html[data-theme="dark"] {
+    --fs-bg: #121816;
+    --bg-primary: #121816;
+    --bg-secondary: #1c2622;
+    --bg-tertiary: #24302c;
+    --text-primary: #f3f5f1;
+    --text-secondary: #c5cdc8;
+    --text-muted: #9aa59f;
+    --border-color: #31403b;
+  }
+
+  html[data-theme="light"] body,
+  html[data-theme="dark"] body {
+    background-image: none;
+    background-color: var(--fs-bg);
+    color: var(--text-primary);
+  }
+
   /* Theme classes */
   .bg-theme-primary { background-color: var(--bg-primary); }
   .bg-theme-secondary { background-color: var(--bg-secondary); }

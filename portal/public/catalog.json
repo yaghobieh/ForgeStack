@@ -1,0 +1,694 @@
+{
+  "groups": [
+    {
+      "id": "components",
+      "title": "Components",
+      "summary": "The visible layer: UI, grids, motion, and media."
+    },
+    {
+      "id": "logic",
+      "title": "App logic",
+      "summary": "State, forms, data, and client routing."
+    },
+    {
+      "id": "backend",
+      "title": "Backend",
+      "summary": "The Node server, auth, and the HTTP client."
+    },
+    {
+      "id": "tooling",
+      "title": "Tooling",
+      "summary": "Docs, styles, i18n, and utilities."
+    }
+  ],
+  "libraries": [
+    {
+      "id": "bear",
+      "name": "Bear",
+      "group": "components",
+      "title": "UI components",
+      "description": "The flagship React UI kit. Buttons, overlays, inputs, layout, and a theme provider with light and dark mode.",
+      "color": "#d97706",
+      "status": "ready",
+      "npm": "@forgedevstack/bear",
+      "github": "https://github.com/yaghobieh/bear",
+      "docsPath": "/bear",
+      "install": "npm install @forgedevstack/bear",
+      "features": [
+        "Theme provider with hooks",
+        "Light and dark mode",
+        "Button, Card, Modal, Drawer",
+        "Tooltip, Input, Select, Switch",
+        "Grid, Flex, Container, Badge",
+        "Accessible, mobile-first, tree-shakeable"
+      ],
+      "docs": [
+        {
+          "heading": "What Bear is",
+          "body": "Bear is the component layer of ForgeStack. Drop it into a React app, wrap the tree in BearProvider, and the rest of the stack (Grid Table, Rail, forms) can share the same theme tokens."
+        },
+        {
+          "heading": "Install",
+          "body": "Bear ships its own stylesheet. Import it once next to your app entry.",
+          "code": "npm install @forgedevstack/bear\n\nimport { BearProvider, Button } from '@forgedevstack/bear';\nimport '@forgedevstack/bear/styles.css';"
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Bear paints the interface. Synapse holds the state those components read. Compass moves between screens. Harbor is the server those screens call. You can use Bear alone."
+        }
+      ]
+    },
+    {
+      "id": "rail",
+      "name": "Rail",
+      "group": "components",
+      "title": "Carousels",
+      "description": "Touch, snap, loop, and effects for React carousels. Modules stay tree-shakeable.",
+      "color": "#06b6d4",
+      "status": "ready",
+      "npm": "@forgedevstack/rail",
+      "github": "https://github.com/yaghobieh/rail",
+      "docsPath": "/rail",
+      "install": "npm install @forgedevstack/rail",
+      "features": [
+        "Touch and mouse drag",
+        "Navigation, pagination, autoplay, keyboard",
+        "Fade, cube, flip, coverflow, cards",
+        "CSS scroll-snap and breakpoints",
+        "Accessible module and useRail"
+      ],
+      "docs": [
+        {
+          "heading": "What Rail is",
+          "body": "Rail is the motion layer for slides. It is a React carousel you compose from modules instead of one giant config object."
+        },
+        {
+          "heading": "Install",
+          "body": "Import the package CSS, or copy rail.css into your app if you want to own the stylesheet.",
+          "code": "npm install @forgedevstack/rail"
+        },
+        {
+          "heading": "Pair it with Bear",
+          "body": "Use Bear buttons for next and previous, and Rail for the track. They do not require each other."
+        }
+      ]
+    },
+    {
+      "id": "calendar",
+      "name": "Calendar",
+      "group": "components",
+      "title": "Events and schedules",
+      "description": "Month, week, day, and agenda views for events, with recurrence and an edit surface.",
+      "color": "#14b8a6",
+      "status": "ready",
+      "npm": "@forgedevstack/calendar",
+      "github": "https://github.com/yaghobieh/calendar",
+      "install": "npm install @forgedevstack/calendar",
+      "features": [
+        "Month, week, day, and agenda views",
+        "Event create and edit",
+        "Recurrence",
+        "People, relations, and meeting links",
+        "Resize events in the grid"
+      ],
+      "docs": [
+        {
+          "heading": "What Calendar is",
+          "body": "Calendar is the schedule layer. It renders events across month, week, day, and agenda, and keeps recurrence, people, and meeting links on the event itself."
+        },
+        {
+          "heading": "Install",
+          "body": "Published as @forgedevstack/calendar. Style it with your own tokens or Bear's theme.",
+          "code": "npm install @forgedevstack/calendar"
+        },
+        {
+          "heading": "Where it connects",
+          "body": "Harbor can store the events. Forge Query can load them. Bear supplies the dialogs around the grid."
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Grid Table",
+      "group": "components",
+      "title": "Data grid",
+      "description": "Enterprise React grid: range selection, sorting, filtering, pagination, sticky columns, and grouping.",
+      "color": "#52c41a",
+      "status": "ready",
+      "npm": "@forgedevstack/grid-table",
+      "github": "https://github.com/yaghobieh/grid-table",
+      "docsPath": "/table",
+      "install": "npm install @forgedevstack/grid-table",
+      "features": [
+        "Range selection",
+        "Sorting and filtering",
+        "Pagination and infinite scroll",
+        "Row grouping and sticky columns",
+        "Column resize and reorder",
+        "Dark and light themes"
+      ],
+      "docs": [
+        {
+          "heading": "What Grid Table is",
+          "body": "Grid Table is the dense-data layer. It is built for admin screens: selection that behaves like a spreadsheet, sticky columns, and mobile layouts that still scroll."
+        },
+        {
+          "heading": "Install",
+          "body": "The package is @forgedevstack/grid-table. The docs on this site cover columns, sorting, filtering, and theming.",
+          "code": "npm install @forgedevstack/grid-table"
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Feed it rows from Forge Query. Edit cells with Forge Form. Wrap the toolbar in Bear. The grid does not require any of them."
+        }
+      ]
+    },
+    {
+      "id": "torch",
+      "name": "Torch",
+      "group": "components",
+      "title": "Media players",
+      "description": "Video, audio, reels, and ad players with tracking, playlists, and a sticky mini player.",
+      "color": "#f97316",
+      "status": "ready",
+      "npm": "@forgedevstack/torch",
+      "github": "https://github.com/yaghobieh/torch",
+      "docsPath": "/torch",
+      "install": "npm install @forgedevstack/torch",
+      "features": [
+        "TorchPlayer, ReelPlayer, and AdPlayer",
+        "Playlists and tracking",
+        "Sticky mini player",
+        "Pointer seek on mobile"
+      ],
+      "docs": [
+        {
+          "heading": "What Torch is",
+          "body": "Torch plays video, audio, reels, and ads. Wrap players in TorchProvider when you want one accent, one playlist, and one tracking pipe."
+        },
+        {
+          "heading": "Install",
+          "body": "Import the stylesheet after your app CSS. Torch's sheet includes layout resets, so load it where you expect that.",
+          "code": "npm install @forgedevstack/torch\n\nimport { TorchProvider, TorchPlayer } from '@forgedevstack/torch';\nimport '@forgedevstack/torch/styles.css';"
+        },
+        {
+          "heading": "A note on the stylesheet",
+          "body": "TorchPlayer needs a src string. An empty src shows a failed-load state. Point it at a file in public/ or a remote URL."
+        }
+      ]
+    },
+    {
+      "id": "synapse",
+      "name": "Synapse",
+      "group": "logic",
+      "title": "State",
+      "description": "Small React state. Nuclei and signals, no dispatch and no reducers. DevTools included.",
+      "color": "#a855f7",
+      "status": "ready",
+      "npm": "@forgedevstack/synapse",
+      "github": "https://github.com/yaghobieh/synapse",
+      "docsPath": "/synapse",
+      "install": "npm install @forgedevstack/synapse",
+      "features": [
+        "Nucleus state containers",
+        "Signals and computed values",
+        "useNucleus and usePick",
+        "Time-travel DevTools",
+        "Persist and logger middleware",
+        "Under 2KB gzipped"
+      ],
+      "docs": [
+        {
+          "heading": "What Synapse is",
+          "body": "Synapse replaces a Redux-shaped store with a nucleus you read and write directly. Components subscribe to the slice they pick."
+        },
+        {
+          "heading": "Install",
+          "body": "No provider is required for a single nucleus. Add the DevTools middleware while you are building.",
+          "code": "npm install @forgedevstack/synapse"
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Bear components read Synapse. Forge Query writes server data into a nucleus. Compass guards can read the same auth nucleus."
+        }
+      ]
+    },
+    {
+      "id": "form",
+      "name": "Forge Form",
+      "group": "logic",
+      "title": "Forms",
+      "description": "Form state and validation, with cache, retries on submit, and a DevTools panel.",
+      "color": "#10b981",
+      "status": "ready",
+      "npm": "@forgedevstack/forge-form",
+      "github": "https://github.com/yaghobieh/forge-form",
+      "docsPath": "/form",
+      "install": "npm install @forgedevstack/forge-form",
+      "features": [
+        "Built-in and async validators",
+        "Form persistence",
+        "Submit with retries",
+        "DevTools panel",
+        "Zero runtime dependencies"
+      ],
+      "docs": [
+        {
+          "heading": "What Forge Form is",
+          "body": "Forge Form keeps field state, validation, and submit next to the inputs. It does not render the inputs. Pair it with Bear fields or your own."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/forge-form",
+          "body": "The package is framework-light and typed. Validation can be sync or async."
+        },
+        {
+          "heading": "Where the values go",
+          "body": "On submit, hand the payload to Forge Query or straight to a Harbor route. Synapse can mirror the draft if more than one screen needs it."
+        }
+      ]
+    },
+    {
+      "id": "query",
+      "name": "Forge Query",
+      "group": "logic",
+      "title": "Data fetching",
+      "description": "Cache, refetch, retry, and dedupe for HTTP. DevTools for the cache.",
+      "color": "#eb2f96",
+      "status": "ready",
+      "npm": "@forgedevstack/forge-query",
+      "github": "https://github.com/yaghobieh/forge-query",
+      "docsPath": "/query",
+      "install": "npm install @forgedevstack/forge-query",
+      "features": [
+        "LRU cache",
+        "Background refetch",
+        "Retries with backoff",
+        "Request deduplication",
+        "useMutation",
+        "Offline support"
+      ],
+      "docs": [
+        {
+          "heading": "What Forge Query is",
+          "body": "Forge Query is the data layer in the browser. It caches responses, retries failed reads, and dedupes the same request from two components."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/forge-query",
+          "body": "Use it with fetch, or point it at Relay when you want interceptors on the wire."
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Harbor exposes the routes. Forge Query loads them. Grid Table and Bear render the result. Synapse is optional if you want that data in a nucleus too."
+        }
+      ]
+    },
+    {
+      "id": "compass",
+      "name": "Compass",
+      "group": "logic",
+      "title": "Routing",
+      "description": "Typed client routes with guards, blocked navigation, prefetch, and transitions.",
+      "color": "#3b82f6",
+      "status": "ready",
+      "npm": "@forgedevstack/forge-compass",
+      "github": "https://github.com/yaghobieh/forge-compass",
+      "docsPath": "/compass",
+      "install": "npm install @forgedevstack/forge-compass",
+      "features": [
+        "Auth, role, and permission guards",
+        "Block navigation on unsaved changes",
+        "Query-string state",
+        "Prefetch and scroll restoration",
+        "Route transitions and a DevTools panel"
+      ],
+      "docs": [
+        {
+          "heading": "What Compass is",
+          "body": "Compass is the client router. Routes are data, guards are functions, and the first paint renders without a refresh when you pass routes into CompassProvider."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/forge-compass",
+          "body": "Use CompassProvider with a routes prop. Guards can be async."
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Compass decides which Bear screen is visible. Forge Form can block leaving a dirty page. Harbor stays on the server; Compass never replaces it."
+        }
+      ]
+    },
+    {
+      "id": "harbor",
+      "name": "Harbor",
+      "group": "backend",
+      "title": "Node server",
+      "description": "A Node framework with routes, controllers, Mongo, auth, websockets, jobs, and cache.",
+      "color": "#3385ff",
+      "status": "ready",
+      "npm": "@forgedevstack/harbor",
+      "github": "https://github.com/yaghobieh/Harbor",
+      "docsPath": "/harbor/docs/quick-start",
+      "install": "npm install @forgedevstack/harbor",
+      "features": [
+        "Routes, controllers, and services",
+        "Mongo ODM",
+        "JWT and API keys",
+        "WebSocket rooms",
+        "Cron jobs, cache, rate limits",
+        "Health, metrics, uploads"
+      ],
+      "docs": [
+        {
+          "heading": "What Harbor is",
+          "body": "Harbor is the server. You declare routes as functions or as class methods with @route.get and @route.del. A controller calls a service. The CLI can scaffold that shape."
+        },
+        {
+          "heading": "Install",
+          "body": "The published package is 1.6.x. The bin is harbor. npx @forgedevstack/harbor create scaffolds a starter.",
+          "code": "npm install @forgedevstack/harbor\nnpx @forgedevstack/harbor create"
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Forge Auth plugs into Harbor as middleware. Forge Query calls these routes from the browser. Lingo can localize server messages. Bear never runs here."
+        }
+      ]
+    },
+    {
+      "id": "auth",
+      "name": "Forge Auth",
+      "group": "backend",
+      "title": "Node auth",
+      "description": "HMAC sessions, refresh rotation, cookies, API keys, scrypt, and OIDC with PKCE. This is the Node toolkit, not a React login kit.",
+      "color": "#8b5cf6",
+      "status": "ready",
+      "npm": "@forgedevstack/forge-auth",
+      "github": "https://github.com/yaghobieh/forge-auth",
+      "docsPath": "/auth",
+      "install": "npm install @forgedevstack/forge-auth",
+      "features": [
+        "HMAC session tokens",
+        "Refresh and rotation",
+        "Harbor middleware",
+        "Cookie helpers and API keys",
+        "scrypt passwords",
+        "OIDC and PKCE"
+      ],
+      "docs": [
+        {
+          "heading": "What Forge Auth is",
+          "body": "Forge Auth is server-side auth for Node. It issues sessions, rotates refresh tokens, and exposes Harbor middleware. It is not the React login product."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/forge-auth",
+          "body": "Zero runtime dependencies. Guards are framework-agnostic and the Harbor adapter is included."
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Harbor mounts the middleware. Compass reads the resulting session on the client and guards routes. Synapse can hold the current user."
+        }
+      ]
+    },
+    {
+      "id": "relay",
+      "name": "Relay",
+      "group": "backend",
+      "title": "HTTP client",
+      "description": "A small fetch client with interceptors, retry, upload progress, and a websocket helper.",
+      "color": "#6366f1",
+      "status": "soon",
+      "npm": "@forgedevstack/relay",
+      "github": "https://github.com/yaghobieh/ForgeStack",
+      "docsPath": "/relay",
+      "install": "npm install @forgedevstack/relay",
+      "features": [
+        "Native fetch",
+        "Interceptors",
+        "Timeout and retry",
+        "Upload progress",
+        "WebSocket client"
+      ],
+      "docs": [
+        {
+          "heading": "What Relay is",
+          "body": "Relay is the HTTP client. It wraps fetch with interceptors and retry so Forge Query can sit on top, or you can call it directly."
+        },
+        {
+          "heading": "Status",
+          "body": "Relay is documented here and still settling. Treat the API as early. The land page is the contract we are aiming at."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/relay",
+          "body": "When the package is published, this is the install line."
+        }
+      ]
+    },
+    {
+      "id": "kiln",
+      "name": "Kiln",
+      "group": "tooling",
+      "title": "Component docs",
+      "description": "A small Storybook-style canvas. kiln init scaffolds it. Stories, search, and a live preview.",
+      "color": "#b45309",
+      "status": "ready",
+      "npm": "@forgedevstack/kiln",
+      "github": "https://github.com/yaghobieh/kiln",
+      "docsPath": "/kiln",
+      "install": "npm install @forgedevstack/kiln",
+      "features": [
+        "kiln init",
+        "Story files and groups",
+        "Live preview and code",
+        "Search and theming",
+        "Small bundle"
+      ],
+      "docs": [
+        {
+          "heading": "What Kiln is",
+          "body": "Kiln documents components. It is the place Bear stories and your own components get a canvas, a snippet, and a sidebar."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/kiln\nnpx kiln init",
+          "body": "kiln init writes kiln.config.json and a first story."
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Kiln previews Bear, Rail, and Grid Table. It does not ship in your production bundle unless you choose to."
+        }
+      ]
+    },
+    {
+      "id": "aerocraft",
+      "name": "AeroCraft",
+      "group": "tooling",
+      "title": "CSS shortcuts",
+      "description": "Short class names compiled to plain CSS with PostCSS. Tokens, breakpoints, and recipes.",
+      "color": "#6366f1",
+      "status": "ready",
+      "npm": "@forgedevstack/aerocraft",
+      "github": "https://github.com/yaghobieh/aerocraft",
+      "docsPath": "/aerocraft",
+      "install": "npm install @forgedevstack/aerocraft",
+      "features": [
+        "Layout, spacing, type, motion",
+        "Design tokens",
+        "Component recipes",
+        "Breakpoint prefixes",
+        "Pre-built CSS"
+      ],
+      "docs": [
+        {
+          "heading": "What AeroCraft is",
+          "body": "AeroCraft is a shortcut language that compiles to CSS. You keep tokens in one theme and write short utilities in templates."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/aerocraft",
+          "body": "Use the PostCSS plugin in the app build, or start from the pre-built sheet."
+        },
+        {
+          "heading": "Bear and AeroCraft",
+          "body": "Bear brings components. AeroCraft brings the utility layer under them. Either one works without the other."
+        }
+      ]
+    },
+    {
+      "id": "lingo",
+      "name": "Lingo",
+      "group": "tooling",
+      "title": "i18n",
+      "description": "Nested keys, interpolation, CLDR plurals, RTL, and React bindings. Local JSON or a remote bundle.",
+      "color": "#0d9488",
+      "status": "ready",
+      "npm": "@forgedevstack/lingo",
+      "github": "https://github.com/yaghobieh/lingo",
+      "docsPath": "/lingo",
+      "install": "npm install @forgedevstack/lingo",
+      "features": [
+        "Dot keys and namespaces",
+        "Interpolation and plurals",
+        "RTL dir and lang",
+        "Local or HTTP bundles",
+        "formatDate, formatNumber, formatCurrency"
+      ],
+      "docs": [
+        {
+          "heading": "What Lingo is",
+          "body": "Lingo translates UI copy. Keys can be nested, plurals follow CLDR, and a provider can set dir and lang for RTL locales."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/lingo",
+          "body": "Load JSON bundles locally, or point Lingo at an HTTP source when copy is edited outside the repo."
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Bear labels, Harbor error messages, and Compass document titles can all read from one Lingo catalog."
+        }
+      ]
+    },
+    {
+      "id": "anvil",
+      "name": "Anvil",
+      "group": "tooling",
+      "title": "Utilities and hooks",
+      "description": "Typed helpers and React hooks: clone, guards, debounce, and collection utilities. Tree-shakeable.",
+      "color": "#ec4899",
+      "status": "ready",
+      "npm": "@forgedevstack/anvil",
+      "github": "https://github.com/yaghobieh/anvil",
+      "docsPath": "/anvil",
+      "install": "npm install @forgedevstack/anvil",
+      "features": [
+        "Type guards",
+        "Deep clone and object paths",
+        "Array, string, and function helpers",
+        "React hooks",
+        "Vue composables",
+        "Zero dependencies"
+      ],
+      "docs": [
+        {
+          "heading": "What Anvil is",
+          "body": "Anvil is the utility belt. Import the one function you need. Nothing else ships in the bundle."
+        },
+        {
+          "heading": "Install",
+          "code": "npm install @forgedevstack/anvil",
+          "body": "Works in React, Vue, and plain TypeScript. Hooks live on a separate entry so Vue apps do not pull React."
+        },
+        {
+          "heading": "How it sits in the stack",
+          "body": "Every other library can call Anvil. Your app can too. It does not own state, routing, or UI."
+        }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "cli",
+      "name": "Forge CLI",
+      "group": "tooling",
+      "title": "Project scaffolding",
+      "description": "npx scaffolder for React, server, and full-stack ForgeStack apps. Templates, Bear, and a Synapse generator.",
+      "color": "#ec4899",
+      "status": "ready",
+      "npm": "@forgedevstack/forge-cli",
+      "github": "https://github.com/yaghobieh/forge-cli",
+      "docsPath": "/cli",
+      "install": "npx @forgedevstack/forge-cli",
+      "features": [
+        "React, server, and full-stack templates",
+        "Bear wired in",
+        "Synapse generator",
+        "npm, pnpm, yarn, and bun"
+      ],
+      "docs": [
+        {
+          "heading": "What the CLI is",
+          "body": "Forge CLI creates a project that already points at the libraries you pick. It is a tool, not a runtime dependency of your app."
+        },
+        {
+          "heading": "Create a project",
+          "code": "npx @forgedevstack/forge-cli",
+          "body": "Choose a template, a package manager, and whether Bear should be included. Harbor has its own create command for a server starter."
+        },
+        {
+          "heading": "Harbor starter",
+          "body": "For a Harbor API, use the Harbor package bin. It prints the ForgeStack mark and scaffolds route, controller, and service.",
+          "code": "npx @forgedevstack/harbor create"
+        }
+      ]
+    }
+  ],
+  "extensions": [
+    {
+      "id": "gitforge",
+      "name": "GitForge",
+      "group": "extensions",
+      "title": "Git for VS Code and Cursor",
+      "description": "Git actions from the editor sidebar. Built for VS Code and Cursor.",
+      "color": "#f05033",
+      "status": "ready",
+      "github": "https://github.com/yaghobieh/gitforge",
+      "vsix": "https://open-vsx.org/extension/Yaghobieh/gitforge",
+      "install": "ext install Yaghobieh.gitforge",
+      "features": [
+        "VS Code and Cursor",
+        "Open VSX listing",
+        "Git actions without leaving the editor"
+      ],
+      "docs": [
+        {
+          "heading": "What GitForge is",
+          "body": "GitForge is the editor extension for Git. It is not an npm library. Install the VSIX from Open VSX into VS Code or Cursor."
+        },
+        {
+          "heading": "Install",
+          "code": "ext install Yaghobieh.gitforge",
+          "body": "Or open the Open VSX page and install from there. The button on this page goes to that listing."
+        },
+        {
+          "heading": "Why it is in the stack",
+          "body": "ForgeStack covers the app and the editor you build it in. GitForge is that editor piece. LintForge sits next to it for style rules."
+        }
+      ]
+    },
+    {
+      "id": "lintforge",
+      "name": "LintForge",
+      "group": "extensions",
+      "title": "Style rules in the editor",
+      "description": "Editor enforcement for ForgeStack style: types in type files, constants in const files.",
+      "color": "#db2777",
+      "status": "ready",
+      "github": "https://github.com/yaghobieh/lintforge",
+      "vsix": "https://open-vsx.org/extension/Yaghobieh/lintforge",
+      "install": "ext install Yaghobieh.lintforge",
+      "features": [
+        "VS Code and Cursor",
+        "Open VSX listing",
+        "ForgeStack file layout rules"
+      ],
+      "docs": [
+        {
+          "heading": "What LintForge is",
+          "body": "LintForge is the editor extension for project style. The npm rule package is still landing. The VSIX is what you install today."
+        },
+        {
+          "heading": "Install",
+          "code": "ext install Yaghobieh.lintforge",
+          "body": "Open VSX is the listing. Use it in VS Code or Cursor beside GitForge."
+        },
+        {
+          "heading": "What it checks",
+          "body": "Keep types in type files and constants in const files, and keep Bear UI code on the same layout as the rest of the stack."
+        }
+      ]
+    }
+  ]
+}
