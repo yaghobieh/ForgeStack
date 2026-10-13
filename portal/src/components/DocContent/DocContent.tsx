@@ -113,43 +113,25 @@ npx @forgedevstack/harbor init --template
 
   'server': {
     title: 'Creating a Server',
-    content: `The createServer function creates a configured Express server with sensible defaults. It supports CORS, body parsing, error handling, and more out of the box.`,
-    code: `import { createServer } from '@forgedevstack/harbor';
+    content: `createServer returns a server you can chain. Call connectToMongo, httpLogger, and errorHandler on it, then listen. https://harborjs.com is the product site. Existing createServer() callers still work.`,
+    code: `import { createServer, router, route } from '@forgedevstack/harbor';
 
-// Basic server
-const server = createServer({ port: 3000 });
+const users = router('/api/users', [
+  route.get('/', async () => ({ users: [] })),
+]);
 
-// Full configuration
-const server = createServer({
-  port: 3000,
-  host: 'localhost',
-  configPath: './harbor.config.json', // Optional config file
-  autoStart: false, // Don't auto-start, use .listen() instead
-  
-  onReady: (info) => {
-    console.log(\`Server ready at http://\${info.host}:\${info.port}\`);
-    console.log(\`Uptime: \${info.uptime}ms\`);
-  },
-  
-  onError: (error) => {
-    console.error('Server error:', error);
-  },
-});
+const server = createServer({ port: 3000, host: '0.0.0.0' });
+server.use(users);
 
-// Express-like methods
-server.use(middleware);
-server.get('/health', (req, res) => res.json({ status: 'ok' }));
-server.post('/api/data', (req, res) => res.json(req.body));
+server
+  .connectToMongo('mongodb://localhost:27017/app')
+  // or .connectToMongo({ user, password, host, port, db, authSource, isSrv: true })
+  .httpLogger('dev')
+  .errorHandler()
+  .connectToPostgres('postgres://user:pass@localhost:5432/app')
+  .listen();
 
-// Start listening
-server.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
-
-// Or use async start
-await server.start();
-await server.stop();
-await server.restart();`,
+server.get('/health', (req, res) => res.json({ status: 'ok' }));`,
   },
 
   'routes': {
@@ -887,14 +869,17 @@ const signedRoutes = router('/api/webhooks', [
 
   'logger': {
     title: 'HTTP Logger',
-    content: `Morgan-like HTTP request logger with customizable formats and colors.`,
+    content: `Request logger with the same formats as a typical HTTP access log: tiny, short, dev, combined, common, and custom. Chain it with server.httpLogger, or pass the middleware to server.use.`,
     code: `import { createServer, httpLogger } from '@forgedevstack/harbor';
 
 const server = createServer({ port: 3000 });
 
-// Predefined formats
+server.httpLogger('dev');
+server.httpLogger({ format: 'combined', colorize: true });
+
+// Or as middleware
 server.use(httpLogger({ format: 'combined' }));
-server.use(httpLogger({ format: 'dev' }));    // Colored, concise
+server.use(httpLogger({ format: 'dev' }));
 server.use(httpLogger({ format: 'short' }));
 server.use(httpLogger({ format: 'tiny' }));
 
@@ -923,6 +908,30 @@ server.use(httpLogger({
 // :remote-addr - Client IP address
 // :http-version - HTTP version
 // :content-length - Response content length`,
+  },
+
+  'sql': {
+    title: 'Postgres and SQL',
+    content: `Connect Postgres from the server chain or from @forgedevstack/harbor/sql. pg is an optional peer: install it in the app before connectToPostgres or connectToSql. Queries use parameters. Table and column names must be plain identifiers.`,
+    code: `import { createServer } from '@forgedevstack/harbor';
+import { sqlTable, transaction } from '@forgedevstack/harbor/sql';
+
+const server = createServer({ port: 3000 })
+  .connectToPostgres('postgres://user:pass@localhost:5432/app')
+  .errorHandler()
+  .listen();
+
+const users = sqlTable('users');
+
+const admins = await users.where('role', 'admin').orderBy('created_at', 'desc').limit(20).find();
+const one = await users.findById(1);
+await users.create({ email: 'ada@example.com', name: 'Ada' });
+await users.upsert({ email: 'ada@example.com', name: 'Ada Lovelace' }, 'email');
+await users.updateOne({ id: 1 }, { name: 'Ada' });
+
+await transaction(async (tx) => {
+  await tx.table('accounts').updateOne({ id: 1 }, { balance: 10 });
+});`,
   },
 
   'docker': {

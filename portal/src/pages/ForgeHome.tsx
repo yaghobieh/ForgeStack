@@ -7,8 +7,8 @@ import { LibGlyph } from '../components/Shell/Mark';
 const BOXES = [
   { id: 'bear', line: 'Components for the screen. Theme, inputs, overlays.' },
   { id: 'synapse', line: 'State the components read. No reducers.' },
-  { id: 'harbor', line: 'The Node server those screens call.' },
-  { id: 'compass', line: 'Client routes, guards, and transitions.' },
+  { id: 'harbor', line: 'The Node server those screens call. Mongo, Postgres, and a fluent chain.' },
+  { id: 'compass', line: 'Routes for React, Vue, Angular, and Svelte.' },
 ];
 
 const LAYERS = [

@@ -1,4 +1,4 @@
-export const HARBOR_VERSION = '1.6.4';
+export const HARBOR_VERSION = '1.6.6';
 export const VERSION = '1.0.6';
 
 export const TITLE = 'ForgeStack';
@@ -57,14 +57,15 @@ export const PACKAGES: ForgePackage[] = [
     id: 'harbor',
     name: 'Harbor',
     title: 'Node.js Backend Framework',
-    description: 'Complete backend framework with MongoDB ODM, WebSocket, scheduling, caching, authentication, and more.',
+    description: 'Node backend with a fluent server, MongoDB, Postgres, request logs, auth, jobs, and cache. Docs at harborjs.com.',
     icon: '⚓',
     status: 'ready',
     npmPackage: '@forgedevstack/harbor',
     docsPath: '/harbor',
     features: [
-      'Zero-config server creation',
-      'MongoDB ODM (Mongoose replacement)',
+      'Fluent server: Mongo, request log, error handler',
+      'Postgres and SQL queries',
+      'MongoDB ODM',
       'JWT & API Key authentication',
       'WebSocket with rooms',
       'Job scheduling (cron)',
@@ -75,19 +76,21 @@ export const PACKAGES: ForgePackage[] = [
       'File uploads',
       'i18n support',
     ],
-    version: '1.6.4',
+    version: '1.6.6',
     color: '#0066cc',
   },
   {
     id: 'compass',
     name: 'Compass',
     title: 'Type-safe Routing',
-    description: 'Type-safe routing with guards, permissions, navigation blocking, transitions, and DevTools.',
+    description: 'Routing for React, Vue, Angular, and Svelte, with one-shot routes, guards, and DevTools.',
     icon: '🧭',
     status: 'ready',
     npmPackage: '@forgedevstack/forge-compass',
     docsPath: '/compass',
     features: [
+      'One-shot routes from a string or an object',
+      'Vue, Angular, and Svelte adapters',
       'Route guards (auth, roles, permissions)',
       'Navigation blocking (unsaved changes)',
       'Query string state sync',
@@ -98,7 +101,7 @@ export const PACKAGES: ForgePackage[] = [
       'DevTools panel',
     ],
     color: '#3b82f6',
-    version: '1.0.2',
+    version: '1.0.4',
   },
   {
     id: 'form',
@@ -516,12 +519,9 @@ export const EXTENSIONS: ForgeExtension[] = [
 
 export const GITHUB_URL = 'https://github.com/yaghobieh/ForgeStack';
 
-export const QUICK_START_CODE = `import { createServer, connect, router, route } from '@forgedevstack/harbor';
+export const QUICK_START_CODE = `import { createServer, router, route } from '@forgedevstack/harbor';
 import { Schema, model } from '@forgedevstack/harbor/database';
 import { JWT, jwtAuth } from '@forgedevstack/harbor/auth';
-
-// Connect to MongoDB
-await connect('mongodb://localhost:27017/myapp');
 
 // Define a model
 const User = model('User', new Schema({
@@ -532,8 +532,9 @@ const User = model('User', new Schema({
 // Setup JWT
 const jwt = new JWT({ secret: process.env.JWT_SECRET! });
 
-// Create server
-const server = createServer({ port: 3000 });
+const server = createServer({ port: 3000 })
+  .connectToMongo('mongodb://localhost:27017/myapp')
+  .httpLogger('dev');
 
 // Define routes
 const userRoutes = router('/api/users', [
@@ -563,4 +564,4 @@ const userRoutes = router('/api/users', [
 // Protected routes
 server.use('/api', jwtAuth(jwt));
 server.use(userRoutes);
-server.listen(3000);`;
+server.errorHandler().listen(3000);`;
