@@ -38,6 +38,7 @@ export const HARBOR_NAV: HarborNavGroup[] = [
     title: 'Database',
     sections: [
       { title: 'MongoDB ODM', path: 'database' },
+      { title: 'Postgres and SQL', path: 'sql' },
       { title: 'Validation', path: 'validation' },
     ],
   },

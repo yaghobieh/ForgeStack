@@ -10,6 +10,7 @@ export const COMPASS_NAV_ITEMS = [
   { path: 'installation', label: 'Installation' },
   { path: 'quick-start', label: 'Quick Start' },
   { path: 'routes', label: 'Routes' },
+  { path: 'frameworks', label: 'Vue, Angular, Svelte' },
   { path: 'guards', label: 'Guards' },
   { path: 'navigation', label: 'Navigation' },
   { path: 'hooks', label: 'Hooks' },
@@ -302,7 +303,7 @@ export const CompassDocContent: FC<{ page: string }> = ({ page }) => {
             Type-safe routing with guards, permissions, and declarative configuration.
           </p>
           <p className="text-sm text-theme-secondary mb-6 rounded-lg p-3 bg-theme-card border border-theme">
-            <strong>v1.0.2:</strong> Routes now render on first load without a refresh when using <code className="px-1 py-0.5 rounded bg-theme">CompassProvider</code> with a <code className="px-1 py-0.5 rounded bg-theme">routes</code> prop (e.g. grid-table portal).
+            <strong>v1.0.4:</strong> <code className="px-1 py-0.5 rounded bg-theme">createRoute</code> takes an object or a string. Vue, Angular, and Svelte each have an entry point. React stays the default.
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -323,7 +324,8 @@ export const CompassDocContent: FC<{ page: string }> = ({ page }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {[
               { title: 'Route Guards', desc: 'Auth, role, permission guards with async support' },
-              { title: 'Array-based Config', desc: 'Define routes as simple objects, no JSX nesting' },
+              { title: 'One-shot routes', desc: "Object or 'auth function /auth/:id <UserPage>'" },
+              { title: 'Vue, Angular, Svelte', desc: 'Separate entry points. React stays the default' },
               { title: 'Navigation Blocking', desc: 'Prevent navigation with unsaved changes' },
               { title: 'Query State Sync', desc: 'Sync component state with URL query params' },
               { title: 'Scroll Restoration', desc: 'Automatic scroll position management' },
@@ -366,6 +368,23 @@ export const CompassDocContent: FC<{ page: string }> = ({ page }) => {
           <p className="text-theme-secondary mb-6">
             Define routes as an array of objects. No JSX nesting required.
           </p>
+          <p className="text-theme-secondary mb-4">
+            createRoute still accepts a path and a component. It also accepts an object, or a string with name, function, path, and component.
+          </p>
+          <CodeBlock code={`import { createRoute, registerComponent } from '@forgedevstack/forge-compass';
+
+registerComponent('UserPage', UserPage);
+
+createRoute({
+  name: 'auth',
+  fn: 'function',
+  path: '/auth/:id',
+  component: 'UserPage',
+});
+
+createRoute('auth function /auth/:id <UserPage>');
+
+createRoute('/home', HomePage, { name: 'home' });`} language="tsx" />
           <CodeBlock code={`const routes = [
   {
     path: '/',
@@ -393,6 +412,36 @@ export const CompassDocContent: FC<{ page: string }> = ({ page }) => {
     component: NotFound, // Catch-all
   },
 ];`} language="tsx" />
+        </section>
+      )}
+
+      {page === 'frameworks' && (
+        <section>
+          <h1 className="text-3xl font-bold text-theme-primary mb-4">Vue, Angular, and Svelte</h1>
+          <p className="text-theme-secondary mb-6">
+            React stays on the package root. Vue, Angular, and Svelte are separate entry points and optional peers. createRoute is the same string and object on each of them. The Svelte entry exposes Link and Outlet as controllers the app wraps, because this package does not compile Svelte files.
+          </p>
+          <CodeBlock code={`// Vue 3
+import { createCompassRouter, CompassView, CompassLink, createRoute } from '@forgedevstack/forge-compass/vue';
+
+const router = createCompassRouter([
+  createRoute('auth function /auth/:id <UserPage>'),
+]);
+app.use(router);
+
+// Angular
+import { provideCompassRouter, createRoute, canActivate } from '@forgedevstack/forge-compass/angular';
+
+provideCompassRouter([
+  createRoute({ name: 'auth', fn: canActivate(isLoggedIn), path: '/auth/:id', component: UserPage }),
+]);
+
+// Svelte
+import { createCompassRouter, Link, Outlet } from '@forgedevstack/forge-compass/svelte';
+
+const router = createCompassRouter([
+  { path: '/auth/:id', name: 'auth', component: UserPage },
+]);`} language="tsx" />
         </section>
       )}
 

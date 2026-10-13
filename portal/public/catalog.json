@@ -309,7 +309,7 @@
       "name": "Compass",
       "group": "logic",
       "title": "Routing",
-      "description": "Typed client routes with guards, blocked navigation, prefetch, and transitions.",
+      "description": "Routes for React, Vue, Angular, and Svelte. One-shot route strings, guards, prefetch, and transitions.",
       "color": "#3b82f6",
       "status": "ready",
       "npm": "@forgedevstack/forge-compass",
@@ -317,6 +317,8 @@
       "docsPath": "/compass",
       "install": "npm install @forgedevstack/forge-compass",
       "features": [
+        "One-shot routes: object or 'name fn /path Component'",
+        "Vue, Angular, and Svelte adapters",
         "Auth, role, and permission guards",
         "Block navigation on unsaved changes",
         "Query-string state",
@@ -326,7 +328,7 @@
       "docs": [
         {
           "heading": "What Compass is",
-          "body": "Compass is the client router. Routes are data, guards are functions, and the first paint renders without a refresh when you pass routes into CompassProvider."
+          "body": "Compass is the client router for React, Vue, Angular, and Svelte. createRoute accepts a route object or a string such as 'auth function /auth/:id <UserPage>'. React stays the default."
         },
         {
           "heading": "Install",
@@ -344,7 +346,7 @@
       "name": "Harbor",
       "group": "backend",
       "title": "Node server",
-      "description": "A Node framework with routes, controllers, Mongo, auth, websockets, jobs, and cache.",
+      "description": "A Node framework with a fluent server, Mongo, Postgres, auth, websockets, jobs, and cache. Site: harborjs.com.",
       "color": "#3385ff",
       "status": "ready",
       "npm": "@forgedevstack/harbor",
@@ -352,7 +354,8 @@
       "docsPath": "/harbor/docs/quick-start",
       "install": "npm install @forgedevstack/harbor",
       "features": [
-        "Routes, controllers, and services",
+        "Fluent server: connectToMongo, httpLogger, errorHandler",
+        "Postgres and SQL table methods",
         "Mongo ODM",
         "JWT and API keys",
         "WebSocket rooms",
@@ -366,7 +369,7 @@
         },
         {
           "heading": "Install",
-          "body": "The published package is 1.6.x. The bin is harbor. npx @forgedevstack/harbor create scaffolds a starter.",
+          "body": "1.6.6 is the working release. The site is https://harborjs.com. The bin is harbor. npx @forgedevstack/harbor create scaffolds a starter. Install pg in the app before connectToPostgres.",
           "code": "npm install @forgedevstack/harbor\nnpx @forgedevstack/harbor create"
         },
         {
