@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCatalog } from '@/catalog/CatalogContext';
 import { useShellUI } from '@/catalog/shell';
 import { LibGlyph } from '../components/Shell/Mark';
+import { StackBuilder } from '../components/StackBuilder/StackBuilder';
 
 const BOXES = [
   { id: 'bear', line: 'Components for the screen. Theme, inputs, overlays.' },
@@ -79,15 +80,7 @@ export const ForgeHome: FC = () => {
         </ol>
       </section>
 
-      <section className="fs-builder" id="stack-builder">
-        <div className="fs-builder-inner">
-          <label htmlFor="stack-builder-input">Tell Stack Builder to do it for you</label>
-          <div className="fs-soon-field">
-            <textarea id="stack-builder-input" disabled placeholder="" />
-            <span>Coming soon</span>
-          </div>
-        </div>
-      </section>
+      <StackBuilder />
 
       <section className="fs-section">
         <div className="fs-section-inner">
