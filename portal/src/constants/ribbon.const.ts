@@ -158,6 +158,18 @@ export const RIBBON_LIBRARIES: RibbonLibrary[] = [
     glow: 'rgba(79, 107, 245, 0.55)',
   },
   {
+    id: 'ink',
+    name: 'Ink',
+    icon: '🖋️',
+    tagline: 'WYSIWYG rich editor: toolbar, typo auto-fix, AI stub.',
+    npmPackage: '@forgedevstack/ink',
+    docsUrl: 'https://inkforgejs.com',
+    githubUrl: `${GITHUB_BASE}/ink`,
+    colorFrom: '#5eead4',
+    colorTo: '#0f766e',
+    glow: 'rgba(20, 184, 166, 0.5)',
+  },
+  {
     id: 'forge-cli',
     name: 'Forge CLI',
     icon: '⌨️',
