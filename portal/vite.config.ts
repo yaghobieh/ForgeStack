@@ -1,9 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
+import { stackAskPlugin } from './server/stackAskPlugin';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), stackAskPlugin()],
+  server: { port: 5180 },
   resolve: {
     alias: {
       // Anvil (a Bear dependency) statically imports 'vue' for its Vue
