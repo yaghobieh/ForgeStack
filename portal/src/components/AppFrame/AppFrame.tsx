@@ -22,7 +22,7 @@ export const AppFrame: FC<AppFrameProps> = ({ children }) => {
         <div className="fs-site">
           <SiteHeader />
           <div className="flex">
-            {!plain && <Sidebar className="fixed left-0 top-[73px] bottom-0 z-30 hidden lg:flex" />}
+            {!plain && <Sidebar className="fixed left-0 top-[var(--fs-chrome,120px)] bottom-0 z-30 hidden lg:flex" />}
             <main className={`flex-1 min-w-0 ${plain ? '' : 'lg:ml-56'}`}>
               {children}
             </main>
